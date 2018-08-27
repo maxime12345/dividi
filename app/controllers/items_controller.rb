@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @items = current_user.items.group_by(&:collection)
+    @collections = current_user.collections
   end
 
   def show

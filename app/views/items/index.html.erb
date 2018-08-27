@@ -1,16 +1,25 @@
 <div class="container">
-  <% @items.each do |collection, items| %>
+  <div class="col-xs-12 filter-zone">
+    <h4>Filter zone</h4>
+  </div>
 
-    <h2> <%= collection.name %> </h2>
-    <ul>
-      <% items.each do |item| %>
-        <li> <%= item.name %> </li>
+  <% @collections.each do |collection| %>
+
+    <div class="col-xs-12 collection">
+      <h4><%= collection.name %> - <%= collection.items.size %></h4>
+
+      <% collection.items.each do |item| %>
+        <div class="col-xs-12">
+          <%= render 'shared/card_item', item: item %>
+        </div>
       <% end %>
-    </ul>
-
-<% end %>
 
 
 
 
+    </div>
+
+  <% end %>
+
+</div>
 
