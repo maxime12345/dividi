@@ -57,7 +57,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1006" y="257" name="objects">
+<table x="1006" y="257" name="item">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -78,7 +78,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="783" y="410" name="collections">
+<table x="759" y="387" name="collections">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -93,7 +93,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="683" y="120" name="bookings">
+<table x="714" y="100" name="reminders">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -103,7 +103,7 @@
 </row>
 <row name="object_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="objects" row="id" />
+<default>NULL</default><relation table="item" row="id" />
 </row>
 <row name="ghost_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
