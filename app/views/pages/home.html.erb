@@ -1,20 +1,25 @@
 <div class="container-fluid">
 
     <div class= "section1">
-      <div class= "title">
+        <div class= "title">
 
-      Dividi
-   <%= image_tag 'images/home.jpg' %>
-      </div>
+            Dividi
+            <div class="texte-labeur">
+              Sortez-vos objets du grenier !
+            </div>
+            <div class="formulaire">
+            <%= render 'devise/sessions/newsession', user: @user  %>
+            </div>
+        </div>
+    </div>
 
-      <div class="formulaire">
-      <%= render 'devise/sessions/newsession', user: @user  %>
-      </div>
+
 
     <div class= "section2">
         <div class= "title">
           gfdhg
         </div>
     </div>
+
 
 </div>

@@ -3,11 +3,9 @@
 <div class="formulaire">
 
   <%= simple_form_for user, url: user_session_path, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
-    <%= f.input :username, label: 'username', error: 'Username is mandatory, please specify one' %>
+    <%= f.input :username, placeholder: 'Pseudo', label: 'username', error: 'Username is mandatory, please specify one' %>
     <%= f.input :email, placeholder: 'user@domain.com' %>
-
-    <%= f.button :submit %>
+    <%= f.button :submit, value: 'Créer un compte' %>
   <% end %>
-    </div>
-  </div>
 </div>
+
