@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery
+  before_action :authenticate_user!
 
   def index
     @items = current_user.items
