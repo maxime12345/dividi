@@ -19,6 +19,7 @@ height: 100vh;
   width: 100%;
   height: 100vh;
   background-color: blue;
+  align-content: center;
 
 
 }
@@ -36,3 +37,10 @@ height: 100vh;
   background-color: blue;
   transition: all 1s ease-out;
 }
+
+.formulaire {
+   margin-left: 150px;
+  width: 100%;
+  align-items: center;
+}
+
