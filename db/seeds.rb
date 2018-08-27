@@ -22,7 +22,7 @@ user_first = User.create(email: "tv@dividi.fr", password: '123456', password_con
 
 collections_creation(user_first)
 
-Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0])
-Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0])
+Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000)
+Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
 
 puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items in database !"
