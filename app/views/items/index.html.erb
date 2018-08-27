@@ -1,9 +1,16 @@
-<h1>All my items</h1>
+<div class="container">
+  <% @items.each do |collection, items| %>
 
-<ul>
+    <h2> <%= collection.name %> </h2>
+    <ul>
+      <% items.each do |item| %>
+        <li> <%= item.name %> </li>
+      <% end %>
+    </ul>
 
-  <% @items.each do |item| %>
-    <li>Name : <%= link_to item.name, item_path(item) %>, Verbe : <%= item.verbe %>, Collection : <%= item.collection.name %> | <%= humanized_money_with_symbol(item.price)%> </li>
-  <% end %>
+<% end %>
 
-</ul>
+
+
+
+
