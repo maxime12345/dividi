@@ -1,7 +1,27 @@
-<h1>Dashboard</h1>
+<div class="wrapper-dashboard">
+  <div class="row">
 
-<h2>Items rented or borrow to other persons</h2>
+    <div class="col-xs-6">
+      <h2>Items rented or borrow to other persons</h2>
 
-<h2>Items I rented or borrow to other persons</h2>
+      <% @reminders_others.each do |reminder|%>
+        <li> Objet : <%= reminder.item.name %> - Emprunté à <%= reminder.user.email %> </li>
+      <% end %>
 
-<h2>Items I'm interested on</h2>
+      <h2>Items I rented or borrow to other persons</h2>
+
+      <% @my_reminders.each do |reminder|%>
+        <li> Objet : <%= reminder.item.name %> - Prêté à <%= reminder.user.email %> </li>
+      <% end %>
+
+
+    </div>
+
+    <div class="col-xs-6">
+
+    <h2>Network</h2>
+
+    </div>
+
+  </div>
+</div>

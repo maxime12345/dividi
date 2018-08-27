@@ -22,7 +22,11 @@ user_first = User.create(email: "tv@dividi.fr", password: '123456', password_con
 
 collections_creation(user_first)
 
-Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0])
-Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0])
+velo = Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0])
+trotinette = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0])
 
-puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items in database !"
+user_second = User.create(email: "sl@dividi.fr", password: '123456', password_confirmation: '123456')
+
+Reminder.create(user: user_second, item: velo)
+
+puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"
