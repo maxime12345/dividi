@@ -3,3 +3,7 @@
 <p>Collection : <%= @item.collection.name %> </p>
 
 <p>Verbe : <%= @item.verbe %> </p>
+
+<p><%= humanized_money_with_symbol(@item.price)%></p>
+
+<%= cl_image_tag @item.photo, alt: "alttext" %>

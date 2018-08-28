@@ -57,7 +57,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1006" y="257" name="item">
+<table x="989" y="196" name="item">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -78,7 +78,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="759" y="387" name="collections">
+<table x="769" y="372" name="collections">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -93,7 +93,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="714" y="100" name="reminders">
+<table x="698" y="92" name="reminders">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
