@@ -12,4 +12,7 @@ class User < ApplicationRecord
   has_many :my_reminders, through: :items, source: :reminders
 
   has_many :networks
+  has_many :network_users, through: :networks
+
+  has_many :friends, through: :network_users, source: :user
 end
