@@ -69,7 +69,7 @@ margin-top: 10px;
 font-weight: 900;
 width: 180px;
 color: white;
-background-color: blue;
+background-color: #00D1B1;
 }
 
 
@@ -176,9 +176,10 @@ font-family: 'Roboto';
 .formulaire a {
   margin-top: 1px;
   padding: 10px;
-  color: white;
+  color: #00D1B1;
   font-size: 16px;
   text-decoration: none;
+  width: 450px;
 }
 
 .contact {
@@ -188,4 +189,31 @@ font-family: 'Roboto';
   font-family: 'Roboto';
   color: white;
   text-align: center;
+}
+
+.signuplink {
+  font-size: 16px;
+  width: 450px;
+  margin-top: 20px;
+
+}
+
+.form-control {
+  font-weight: 100;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid #D2D9DE;
+  background-color: transparent;
+}
+
+[type=email]:focus {
+
+  border-color: #1a82e2;
+  box-shadow: 0 1px 0 #1a82e2;
+}
+
+[type=password]:focus {
+
+  border-color: #1a82e2;
+  box-shadow: 0 1px 0 #1a82e2;
 }
