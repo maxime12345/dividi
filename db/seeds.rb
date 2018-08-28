@@ -41,10 +41,12 @@ puts "Creating networks and links..."
   networks_creation(user_third)
   networks_creation(user_fourth)
 
-  # User 1 have all people as friends
+  # User 1 have all people as friends, and 1 friend in a special network
   link1 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Tous")[0])
   link2 = NetworkUser.create(user: user_third, network: user_first.networks.where(name: "Tous")[0])
   link3 = NetworkUser.create(user: user_fourth, network: user_first.networks.where(name: "Tous")[0])
+
+  link4 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Amis")[0])
 
 
 
