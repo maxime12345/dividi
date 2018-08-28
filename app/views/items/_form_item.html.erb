@@ -1,8 +1,9 @@
 <%= simple_form_for(item) do |f|%>
   <%= f.input :name %>
-  <%= f.input :price_cents %>
+  <%= f.input :price, label: 'Price €' %>
+  <%= f.input :verbe, as: :radio_buttons, collection: [ "Sell", "Give", "Lend", "Rent"], label: "" %>
   <%= f.association :collection %>
   <%= f.input :photo, input_html: {accept: ('image') } %>
   <%= f.input :photo_cache, as: :hidden %>
-  <%= f.button :submit, class: "btn"%>
+  <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
