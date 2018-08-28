@@ -10,9 +10,11 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My items", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Dashboard", reminders_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Other link usable", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
