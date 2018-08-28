@@ -1,3 +1,14 @@
 .item-card {
   border: 1px solid gray;
+  &:hover {
+    background-color: gray;
+  }
+  .action {
+    background-color: white;
+    &:hover {
+      color: yellow;
+    }
+  }
 }
+
+

@@ -1,0 +1,4 @@
+<%= simple_form_for([item, reminder]) do |f| %>
+  <%= f.association :user, label_method: :email, collection: User.select{ |user| user != current_user } %>
+  <%= f.button :submit, class: "btn"%>
+<% end %>
