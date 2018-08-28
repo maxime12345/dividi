@@ -1,4 +1,5 @@
 class Reminder < ApplicationRecord
   belongs_to :user
-  belongs_to :objet
+  belongs_to :item
+
 end

@@ -1,0 +1,7 @@
+<%= link_to item_path(item) do  %>
+  <div class="item-card">
+    Name : <%= item.name %> <br>
+    Verbe : <%= item.verbe %> <br>
+    <%= humanized_money_with_symbol(item.price)%>
+  </div>
+<% end %>
