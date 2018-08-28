@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :reminders_others, class_name: 'Reminder'
 
   has_many :my_reminders, through: :items, source: :reminders
+
+  has_many :networks
 end
