@@ -3,7 +3,7 @@
 <ul>
 
   <% @items.each do |item| %>
-    <li>Name : <%= link_to item.name, item_path(item) %>, Verbe : <%= item.verbe %>, Collection : <%= item.collection.name %> </li>
+    <li>Name : <%= link_to item.name, item_path(item) %>, Verbe : <%= item.verbe %>, Collection : <%= item.collection.name %> | <%= humanized_money_with_symbol(item.price)%> </li>
   <% end %>
 
 </ul>
