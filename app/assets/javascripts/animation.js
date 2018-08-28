@@ -15,5 +15,21 @@ window.addEventListener('scroll', () => {
 
 });
 
+const foot = document.querySelector('.section3');
+
+window.addEventListener('scroll', () => {
+
+  if (window.scrollY > 437) {
+
+    foot.classList.add('scroll');
+
+  }
+
+  else {
+
+    foot.classList.remove('scroll');
+  }
+
+});
 
 

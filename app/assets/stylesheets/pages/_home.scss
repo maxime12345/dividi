@@ -1,20 +1,26 @@
 // Specific CSS for your home-page
+
+.body {
+
+  overflow-x:hidden;
+}
+
+
 .container-fluid {
 background-color: white;
 height: 100vh;
+
 
 }
 
 .title {
 
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
-  color: blue;
-  font-size: 150px;
-  text-align: left;
-  margin-left: 150px;
-
-
+font-family: 'Roboto', sans-serif;
+font-weight: 900;
+color: black;
+font-size: 150px;
+text-align: left;
+margin-left: 150px;
 
 }
 
@@ -26,7 +32,7 @@ padding-top:  80px;
 width: 100%;
 height: 100vh;
 background-image: url(/assets/Dividi-home.png);
-background-size: 1680px;
+background-size: 1800px;
 align-content: center;
 background-repeat: no-repeat;
 background-blend-mode: multiply;
@@ -35,42 +41,43 @@ background-blend-mode: multiply;
 
 
 .section2 {
-  height: 100vh;
-  background-color: blue;
-  transition: all 1s ease-out;
+height: 100vh;
+background-color: blue;
+transition: all 1s ease-out;
 
 }
 
 .section2.scroll {
-  width: 100%;
-  height: 100vh;
-  background-color: white;
-  transition: all 2s ease-out;
+width: 100%;
+height: 100vh;
+background-color: white;
+transition: all 2s ease-out;
 }
 
 .formulaire {
-  color: blue;
-  font-size: 25px;
-  margin-top: 20px;
-  text-align: left;
-  width: 250px;
+color: black;
+
+font-size: 25px;
+margin-top: 20px;
+text-align: left;
+width: 380px;
 
 }
 
 .btn {
-  margin-top: 10px;
-  font-weight: 900;
-
-  color: white;
-  background-color: blue;
+margin-top: 10px;
+font-weight: 900;
+width: 180px;
+color: white;
+background-color: blue;
 }
 
 
 .btn:hover {
-  font-weight: 900;
+font-weight: 900;
 
-  color: white;
-  background-color: black;
+color: white;
+background-color: black;
 }
 
 .texte-labeur {
@@ -83,15 +90,15 @@ font-size: 24px;
 .title2 {
 
 
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
-  color: black;
-  font-size: 80px;
-  text-align: center;
-  margin-left: 50px;
-  padding-top: 50px;
-  line-height: 0.8;
-  margin-bottom: 100px;
+font-family: 'Roboto', sans-serif;
+font-weight: 900;
+color: black;
+font-size: 80px;
+text-align: center;
+margin-left: 50px;
+padding-top: 50px;
+line-height: 0.8;
+margin-bottom: 100px;
 
 }
 
@@ -107,44 +114,78 @@ margin-top: 50px;
 }
 
 .section3 {
+text-align: center;
+color: white;
+padding-top: 17px;
+height: 60px;
+opacity: 0;
+background-color: #1DFF60;
+position: fixed;
+bottom: 0;
+width: 100%;
+transition: all 2s ease-out;
+
+}
 
 
-  height: 100vh;
+.section3.scroll {
 
-  background-color: yellow;
-
+height: 60px;
+opacity: 1;
+background-color:  #00A599;
+position: fixed;
+bottom: 0;
+width: 100%;
+transition: all 2s ease-out;
+background-blend-mode: multiply;
 }
 
 .circle {
-    margin-top: 40px;
-    margin-left: 50px;
-    text-align: center;
-    height: 200px;
-    width: 200px;
-    background-color: transparent;
-    border-radius: 50%;
-    background-image: url(/assets/Circle.gif);
-    background-size: 200px;
-    background-blend-mode: multiply;
+margin-top: 40px;
+margin-left: 50px;
+text-align: center;
+height: 200px;
+width: 200px;
+background-color: transparent;
+border-radius: 50%;
+background-image: url(/assets/Circle.gif);
+background-size: 200px;
+background-blend-mode: multiply;
 }
 
 .titel3 {
-  color: blue;
-  padding: 60px;
-  text-align: center;
-  width: 200px;
-  height: 200px;
-  font-size: 40px;
-  font-weight: 900;
-  font-family: 'Roboto';
+color: blue;
+padding: 60px;
+text-align: center;
+width: 200px;
+height: 200px;
+font-size: 40px;
+font-weight: 900;
+font-family: 'Roboto';
 }
 
 .title-p {
 
-    font-size: 40px;
-    font-weight: 900;
-    font-family: 'Roboto';
+font-size: 40px;
+font-weight: 900;
+font-family: 'Roboto';
 
 }
 
 
+.formulaire a {
+  margin-top: 1px;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.contact {
+  margin-top: 10px;
+  font-size: 0px;
+  font-weight: 500;
+  font-family: 'Roboto';
+  color: white;
+  text-align: center;
+}
