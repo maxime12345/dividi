@@ -31,10 +31,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_collection
-    @collection = Collection.find(params[:collection_id])
-  end
-
   def item_params
     params.require(:item).permit(:name, :price, :photo, :collection_id)
   end
