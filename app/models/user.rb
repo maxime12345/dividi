@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :collections
   has_many :items, through: :collections
+
+  has_many :reminders_others, class_name: 'Reminder'
+
+  has_many :my_reminders, through: :items, source: :reminders
 end
