@@ -22,7 +22,16 @@ user_first = User.create(email: "tv@dividi.fr", password: '123456', password_con
 
 collections_creation(user_first)
 
-Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000)
-Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
+velo = Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000)
+trotinett = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
 
-puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items in database !"
+user_second = User.create(email: "sl@dividi.fr", password: '123456', password_confirmation: '123456')
+
+collections_creation(user_second)
+
+art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0])
+
+Reminder.create(user: user_second, item: velo)
+Reminder.create(user: user_first, item: art_guerre)
+
+puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"

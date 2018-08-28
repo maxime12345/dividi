@@ -1,0 +1,8 @@
+<%= link_to item_path(reminder) do  %>
+  <div class="item-card">
+    Name : <%= reminder.item.name %> <br>
+    Verbe : <%= reminder.item.verbe %> <br>
+    <%= humanized_money_with_symbol(reminder.item.price)%> <br>
+    Appartient à : <%= reminder.user.email %>
+  </div>
+<% end %>
