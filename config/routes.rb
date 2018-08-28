@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show, :new, :create]
   resources :items, only: [:index, :show]
+  resources :reminders, only: :index
 
 end

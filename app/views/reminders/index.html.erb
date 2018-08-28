@@ -5,13 +5,20 @@
       <h2>Items rented or borrow to other persons</h2>
 
       <% @reminders_others.each do |reminder|%>
-        <li> Objet : <%= reminder.item.name %> - Emprunté à <%= reminder.user.email %> </li>
+
+        <div class="col-xs-12">
+          <%= render 'shared/card_reminder', reminder: reminder %>
+        </div>
+
       <% end %>
 
       <h2>Items I rented or borrow to other persons</h2>
 
       <% @my_reminders.each do |reminder|%>
-        <li> Objet : <%= reminder.item.name %> - Prêté à <%= reminder.user.email %> </li>
+
+        <div class="col-xs-12">
+          <%= render 'shared/card_reminder', reminder: reminder %>
+        </div>
       <% end %>
 
 
