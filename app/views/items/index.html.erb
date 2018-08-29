@@ -1,10 +1,17 @@
 <div class="wrapper", style="display: flex">
 
   <div class="sidebar col-xs-12", style="max-width: 222px">
-    <h3>My Collections</h3>
+    <h3>Collections</h3>
     <% @collections.each do |collection| %>
         <h4><%= collection.name %> (<%= collection.items.size %>)</h4>
+        <%= link_to collection.name, items_path + "?col=#{collection.id}"  %>
+
     <% end %>
+    <br/>
+    <%= link_to "All collection", items_path + "?col=0"  %>
+    <%= link_to "tri name", items_path + "?order=name"  %>
+    <%= link_to "tri reset", items_path + "?order="  %>
+
   </div>
 
   <div class="container">
@@ -14,7 +21,8 @@
             <%= text_field_tag :query,
               params[:query],
               placeholder: "Search for an specific item",
-              class: "input"
+              class: "input",
+                value: session["query"]
             %><i class="fa fa-search" aria-hidden="true"></i>
           <% end %></h4>
     </div>

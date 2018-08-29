@@ -3,6 +3,6 @@
     Name : <%= reminder.item.name %> <br>
     Verbe : <%= reminder.item.verbe %> <br>
     <%= humanized_money_with_symbol(reminder.item.price)%> <br>
-    Appartient à : <%= reminder.user.email %>
+    Appartient à : <%= reminder.item.collection.user.email %>
   </div>
 <% end %>
