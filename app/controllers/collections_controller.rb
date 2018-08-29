@@ -7,7 +7,6 @@ class CollectionsController < ApplicationController
     @collections = current_user.collections
   end
 
-
   private
 
 end
