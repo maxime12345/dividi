@@ -1,5 +1,12 @@
-<%= link_to network_user_path(network_user) do  %>
-  <div class="friend-card">
-    Mail : <%= network_user.user.email %>
+<div class="card-friend">
+  <div class="avatar">
+    Avatar
   </div>
-<% end %>
+  <div class="mail">
+    <%= user.email %>
+  </div>
+  <div class="request">
+    <%= link_to "Send a request" %>
+  </div>
+
+</div>
