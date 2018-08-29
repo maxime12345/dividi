@@ -1,21 +1,31 @@
-<div class="container">
+<div class="wrapper", style="display: flex">
 
-
-
-  <div class="col-xs-12 filter-zone">
-    <h4> <%= form_tag items_path, method: :get, class: "search" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            placeholder: "Search for an specific item",
-            class: "input"
-          %><i class="fa fa-search" aria-hidden="true"></i>
-        <% end %></h4>
+  <div class="sidebar col-xs-12", style="max-width: 222px">
+    <h3>My Collections</h3>
+    <% @collections.each do |collection| %>
+        <h4><%= collection.name %> (<%= collection.items.size %>)</h4>
+    <% end %>
   </div>
 
-  <% @items.each do |item| %>
-    <div class="col-xs-12 col-md-3">
-      <%= render 'shared/card_item', item: item %>
+  <div class="container">
+    <!-- Search bar -->
+    <div class="col-xs-12 filter-zone">
+      <h4> <%= form_tag items_path, method: :get, class: "search" do %>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Search for an specific item",
+              class: "input"
+            %><i class="fa fa-search" aria-hidden="true"></i>
+          <% end %></h4>
     </div>
-  <% end %>
 
+    <!-- Cards -->
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-xs-12 col-md-3">
+          <%= render 'shared/card_item', item: item %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

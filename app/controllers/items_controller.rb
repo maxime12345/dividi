@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @collections = current_user.collections
     if params[:query].present?
       @items = Item.search_by_name("#{params[:query]}")
     end
