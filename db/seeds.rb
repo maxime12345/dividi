@@ -16,8 +16,13 @@ puts "Creating users and collections..."
 
   collections_creation(user_first)
 
-  velo = Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000)
-  trotinett = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
+  velo = Item.create(name: "velo", description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000, remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382")
+  trottinette = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
+  test_landscape_image = Item.create(name: "tente familiale", description: "landscape_image_test", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg")
+  test_portrait_image = Item.create(name: "bureau en bois", description: "portrait image test ce bureau en bois est vraiment le plus beau de tous les objets en bois", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg")
+  test_little_image = Item.create(name: "petite boite metal", description: "test little image", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg")
+
+
 
   user_second = User.create(email: "sl@dividi.fr", password: '123456', password_confirmation: '123456')
   user_third = User.create(email: "jbb@dividi.fr", password: '123456', password_confirmation: '123456')
