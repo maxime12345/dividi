@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2018_08_29_110553) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "collections", force: :cascade do |t|
