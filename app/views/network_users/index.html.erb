@@ -1,0 +1,18 @@
+<div class="container">
+
+  <% @networks.each do |network| %>
+
+    <div class="col-xs-12 network">
+      <h4><%= network.name %> - <%= network.network_users.size %></h4>
+
+      <% network.network_users.each do |network_user| %>
+        <div class="col-xs-12">
+          <%= render 'shared/card_friend', network_user: network_user %>
+        </div>
+      <% end %>
+
+    </div>
+
+  <% end %>
+
+</div>

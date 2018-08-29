@@ -14,9 +14,9 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  # POST /collections/:collection_id/items
   def create
     @item = Item.new(item_params)
-    @item.user = current_user
     if @item.save
       redirect_to item_path(@item)
     else
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price, :photo)
+    params.require(:item).permit(:name, :price, :photo, :collection_id)
   end
 
 end

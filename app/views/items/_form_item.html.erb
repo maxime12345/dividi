@@ -1,21 +1,9 @@
 <%= simple_form_for(item) do |f|%>
   <%= f.input :name %>
-  <%= f.input :price_cents %>
-  <%= f.association :collection %>
+  <%= f.input :verbe, as: :radio_buttons, collection: [ "Sell", "Give", "Lend", "Rent"], label: "Action" %>
+  <%= f.input :price, label: 'Price €' %>
+  <%= f.association :collection, collection: current_user.collections %>
   <%= f.input :photo, input_html: {accept: ('image') } %>
   <%= f.input :photo_cache, as: :hidden %>
-  <%= f.button :submit, class: "btn"%>
+  <%= f.button :submit, class: "btn btn-primary"%>
 <% end %>
-
-
-
-<!--   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "verbe"
-    t.bigint "collection_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "price_cents", default: 0, null: false
-    t.index ["collection_id"], name: "index_items_on_collection_id"
-  end
- -->
