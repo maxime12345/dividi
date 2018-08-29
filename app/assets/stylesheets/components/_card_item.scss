@@ -1,15 +1,62 @@
 .item-card {
-  border: 1px solid gray;
+  border-bottom: 1px solid black;
+  width: 800px;
+  background-color: white;
   margin-top:20px;
   &:hover {
-    background-color: gray;
+    box-shadow: black;
   }
   .action {
-    background-color: white;
+    box-shadow: black;
     &:hover {
+      box-shadow: black;
       color: yellow;
     }
   }
 }
 
 
+.item-card a {
+  text-decoration: none;
+  color: black;
+
+}
+
+.title-card li {
+  font-family: 'Roboto';
+  font-size: 22px;
+  font-weight: 900;
+}
+
+ul li {
+  display: inline-block;
+}
+
+#tabs {
+  width: 800px;
+  display: inline block;
+}
+
+.verb {
+
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.status  {
+  font-style: italic;
+  color: black;
+  display: inline block;
+  font-weight: 200;
+
+}
+
+.puce  {
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #35DC55;
+}
