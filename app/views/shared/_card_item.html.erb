@@ -4,6 +4,8 @@
     Verbe : <%= item.verbe %> <br>
     <%= humanized_money_with_symbol(item.price)%> <br>
 
+    <%= item.collection.name %>
+
     <%= cl_image_tag item.user.avatar, alt: "Avatar" %>
 
     <%  if item.reminders[0].nil? %>
