@@ -1,0 +1,38 @@
+.card-network {
+  box-shadow: 1px 1px 1px gray;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  margin: 5px;
+  padding: 5px;
+  font-color: gray;
+
+ .avatar-icon {
+    width: 60px;
+    height:60px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .infos {
+    margin-left: 10px;
+  }
+  .email {
+    font-size: 0.9em;
+  }
+  &:hover {
+    box-shadow: 1px 1px 1px gray;
+  }
+  .avatar-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+  .fa-user {
+    font-size: 35px;
+  }
+}
+
