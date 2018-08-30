@@ -1,0 +1,111 @@
+     .item-card-list {
+      display: flex;
+
+      align-content: center;
+      border-bottom: 1px solid #E1E1E1;
+      width: 100%;
+      background-color: white;
+      margin-top:20px;
+      &:hover {
+        box-shadow: 10px 5px 5px #E1E1E1;
+      }
+      .action {
+        font-size: 14px;
+        color: #c1c1c1;
+        right: 0;
+
+        &:hover {
+
+          color: black;
+        }
+      }
+     }
+
+  .flex_item {
+
+
+    flex: 1 1 1;
+  }
+#collection-image {
+
+  flex: 1 0 0;
+}
+    a {
+      text-decoration: none;
+      color: #949495;
+
+    }
+
+   .title-card-list  {
+
+
+      font-family: 'Roboto';
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+#collection-title {
+
+  flex: 1 1 0;
+}
+
+    .verb  {
+       margin-top: 5px;
+      font-family: 'Roboto';
+      font-size: 14px;
+      font-weight: 400;
+      color: #565656 ;
+    }
+
+    .status {
+      text-decoration: none;
+      padding-top: 50px;
+      font-size: 14px;
+      color: #949495;
+      display: inline block;
+      font-weight: 400;
+
+    }
+
+    .puce  {
+      display: inline-block;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      background-color: #76DC61;
+    }
+
+    .img-card {
+
+      padding: 10px;
+    }
+
+  .disponible {
+    padding-left: 30px;
+    margin-top: 52px;
+    color: #949495;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+
+  }
+
+.price {
+  color: #76DC61;
+  font-size: 14px;
+  font-weight: 900;
+  margin-top: 52px;
+  padding-left: 30px;
+  padding-right: 50px;
+}
+
+#cell1 {
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+
+
+
+
