@@ -48,8 +48,11 @@ puts "Creating users and collections..."
   test_portrait_image = Item.create(name: "bureau en bois", description: "portrait image test ce bureau en bois est vraiment le plus beau de tous les objets en bois", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg")
   test_little_image = Item.create(name: "petite boite metal", description: "test little image", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg")
 
-  user_second = User.create(email: "sl@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/sarah.png"))
-  user_third = User.create(email: "jbb@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jb.jpeg"))
+
+
+  user_second = User.create(username: "Sarah", email: "sl@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/sarah.png"))
+  user_third = User.create(username: "JB", email: "jbb@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jb.jpeg"))
+
   user_fourth = User.create(email: "cr@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/christine.png"))
   user5 = User.create(email: "sebastien.patoche@dividi.fr", password: '123456', password_confirmation: '123456', avatar: File.open("#{Rails.root}/app/assets/images/images_seed/patoche.jpg"))
   user6 = User.create(email: "paul.dupont@dividi.fr", password: '123456', password_confirmation: '123456')
@@ -70,10 +73,18 @@ puts "Creating networks and links..."
 
   # User 1 have all people as friends, and 1 friend in a special network
   link1 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Tous")[0])
-  link2 = NetworkUser.create(user: user_third, network: user_first.networks.where(name: "Tous")[0])
-  link3 = NetworkUser.create(user: user_fourth, network: user_first.networks.where(name: "Tous")[0])
+  link1reverse = NetworkUser.create(user: user_first, network: user_second.networks.where(name: "Tous")[0])
 
-  link4 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Amis")[0])
+  link2 = NetworkUser.create(user: user_third, network: user_first.networks.where(name: "Tous")[0])
+  link2reverse = NetworkUser.create(user: user_first, network: user_third.networks.where(name: "Tous")[0])
+
+  link3 = NetworkUser.create(user: user_fourth, network: user_first.networks.where(name: "Tous")[0])
+  link3reverse = NetworkUser.create(user: user_first, network: user_fourth.networks.where(name: "Tous")[0])
+
+  link4 = NetworkUser.create(user: user7, network: user_first.networks.where(name: "Tous")[0])
+  link4reverse = NetworkUser.create(user: user_first, network: user7.networks.where(name: "Tous")[0])
+
+  link5 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Amis")[0])
 
 
 
