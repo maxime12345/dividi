@@ -1,15 +1,19 @@
+
+
 .item-card {
-  border-bottom: 1px solid black;
-  width: 800px;
+  align-content: center;
+  border-bottom: 1px solid #E1E1E1;
+  width: 100%;
   background-color: white;
   margin-top:20px;
   &:hover {
-    box-shadow: black;
+    box-shadow: 10px 5px 5px #E1E1E1;
   }
   .action {
-    box-shadow: black;
+    right: 0;
+
     &:hover {
-      box-shadow: black;
+
       color: yellow;
     }
   }
@@ -22,7 +26,7 @@
 
 }
 
-.title-card li {
+.title-card  {
   font-family: 'Roboto';
   font-size: 22px;
   font-weight: 900;
@@ -37,7 +41,7 @@ ul li {
   display: inline block;
 }
 
-.verb {
+.verb li {
 
   font-family: 'Roboto';
   font-size: 14px;
@@ -60,3 +64,9 @@ ul li {
   height: 20px;
   background-color: #35DC55;
 }
+
+.img-card {
+
+  padding: 10px;
+}
+

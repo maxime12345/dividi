@@ -3,48 +3,53 @@
 
     <div class="row">
       <div class="col-xs-3 col-md-4">
+        <div class="img-card">
+        <%= image_tag "suntzu.jpg", height: 130 %>
+        </div>
+      </div>
 
+      <div class="col-xs-3 col-md-4">
+        <div class="title-card">
+          <ul>
+            <li><%= item.name %></li>
+          </ul>
+        </div>
+        <div class="verb">
+          <ul>
+            <li><%= item.verbe %></li>
+          </ul>
+        </div>
+      </div>
 
-
-
-    <%= image_tag "suntzu.jpg", height: 100 %>
-
-
-</div>
-<div class="title-card">
-  <ul>
-    <li><%= item.name %></li>
-
-  </ul>
-</div>
-
-<div class="verb"><%= item.verbe %></div>
- <%= humanized_money_with_symbol(item.price)%>
-
-
+  <div class="col-xs-3 col-md-4">
+    <%= humanized_money_with_symbol(item.price)%>
+  </div>
+  <div class="col-xs-3 col-md-4">
     <%  if item.reminders[0].nil? %>
       Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
     <% else %>
       Prêté à : <%= item.reminders[0].user.email %>
+  </div>
+
+    <div class="col-xs-3 col-md-4">
       <div class="status">
-      <ul>
-        <div class="puce"></div>
-          <li><%= link_to "Available again", reminder_path(item.reminders[0].id),
-                method: :delete,
-                data: {confirm: "Are you back in possession of this item ?" } %>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+        <ul>
+          <div class="puce"></div>
+            <li><%= link_to "Available again", reminder_path(item.reminders[0].id),
+                  method: :delete,
+                  data: {confirm: "Are you back in possession of this item ?" } %>
+            <% end %>
+      </div>
+          </li>
+            <li class="action">
+              Edit item
+            </li>
+        </ul>
+      </div>
 
 
-    <br>
-    <div class="action">
-      Edit item
-    </div>
 
-
-<% end %>
+    <% end %>
 </div>
 </div>
 
