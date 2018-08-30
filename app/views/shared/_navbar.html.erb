@@ -19,7 +19,11 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if current_user.avatar.file.nil? %>
+            <i class="fas fa-user avatar avatar-icon dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"></i>
+          <% else %>
+            <%= cl_image_tag current_user.avatar, height: 60, width: 60, crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>

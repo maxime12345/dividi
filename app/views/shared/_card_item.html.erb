@@ -6,7 +6,6 @@
 
     <%= item.collection.name %>
 
-    <%= cl_image_tag item.user.avatar, alt: "Avatar" %>
 
     <%  if item.reminders[0].nil? %>
       Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>

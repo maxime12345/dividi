@@ -4,13 +4,16 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   def public_id
+    folder = Rails.env.production? ? "dividi_production" : "dividi_development_#{ENV['USER']}"
+
     if model.is_a?(Item)
-      "dividi/#{model.class}/#{model.name}"
+      "dividi/#{folder}/#{model.class}/#{model.user.id}-#{model.name}"
     else
-      "dividi/#{model.class}/#{model.id}"
+      "dividi/#{folder}/#{model.class}/#{model.email}"
     end
   end
 
-  process :resize_to_limit => [500, nil]
+    process :resize_to_limit => [600, 600]
+
 
 end
