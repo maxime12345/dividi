@@ -5,10 +5,37 @@ puts "Cleaning database..."
 Reminder.destroy_all
 Item.destroy_all
 Collection.destroy_all
+Category.destroy_all
 Share.destroy_all
 NetworkUser.destroy_all
 Network.destroy_all
 User.destroy_all
+
+puts "Creating categories"
+
+categories = [
+"Ameublement",
+"Bricolage",
+"DVD",
+"Electroménager",
+"Informatique",
+"Instruments de musique",
+"Jardinage",
+"Jeux de sociétés",
+"Jeux vidéos",
+"Jouets",
+"Livres",
+"Matériel de Sport",
+"Meubles",
+"Véhicules",
+"Vélos",
+"Vêtements"]
+
+categories.each do |category|
+  Category.create(name: category)
+end
+
+puts "#{Category.count} categories created"
 
 puts "Creating users and collections..."
 
@@ -16,8 +43,8 @@ puts "Creating users and collections..."
 
   collections_creation(user_first)
 
-  velo = Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000)
-  trotinett = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000)
+  velo = Item.create(name: "velo", verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000, category_id: 10)
+  trotinett = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000, category_id: 11)
 
   user_second = User.create(email: "sl@dividi.fr", password: '123456', password_confirmation: '123456')
   user_third = User.create(email: "jbb@dividi.fr", password: '123456', password_confirmation: '123456')
@@ -27,7 +54,7 @@ puts "Creating users and collections..."
   collections_creation(user_third)
   collections_creation(user_fourth)
 
-  art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0])
+  art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category_id: 11)
 
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
