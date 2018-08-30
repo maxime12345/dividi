@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include PgSearch
 
+  mount_uploader :avatar, PhotoUploader
   after_create :set_email_for_search
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

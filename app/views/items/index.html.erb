@@ -2,16 +2,18 @@
 
   <div class="sidebar col-xs-12", style="max-width: 222px">
     <h3>Collections</h3>
-    <% @collections.each do |collection| %>
-        <h4><%= collection.name %> (<%= collection.items.size %>)</h4>
-        <%= link_to collection.name, items_path + "?col=#{collection.id}"  %>
+    <ul>
+    <li><%= link_to "All collection", items_path + "?col=0"  %></li>
+      <% @collections.each do |collection| %>
+        <li><%= link_to collection.name, items_path + "?col=#{collection.id}"  %>(<%= collection.items.size %>)</li>
+      <% end %>
+    </ul>
 
-    <% end %>
-    <br/>
-    <%= link_to "All collection", items_path + "?col=0"  %>
-    <%= link_to "tri name", items_path + "?order=name"  %>
-    <%= link_to "tri reset", items_path + "?order="  %>
-
+    <h3>Sort</h3>
+    <ul>
+      <li><%= link_to "Name", items_path + "?order=name"  %></li>
+      <li><%= link_to "Reset", items_path + "?order="  %></li>
+    </ul>
   </div>
 
   <div class="container">
