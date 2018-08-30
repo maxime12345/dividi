@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 2018_08_30_102243) do
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
     t.string "photo"
+    t.string "description"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.string "description"
     t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
