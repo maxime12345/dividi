@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :collection
+  belongs_to :category
   has_one :user, through: :collection
   has_many :reminders
 

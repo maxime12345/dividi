@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_140702) do
+ActiveRecord::Schema.define(version: 2018_08_30_102243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
@@ -31,6 +37,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_140702) do
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
     t.string "photo"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
@@ -85,6 +93,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_140702) do
   end
 
   add_foreign_key "collections", "users"
+  add_foreign_key "items", "categories"
   add_foreign_key "items", "collections"
   add_foreign_key "network_users", "networks"
   add_foreign_key "network_users", "users"
