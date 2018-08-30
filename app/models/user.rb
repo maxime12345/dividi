@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  include PgSearch
+
+  mount_uploader :avatar, PhotoUploader
+  after_create :set_email_for_search
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,4 +19,16 @@ class User < ApplicationRecord
   has_many :network_users, through: :networks
 
   has_many :friends, through: :network_users, source: :user
+
+  pg_search_scope :search_by_email_and_username,
+    against: [ :email, :username, :email_for_search ],
+    using: { tsearch: { prefix: true } }
+
+  private
+
+  # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
+  def set_email_for_search
+    self.email_for_search = self.email.split('@')[0].split('.').join(' ')
+    self.save
+  end
 end

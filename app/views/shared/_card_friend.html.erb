@@ -1,5 +1,14 @@
-<%= link_to network_user_path(network_user) do  %>
-  <div class="friend-card">
-    Mail : <%= network_user.user.email %>
+<div class="card-friend">
+  <% if user.avatar.file.nil? %>
+    <i class="fas fa-user avatar-icon"></i>
+  <% else %>
+    <%= cl_image_tag user.avatar, height: 100, width: 100, crop: :fill, class: "avatar-img" %>
+  <% end %>
+  <div class="email">
+    <%= user.email %>
   </div>
-<% end %>
+  <div>
+    <%= link_to "Send a request" %>
+  </div>
+
+</div>

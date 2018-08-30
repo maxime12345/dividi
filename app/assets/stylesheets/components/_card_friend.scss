@@ -1,0 +1,31 @@
+.card-friend {
+  text-align: center;
+  background-color: #FFFFFF;
+  margin: 10px 5px;
+  padding: 20px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 6px gray;
+
+  .avatar-img {
+    border-radius: 50%;
+  }
+
+  .avatar-icon {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    font-size: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .fa-user {
+    margin: auto;
+  }
+
+  .email {
+    margin-top: 50px;
+  }
+}
