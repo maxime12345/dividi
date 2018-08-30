@@ -6,6 +6,7 @@
 
     <%= item.collection.name %>
 
+
     <%  if item.reminders[0].nil? %>
       Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
     <% else %>
