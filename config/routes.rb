@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  resources :collections, only: [:index, :show, :new, :create]
+
   resources :items, only: [:index, :show, :new, :create] do
     resources :reminders, only: [:new, :create]
   end
-  resources :reminders, only: [:index, :destroy]
+  resources :reminders, only: :destroy
   resources :network_users, only: [:index, :show]
 
 

@@ -1,25 +1,39 @@
-<div class="container">
-  <div class="col-xs-12 filter-zone">
-    <h4>Filter zone</h4>
+<div class="wrapper", style="display: flex">
+
+  <div class="sidebar col-xs-12", style="max-width: 222px">
+    <h3>Collections</h3>
+    <% @collections.each do |collection| %>
+        <h4><%= collection.name %> (<%= collection.items.size %>)</h4>
+        <%= link_to collection.name, items_path + "?col=#{collection.id}"  %>
+
+    <% end %>
+    <br/>
+    <%= link_to "All collection", items_path + "?col=0"  %>
+    <%= link_to "tri name", items_path + "?order=name"  %>
+    <%= link_to "tri reset", items_path + "?order="  %>
+
   </div>
 
-  <% @collections.each do |collection| %>
+  <div class="container">
+    <!-- Search bar -->
+    <div class="col-xs-12 filter-zone">
+      <h4> <%= form_tag items_path, method: :get, class: "search" do %>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Search for an specific item",
+              class: "input",
+                value: session["query"]
+            %><i class="fa fa-search" aria-hidden="true"></i>
+          <% end %></h4>
+    </div>
 
-    <div class="col-xs-12 collection">
-      <h4><%= collection.name %> - <%= collection.items.size %></h4>
-
-      <% collection.items.each do |item| %>
-        <div class="col-xs-12">
+    <!-- Cards -->
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-xs-12 col-md-3">
           <%= render 'shared/card_item', item: item %>
         </div>
       <% end %>
-
-
-
-
     </div>
-
-  <% end %>
-
+  </div>
 </div>
-

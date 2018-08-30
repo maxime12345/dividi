@@ -4,8 +4,11 @@
     Verbe : <%= item.verbe %> <br>
     <%= humanized_money_with_symbol(item.price)%> <br>
 
+    <%= item.collection.name %>
+
+
     <%  if item.reminders[0].nil? %>
-      Disponible - <%= link_to "Lend/Loan", new_item_reminder_path(item), class: "action" %>
+      Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
     <% else %>
       Prêté à : <%= item.reminders[0].user.email %> -
       <%= link_to "Available again", reminder_path(item.reminders[0].id),

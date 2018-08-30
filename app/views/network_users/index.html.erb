@@ -1,18 +1,67 @@
-<div class="container">
+<div class="row">
 
-  <% @networks.each do |network| %>
+  <div class="col-xs-12 col-md-3">
+    <h4>My networks</h4>
 
-    <div class="col-xs-12 network">
-      <h4><%= network.name %> - <%= network.network_users.size %></h4>
+    <% @networks.each do |network| %>
 
-      <% network.network_users.each do |network_user| %>
+      <div class="col-xs-12 network">
+        <h4><%= network.name %> - <%= network.network_users.size %></h4>
+
+        <% network.network_users.each do |network_user| %>
+          <div class="col-xs-12">
+            <%= render 'shared/card_network', network_user: network_user %>
+          </div>
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <%= form_tag network_users_path, method: :get, class: "search" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Find a friend",
+            class: "input"
+          %><i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+
+      </div>
+
+      <% if @users.size == 0 %>
+
         <div class="col-xs-12">
-          <%= render 'shared/card_friend', network_user: network_user %>
+          Sorry, no friend match with your request.
         </div>
+
+      <% else %>
+
+        <% @users.each do |user| %>
+          <div class="col-xs-4">
+            <%= render 'shared/card_friend', user: user %>
+          </div>
+        <% end %>
+
       <% end %>
-
     </div>
+  </div>
 
-  <% end %>
+
+  <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12">
+      <h4>Friend requests</h4>
+    </div>
+    <div class="col-xs-12">
+      <h4>Requests sended</h4>
+    </div>
+  </div>
 
 </div>

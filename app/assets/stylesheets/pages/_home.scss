@@ -1,12 +1,7 @@
 // Specific CSS for your home-page
 
-.body {
-
-  overflow-x:hidden;
-}
-
-
 .container-fluid {
+padding: 0;
 background-color: white;
 height: 100vh;
 
@@ -24,6 +19,13 @@ margin-left: 150px;
 
 }
 
+.title img {
+
+
+margin-left: -40px;
+background-blend-mode: multiply;
+
+}
 
 .section1 {
 
@@ -81,10 +83,12 @@ background-color: black;
 }
 
 .texte-labeur {
-margin-top: 20px;
+
 width: 100%;
-font-weight: 500;
+font-family: 'Roboto';
+font-weight: 100;
 font-size: 24px;
+
 }
 
 .title2 {
@@ -132,7 +136,7 @@ transition: all 2s ease-out;
 
 height: 60px;
 opacity: 1;
-background-color:  #00A599;
+background-color:  #CFCFCF;
 position: fixed;
 bottom: 0;
 width: 100%;
@@ -217,3 +221,6 @@ font-family: 'Roboto';
   border-color: #1a82e2;
   box-shadow: 0 1px 0 #1a82e2;
 }
+
+
+

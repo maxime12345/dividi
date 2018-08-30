@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= image_tag "logo/D-noir.png", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -11,15 +11,19 @@
 
       <!-- Links when logged in -->
       <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My collections", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", reminders_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My collections", collections_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "index-items", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My networks", network_users_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if current_user.avatar.file.nil? %>
+            <i class="fas fa-user avatar avatar-icon dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"></i>
+          <% else %>
+            <%= cl_image_tag current_user.avatar, height: 60, width: 60, crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
