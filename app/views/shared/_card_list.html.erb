@@ -1,0 +1,42 @@
+  <%= item.collection.name %>
+  <div class="item-card-list">
+
+    <div class="flex_item">
+      <div class="img-card "><%= image_tag "suntzu.jpg", width: 100 %></div>
+    </div>
+
+    <div class="flex_item" id="collection-title">
+      <div id="cell1">
+        <div class="title-card-list"><%= item.name %></div>
+          <div class="verb"><%= item.verbe %></div>
+            <div class="action">
+          Edit item
+        </div>
+      </div>
+    </div>
+
+    <div class="flex_item">
+      <div class="status">
+        <div class="puce"></div>
+          <%= link_to "Available again", reminder_path(item.reminders[0].id),
+            method: :delete,
+            data: {confirm: "Are you back in possession of this item ?" } %>
+      </div>
+    </div>
+
+    <div class="flex_item">
+      <div class="disponible"><%  if item.reminders[0].nil? %>
+        Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
+      <% else %>
+        Prêté à : <%= item.reminders[0].user.email %>
+      <% end %>
+      </div>
+    </div>
+
+    <div class="flex_item">
+      <div class="price">
+        <%= humanized_money_with_symbol(item.price)%>€
+      </div>
+    </div>
+
+    </div>
