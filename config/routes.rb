@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create] do
     resources :reminders, only: [:new, :create]
   end
-  resources :reminders, only: [:index, :destroy]
+  resources :reminders, only: :destroy
   resources :network_users, only: [:index, :show]
 
 

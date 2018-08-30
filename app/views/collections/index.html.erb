@@ -31,7 +31,15 @@
 </div>
 
 <div class="col-xs-12 col-md-3">
-  <h4>other objects</h4>
+  <h2>Items rented or borrow to other persons</h2>
+
+  <% @reminders_others.each do |reminder|%>
+
+    <div class="col-xs-12">
+      <%= render 'shared/card_reminder', reminder: reminder %>
+    </div>
+
+  <% end %>
 
 </div>
 

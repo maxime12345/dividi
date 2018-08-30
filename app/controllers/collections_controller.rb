@@ -5,6 +5,7 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = current_user.collections
+    @reminders_others = current_user.reminders_others
   end
 
   private
