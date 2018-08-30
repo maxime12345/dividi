@@ -2,6 +2,7 @@
   <%= f.input :name %>
   <%= f.input :verbe, as: :radio_buttons, collection: [ "Sell", "Give", "Lend", "Rent"], label: "Action" %>
   <%= f.input :price, label: 'Price €' %>
+  <%= f.association :category %>
   <%= f.association :collection, collection: current_user.collections %>
   <%= f.input :photo, input_html: {accept: ('image') } %>
   <%= f.input :photo_cache, as: :hidden %>
