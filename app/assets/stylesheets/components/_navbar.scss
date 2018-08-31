@@ -17,7 +17,7 @@
 }
 
 /* User Avatar */
-.navbar-wagon .avatar {
+.navbar-wagon .avatar-img {
   height: 35px;
   width: 35px;
   border-radius: 50%;
@@ -44,8 +44,6 @@
 .navbar-wagon-item {
   cursor: pointer;
   padding: 0 20px;
-
-
 }
 
 /* Navbar link */
@@ -91,4 +89,20 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.navbar-wagon .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  padding: 5px;
+  .infos {
+    margin-left: 10px;
+  }
+  .email {
+    font-size: 0.9em;
+  }
+  &:hover {
+    box-shadow: 1px 1px 1px gray;
+  }
 }

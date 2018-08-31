@@ -11,11 +11,11 @@
   <% @collections.each do |collection| %>
 
     <div class="col-xs-12 collection">
-      <h4><%= collection.name %> - <%= collection.items.size %></h4>
+      <h4><%= collection.name %>  <%= collection.items.size %></h4>
 
       <% collection.items.each do |item| %>
         <div class="col-xs-12">
-          <%= render 'shared/card_item', item: item %>
+          <%= render 'shared/card_list', item: item %>
         </div>
       <% end %>
 
@@ -37,4 +37,3 @@
   <% end %>
 
 </div>
-
