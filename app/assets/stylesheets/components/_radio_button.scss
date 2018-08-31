@@ -1,0 +1,44 @@
+fieldset {
+  overflow: hidden
+}
+
+// .some-class {
+//   float: left;
+//   clear: none;
+// }
+
+// label {
+//   float: left;
+//   clear: none;
+//   display: block;
+//   color: #00D1B1;
+//   padding: 2px 1em 0 0;
+
+// }
+
+.form-check{
+  display: flex;
+  justify-content: space-between;
+  float: left;
+  clear: none;
+  border: 0.5rem #00D1B1;
+  padding: 2px 1em 0 0;
+  align-items: center;
+}
+
+input[type=radio],
+input.radio {
+  display: none;
+}
+
+.collection_radio_buttons {
+  border: solid 1px #00D1B1;
+  font-weight: normal;
+  padding: 10px 30px;
+  border-radius: 3px;
+}
+
+input[type=radio]:checked + label {
+  background-color: #00D1B1;
+  color: white;
+}

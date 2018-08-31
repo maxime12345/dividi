@@ -9,8 +9,19 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create] do
     resources :reminders, only: [:new, :create]
   end
+
   resources :reminders, only: :destroy
-  resources :network_users, only: [:index, :show]
+
+  resources :network_users, only: [:index, :show, :destroy] do
+    member do
+      get :accept
+    end
+  end
+
+  resources :networks, only: :show do
+    resources :network_users, only: :create
+  end
 
 
 end
+

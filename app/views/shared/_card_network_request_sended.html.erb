@@ -15,5 +15,12 @@
           <span class="email"> <%= network_user.user.email %> </span>
         <% end %>
       </div>
+
+      <%= link_to network_user_path(network_user), class: "delete",
+      method: :delete,
+      data: {confirm: "Are you sure you want to cancel this friend request ?" } do %>
+          <i class="far fa-times-circle"></i>
+      <% end %>
+
   </div>
 <% end %>

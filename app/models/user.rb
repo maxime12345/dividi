@@ -18,9 +18,14 @@ class User < ApplicationRecord
   has_many :networks
   has_many :network_users, through: :networks
 
-  has_many :friends, through: :network_users, source: :user
+  has_one :default_network, -> {where(name: "Tous")}, class_name: 'Network'
 
   has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
+  has_many :validate_network_users, -> {where(status: nil)}, through: :networks, source: :network_users
+
+  has_many :friends, through: :validate_network_users, source: :user
+
+  has_many :friend_requests, -> {where(status: "pending")}, class_name: 'NetworkUser'
 
   pg_search_scope :search_by_email_and_username,
     against: [ :email, :username, :email_for_search ],

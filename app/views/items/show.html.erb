@@ -1,9 +1,17 @@
-<h1>Item : <%= @item.name %> </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <%= cl_image_tag @item.photo, alt: "#{@item.name}", class: "cloudinary-show" %>
+      </div>
+      <div class="col-xs-12 col-md-5">
+        <div class="box1">
+          <h1><%= @item.name %> </h1><br>
+          <h2>Collection :</h2><p> <%= @item.collection.name %> </p>
+          <h2>Description :</h2><p> <%= @item.description %> </p>
+          <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p><br>
+          <p><%= button_to @text , new_item_path, class: "btn-verbe" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>Collection : <%= @item.collection.name %> </p>
-
-<p>Verbe : <%= @item.verbe %> </p>
-
-<p><%= humanized_money_with_symbol(@item.price)%></p>
-
-<%= cl_image_tag @item.photo, alt: "#{@item.name}" %>
