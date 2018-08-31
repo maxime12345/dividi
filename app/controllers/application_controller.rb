@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar])
   end
 
+  protected
+
+  def after_sign_in_path_for(resource)
+    # facebook or google connect OR access to page requested by log out user OR root_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || items_path
+  end
+
 end
