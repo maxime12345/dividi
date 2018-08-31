@@ -152,7 +152,7 @@ height: 200px;
 width: 200px;
 background-color: transparent;
 border-radius: 50%;
-background-image: url(/assets/Circle.gif);
+background-image: asset-url("circle.gif");
 background-size: 200px;
 background-blend-mode: multiply;
 }
