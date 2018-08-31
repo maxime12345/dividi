@@ -24,6 +24,17 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if @item.verbe == "to_sell"
+      @text = "To sell"
+    elsif @item.verbe == "to_rent"
+      @text = "To rent"
+    elsif @item.verbe == "to_give"
+      @text  = "To give"
+    elsif @item.verbe == "to_lend"
+      @text = "To lend"
+    else
+      @text = @item.verbe
+    end
   end
 
   def new

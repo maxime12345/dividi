@@ -16,3 +16,8 @@
 @import "reminders/index";
 @import "items/index";
 @import "network_users/index";
+
+
+.container{
+  min-height: calc(100vh - 70)
+}
