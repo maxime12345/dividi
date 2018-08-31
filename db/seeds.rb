@@ -31,8 +31,10 @@ categories = [
 "Vélos",
 "Vêtements"]
 
+cat = []
+
 categories.each do |category|
-  Category.create(name: category)
+  cat << Category.create(name: category)
 end
 
 puts "#{Category.count} categories created"
@@ -42,8 +44,8 @@ puts "Creating users and collections..."
   user_first = User.create(username: "Thibault", email: "tv@dividi.fr", password: '123456', password_confirmation: '123456',avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thibault.jpg"))
   collections_creation(user_first)
 
-  velo = Item.create(name: "velo", description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000, remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382", category_id: 10)
-  trottinette = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000, category_id: 11)
+  velo = Item.create(name: "velo", description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",verbe: "to_sell", collection: user_first.collections.where(name: "Garage")[0], price_cents: 10000, remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382", category_id: cat[10].id)
+  trottinette = Item.create(name: "trotinette", verbe: "to_borrow", collection: user_first.collections.where(name: "Garage")[0], price_cents: 5000, category_id: cat[11].id)
   test_landscape_image = Item.create(name: "tente familiale", description: "landscape_image_test", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg")
   test_portrait_image = Item.create(name: "bureau en bois", description: "portrait image test ce bureau en bois est vraiment le plus beau de tous les objets en bois", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg")
   test_little_image = Item.create(name: "petite boite metal", description: "test little image", verbe: "to_sell", collection: user_first.collections.where(name: "Autres")[0], price_cents: 10000, remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg")
@@ -57,7 +59,7 @@ puts "Creating users and collections..."
 
   User.all[1..-1].each{ |user| collections_creation(user) }
 
-  art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category_id: 11)
+  art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category_id: cat[11].id)
 
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)

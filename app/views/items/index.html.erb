@@ -1,11 +1,11 @@
 <div class="wrapper", style="display: flex">
 
   <div class="sidebar col-xs-12", style="max-width: 222px">
-    <h3>Collections</h3>
+    <h3>Categories</h3>
     <ul>
-    <li><%= link_to "All collection", items_path + "?col=0"  %></li>
-      <% @collections.each do |collection| %>
-        <li><%= link_to collection.name, items_path + "?col=#{collection.id}"  %>(<%= collection.items.size %>)</li>
+    <li><%= link_to "All categories", items_path + "?cat=0"  %></li>
+      <% @categories.each do |category| %>
+        <li><%= link_to category[0].name, items_path + "?cat=#{category[0].id}"%> (<%= category[1] %>)</li>
       <% end %>
     </ul>
 
@@ -17,12 +17,13 @@
   </div>
 
   <div class="container">
-    <!-- Search bar -->
+
+    <!-- Elastic search -->
     <div class="col-xs-12 filter-zone">
       <h4> <%= form_tag items_path, method: :get, class: "search" do %>
             <%= text_field_tag :query,
               params[:query],
-              placeholder: "Search for an specific item",
+              placeholder: "Search...",
               class: "input",
                 value: session["query"]
             %><i class="fa fa-search" aria-hidden="true"></i>

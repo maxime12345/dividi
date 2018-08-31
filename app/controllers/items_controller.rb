@@ -5,20 +5,22 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @categories = @items.group(:category).count
+
     @collections = current_user.collections
 
     unless session["query"]
       session["query"]=""
-      session["col"]=0
+      session["cat"]=0
       session["order"]=""
     end
 
     session["query"] = params[:query] if params[:query]
-    session["col"] = params[:col].to_i if params[:col]
+    session["cat"] = params[:cat].to_i if params[:cat]
     session["order"] = params[:order] if params[:order]
 
-    @items = Item.search_by_name("#{session["query"]}") if session["query"] != ""
-    @items = @items.where(collection: session["col"]) if session["col"] != 0
+    @items = Item.search("#{session["query"]}") if session["query"] != ""
+    @items = @items.where(category: session["cat"]) if session["cat"] != 0
     @items = @items.order(session["order"]) if session["order"] != ""
 
   end

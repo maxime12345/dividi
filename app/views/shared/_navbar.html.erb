@@ -28,7 +28,7 @@
               <%= cl_image_tag current_user.avatar, height: 60, width: 60, crop: :fill, class: "avatar-img" %>
             <% end %>
             <div class="infos">
-              <% if current_user.username.empty? %>
+              <% if current_user.username.nil? %>
                 <%= current_user.email %>
               <% else %>
                 <%= current_user.username %> <br>
