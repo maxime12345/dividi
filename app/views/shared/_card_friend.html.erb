@@ -4,11 +4,22 @@
   <% else %>
     <%= cl_image_tag user.avatar, height: 100, width: 100, crop: :fill, class: "avatar-img" %>
   <% end %>
-  <div class="email">
-    <%= user.email %>
-  </div>
-  <div>
-    <%= link_to "Send a request" %>
+
+  <div class="infos">
+    <% if user.username.nil? %>
+      <%= user.email %>
+    <% else %>
+      <%= user.username %> <br>
+      <span class="email"> <%= user.email %> </span>
+    <% end %>
   </div>
 
+  <%= simple_form_for ([@default_network, @network_user]) do |f| %>
+    <%= f.hidden_field :user_id, value: user.id %>
+    <%= f.button :submit, value: "Send a request" %>
+  <% end %>
+
+
 </div>
+
+

@@ -12,7 +12,9 @@
       <!-- Links when logged in -->
       <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My collections", collections_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My networks", network_users_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to network_users_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          My networks <% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
+      <% end %>
 
 
       <!-- Avatar with dropdown menu -->

@@ -1,79 +1,85 @@
-  <div class="col-xs-12 col-md-3">
-    <div class="zone">
-      <div class="row">
+<div class="col-xs-12 col-md-3">
+  <div class="zone">
 
-        <div class="col-xs-12">
-          <h4>My networks</h4>
-        </div>
+    <h4>My networks</h4>
 
-        <% @networks.each do |network| %>
+    <% @networks.each do |network| %>
 
-          <div class="col-xs-12 network">
-            <h4><%= network.name %> - <%= network.network_users.size %></h4>
-
-            <% network.network_users.each do |network_user| %>
-              <div class="col-xs-12">
-                <%= render 'shared/card_network', network_user: network_user %>
-              </div>
+      <div class="network">
+        <h5><%= network.name %> - <%= network.validate_network_users.size %>
+          <% unless network == current_user.default_network %>
+            <%= link_to add_somebody_in_network_network_path(network) do  %>
+              <i class="fas fa-plus-circle"></i>
             <% end %>
+          <% end %>
+        </h5>
 
-          </div>
+        <% network.validate_network_users.each do |network_user| %>
+
+            <%= render 'shared/card_network', network_user: network_user %>
 
         <% end %>
+
       </div>
-    </div>
+
+    <% end %>
   </div>
+</div>
 
 
-  <div class="col-xs-12 col-md-6">
-    <div class="zone">
+<div class="col-xs-12 col-md-6">
+  <div class="zone">
 
-      <div class="row">
+      <%= form_tag network_users_path, method: :get, class: "search" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Search a people not yet in your network",
+          class: "input"
+        %><i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+
+    <div class="row">
+
+      <% if @users.size == 0 %>
 
         <div class="col-xs-12">
-
-          <%= form_tag network_users_path, method: :get, class: "search" do %>
-            <%= text_field_tag :query,
-              params[:query],
-              placeholder: "Find a friend",
-              class: "input"
-            %><i class="fa fa-search" aria-hidden="true"></i>
-          <% end %>
-
+          Sorry, no friend match with your request.
         </div>
 
-        <% if @users.size == 0 %>
+      <% else %>
 
-          <div class="col-xs-12">
-            Sorry, no friend match with your request.
+        <% @users.each do |user| %>
+          <div class="col-xs-4">
+            <%= render 'shared/card_friend', user: user %>
           </div>
+        <% end %>
 
-        <% else %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-          <% @users.each do |user| %>
-            <div class="col-xs-4">
-              <%= render 'shared/card_friend', user: user %>
-            </div>
-          <% end %>
+
+<div class="col-xs-12 col-sm-3">
+  <div class="zone">
+    <div class="row">
+
+
+        <h4>Friend requests</h4>
+        <% @friend_requests.each do |network_user| %>
+
+            <%= render 'shared/card_network_friend_request', network_user: network_user %>
 
         <% end %>
-      </div>
+
+        <h4>Requests sent</h4>
+
+        <% @pending_network_users.each do |network_user| %>
+
+            <%= render 'shared/card_network_request_sended', network_user: network_user %>
+
+        <% end %>
+
     </div>
   </div>
-
-
-  <div class="col-xs-12 col-sm-3">
-    <div class="zone">
-      <div class="row">
-
-
-        <div class="col-xs-12">
-          <h4>Friend requests</h4>
-        </div>
-        <div class="col-xs-12">
-          <h4>Requests sent</h4>
-        </div>
-
-      </div>
-    </div>
-  </div>
+</div>
