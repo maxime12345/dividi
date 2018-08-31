@@ -60,7 +60,7 @@ puts "Creating users and collections..."
 
   User.all[1..-1].each{ |user| collections_creation(user) }
 
-  art_guerre = Item.create(category: Category.all.sample, name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category_id: 11)
+  art_guerre = Item.create(category: Category.all.sample, name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category: Category.all.sample)
 
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
