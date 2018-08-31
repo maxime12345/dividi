@@ -12,7 +12,6 @@
       <!-- Links when logged in -->
       <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My collections", collections_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "index-items", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My networks", network_users_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
 
@@ -28,7 +27,7 @@
               <%= cl_image_tag current_user.avatar, height: 60, width: 60, crop: :fill, class: "avatar-img" %>
             <% end %>
             <div class="infos">
-              <% if current_user.username.empty? %>
+              <% if current_user.username.nil? %>
                 <%= current_user.email %>
               <% else %>
                 <%= current_user.username %> <br>
