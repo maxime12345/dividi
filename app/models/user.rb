@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :friends, through: :network_users, source: :user
 
+  has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
+
   pg_search_scope :search_by_email_and_username,
     against: [ :email, :username, :email_for_search ],
     using: { tsearch: { prefix: true } }
