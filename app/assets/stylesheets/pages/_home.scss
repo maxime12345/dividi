@@ -1,11 +1,21 @@
 // Specific CSS for your home-page
 
+body {
+
+  overflow-x: hidden;
+
+}
 .container-fluid {
 padding: 0;
+margin: 0;
 background-color: white;
 height: 100vh;
 
 
+}
+.row {
+
+  margin: 0;
 }
 
 .title {
@@ -29,12 +39,12 @@ background-blend-mode: multiply;
 
 .section1 {
 
-
+margin: 0;
 padding-top:  80px;
 width: 100%;
 height: 100vh;
-background-image: url(/assets/Dividi-home.png);
-background-size: 1800px;
+background-image: asset-url("dividi-home.png");
+
 align-content: center;
 background-repeat: no-repeat;
 background-blend-mode: multiply;
@@ -43,6 +53,7 @@ background-blend-mode: multiply;
 
 
 .section2 {
+margin: 0;
 height: 100vh;
 background-color: blue;
 transition: all 1s ease-out;
@@ -50,6 +61,7 @@ transition: all 1s ease-out;
 }
 
 .section2.scroll {
+  margin: 0;
 width: 100%;
 height: 100vh;
 background-color: white;
@@ -152,7 +164,7 @@ height: 200px;
 width: 200px;
 background-color: transparent;
 border-radius: 50%;
-background-image: url(/assets/Circle.gif);
+background-image: asset-url("circle.gif");
 background-size: 200px;
 background-blend-mode: multiply;
 }

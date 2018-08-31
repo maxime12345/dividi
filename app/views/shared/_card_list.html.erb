@@ -1,46 +1,46 @@
-  <%= item.collection.name %>
-  <div class="item-card-list">
+<div class="item-card-list">
 
-    <div class="flex_item">
-      <div class="img-card "><%= image_tag "suntzu.jpg", width: 100 %></div>
+  <%= link_to item_path(item) do %>
+    <div class="flex-item">
+      <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card" %>
     </div>
+  <% end %>
 
-    <div class="flex_item" id="collection-title">
-      <div id="cell1">
-        <div class="title-card-list"><%= item.name %></div>
-          <div class="verb"><%= item.verbe %></div>
-            <div class="action">
-          Edit item
-        </div>
+  <div class="flex-item" id="item-infos">
+    <div id="cell1">
+      <div class="title-card-list"><%= link_to item.name, item_path(item) %></div>
+      <div class="verb"><%= item.verbe %></div>
+    </div>
+  </div>
+
+  <% if item.reminders[0].nil? %>
+
+    <div class="flex-item essai">
+      <div class="disponible">
+        <div class="puce"></div>Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
       </div>
     </div>
 
-    <% if item.reminders[0].nil? %>
+  <% else %>
 
-      <div class="flex_item">
-        <div class="disponible">
-          <div class="puce"></div>Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
-        </div>
-      </div>
-
-    <% else %>
-
-      <div class="flex_item">
-        <div class="status">
-          <div class="puce"></div>
-            <%= link_to "Available again", reminder_path(item.reminders[0].id),
-              method: :delete,
-              data: {confirm: "Are you back in possession of this item ?" } %>
-              Prêté à : <%= item.reminders[0].user.email %>
-        </div>
-      </div>
-
-    <% end %>
-
-    <div class="flex_item">
-      <div class="price">
-        <%= humanized_money_with_symbol(item.price)%>€
+    <div class="flex-item">
+      <div class="status">
+        <div class="puce"></div>
+          <%= link_to "Available again", reminder_path(item.reminders[0].id),
+            method: :delete,
+            data: {confirm: "Are you back in possession of this item ?" } %>
+            Prêté à : <%= item.reminders[0].user.email %>
       </div>
     </div>
 
+  <% end %>
+
+  <div class="flex-item">
+    <div class="price">
+      <%= humanized_money_with_symbol(item.price) %>€
     </div>
+  </div>
+
+</div>
+
+
