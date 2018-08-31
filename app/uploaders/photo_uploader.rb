@@ -15,4 +15,5 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
     process :resize_to_limit => [600, 600]
 
+
 end
