@@ -12,7 +12,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
     if @reminder.save
-      redirect_to items_path
+      redirect_to collections_path
     else
       render :new
     end
@@ -21,7 +21,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
-    redirect_to items_path
+    redirect_to collections_path
   end
 
   private
