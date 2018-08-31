@@ -2,27 +2,43 @@ fieldset {
   overflow: hidden
 }
 
-.some-class {
-  float: left;
-  clear: none;
-}
+// .some-class {
+//   float: left;
+//   clear: none;
+// }
 
-label {
+// label {
+//   float: left;
+//   clear: none;
+//   display: block;
+//   color: #00D1B1;
+//   padding: 2px 1em 0 0;
+
+// }
+
+.form-check{
+  display: flex;
+  justify-content: space-between;
   float: left;
   clear: none;
-  display: block;
+  border: 0.5rem #00D1B1;
   padding: 2px 1em 0 0;
-
+  align-items: center;
 }
 
 input[type=radio],
 input.radio {
   display: none;
-  float: left;
-  clear: none;
-  margin: 2px 0 0 2px;
 }
 
 .collection_radio_buttons {
+  border: solid 1px #00D1B1;
+  font-weight: normal;
+  padding: 10px 30px;
+  border-radius: 3px;
+}
 
+input[type=radio]:checked + label {
+  background-color: #00D1B1;
+  color: white;
 }
