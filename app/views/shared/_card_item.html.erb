@@ -1,26 +1,30 @@
-<%= link_to item_path(item) do  %>
-  <div class="item-card">
-    Name : <%= item.name %> <br>
-    Verbe : <%= item.verbe %> <br>
-    <%= humanized_money_with_symbol(item.price)%> <br>
+<div class="card-container">
 
-    <%= item.collection.name %>
-    <%= item.category.name %>
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= card_background_image_path(item) %>');">
+    <div class="card-category"><%= item.category.name %></div>
+    <div class="card-description">
+      <h2><%= item.name %></h2>
+      <p><%= humanized_money_with_symbol(item.price)%></p>
+    </div>
+    <%= cl_image_tag item.user.avatar, alt: "alttext", class: "card-user avatar" %>
+    <%= link_to "", item_path(item), class: "card-link"  %>
+  </div>
+  <!-- Footer -->
+  <div class="card-footer">
+    <!-- Number of reminders -->
+    <div class="card-transaction">
+      <i class="fas fa-handshake"></i>
+      <%= item.reminders.count %>
+    </div>
 
-
-    <%  if item.reminders[0].nil? %>
-      Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
+    <!-- Status of the object -->
+    <div class="card-availability">
+    <% if item.reminders[0].nil? %>
+      <i class="fas fa-check-circle" style="color:#00D1B1"></i>
+      <%= link_to item.verbe, new_item_reminder_path(item), class: "action" %>
     <% else %>
-      Prêté à : <%= item.reminders[0].user.email %> -
-      <%= link_to "Available again", reminder_path(item.reminders[0].id),
-                method: :delete,
-                data: {confirm: "Are you back in possession of this item ?" } %>
+      <i class="fas fa-ban"></i>
     <% end %>
-    <br>
-    <div class="action">
-      Edit item
     </div>
   </div>
-<% end %>
-
-
+</div>

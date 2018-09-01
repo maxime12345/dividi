@@ -7,22 +7,30 @@ class ItemsController < ApplicationController
     @items = Item.all
     @categories = @items.group(:category).count
 
-    @collections = current_user.collections
+    # cat=0,1,17&query=poeut&sort=name&verb=borrow,buy,sell,lease&owner=8
+    # virgule separe les valeurs
+    # si un champ est vide, il est considere comme non filtrant
 
-    unless session["query"]
-      session["query"]=""
-      session["cat"]=0
-      session["order"]=""
+    #Je créée une variable de session correspondant à l'id de la catégorie
+    # params cat = "27,28" => session["cat"] = ["27","28"]
+    params[:cat] = nil if params[:cat] == ""
+
+    unless params[:cat] == nil
+      session["cat"] = params[:cat].split(",") { |cat| cat.to_i }
+    else
+      session["cat"] = nil
     end
 
-    session["query"] = params[:query] if params[:query]
-    session["cat"] = params[:cat].to_i if params[:cat]
-    session["order"] = params[:order] if params[:order]
+    p "sessioncat"
+    p session["cat"]
 
-    @items = Item.search("#{session["query"]}") if session["query"] != ""
-    @items = @items.where(category: session["cat"]) if session["cat"] != 0
-    @items = @items.order(session["order"]) if session["order"] != ""
+    # session["cat"] = params[:cat].nil? ? nil : (params[:cat].split(",") { |cat| cat.to_i })
+    session["sort"] = params[:sort]
 
+
+    @items = @items.where(category: session["cat"]) unless session["cat"].nil?
+
+    @items = @items.order(params[:sort]) if params[:sort] != ""
   end
 
   def show
