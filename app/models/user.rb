@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
   has_many :validate_network_users, -> {where(status: nil)}, through: :networks, source: :network_users
-  has_many :default_network_users, through: :default_network,  source: :network_users
+  has_many :default_network_users, -> {where(status: nil)}, through: :default_network,  source: :network_users
 
   has_many :friends, through: :default_network_users, source: :user
 

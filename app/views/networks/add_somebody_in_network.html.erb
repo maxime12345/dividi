@@ -5,6 +5,6 @@
               collection: current_user.friends.select{ |user| @network.network_users.map(&:user).include?(user) == false} ,
               label_method: :email,
               value_method: :id,
-              prompt: "Select friend" %>
+              prompt: "Select a friend" %>
   <%= f.button :submit, class: "btn btn-primary", value: "Add in \"#{@network.name} \"" %>
 <% end %>
