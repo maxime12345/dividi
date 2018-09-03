@@ -4,4 +4,6 @@ class Collection < ApplicationRecord
 
   # Par défaut, les collections seront toujours triées selon le name
   default_scope -> { order(:name) }
+
+
 end
