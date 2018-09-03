@@ -6,8 +6,10 @@
 }
 
 .reminder-card {
-
+  width: auto;
+  height: auto;
   background-color: white;
+  border-bottom: 1px solid #cecece;
 }
 
 .reminder-image {
@@ -32,22 +34,20 @@ font-weight: 900;
 .reminder-verb {
 
 font-family: 'Roboto';
-font-size: 16px;
+font-size: 14px;
 font-weight: 400;
 color: #848484;
+display: inline-block;
 }
 
 .reminder-owner {
-
+  margin: 10px;
   font-family: 'Roboto';
   font-size: 16px;
-  width:auto;
-  height:auto;
-
- margin: 20px;
- right: 0;
- position: absolute;
+  display: flex;
 }
+
+
 
 .reminder-owner li {
 
@@ -56,7 +56,45 @@ display: inline-block;
 
 .card-user-reminder.avatar {
 
- width: 30px;
- height: 30px;
-   border-radius: 50%;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+}
+
+.belongs {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #595959;
+}
+
+.reminder-price {
+  padding-right: 30px;
+  font-size: 18px;
+  right: 0;
+  position: absolute;
+  font-weight: 900;
+
+}
+
+.reminder-description {
+  margin-left: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: #595959;
+
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+
+.reminder-name {
+
+  font-size: 16px;
+  margin: 10px;
 }
