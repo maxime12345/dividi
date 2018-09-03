@@ -5,6 +5,7 @@
   padding: 20px;
   border-radius: 2px;
   box-shadow: 2px 2px 6px gray;
+  font-size: 15px;
   &:hover {
     opacity: 0.9;
   }
@@ -30,5 +31,11 @@
 
   .email {
     margin-top: 50px;
+    font-size: 0.9em;
+  }
+
+  .infos {
+    height: 80px;
+    margin-top: 25px;
   }
 }

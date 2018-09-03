@@ -4,13 +4,29 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :collections, only: [:index, :show, :new, :create]
+  resources :collections, only: [:index, :show, :create, :edit, :update, :destroy]
 
   resources :items, only: [:index, :show, :new, :create] do
     resources :reminders, only: [:new, :create]
   end
+
   resources :reminders, only: :destroy
-  resources :network_users, only: [:index, :show]
+
+  resources :network_users, only: [:index, :show, :destroy] do
+    member do
+      get :accept
+      delete :destroy_all_links
+    end
+  end
+
+  resources :networks, only: [:show, :update] do
+    resources :network_users, only: :create
+    member do
+      get :add_somebody_in_network
+      post :update_somebody_in_network
+    end
+  end
 
 
 end
+
