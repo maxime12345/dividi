@@ -1,0 +1,13 @@
+<h5>Add somedbody in my network "<%= @network.name %>" </h5>
+
+<%= simple_form_for(@network, method: :post, url: update_somebody_in_network_network_path(@network) ) do |f|%>
+  <%= f.association :network_users,
+              collection: current_user.friends.select{ |user| @network.network_users.map(&:user).include?(user) == false} ,
+              label_method: :email,
+              value_method: :id,
+              multiple: true,
+              prompt: "Select a friend" %>
+
+
+  <%= f.button :submit, class: "btn btn-primary", value: "Add in \"#{@network.name} \"" %>
+<% end %>
