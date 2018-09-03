@@ -1,8 +1,24 @@
 <%= link_to item_path(reminder.item) do  %>
-  <div class="item-card">
-    Name : <%= reminder.item.name %> <br>
-    Verbe : <%= reminder.item.verbe %> <br>
+<div class="reminder-image">
+<%= cl_image_tag reminder.item.photo, style: 'height:26%; width:100%', crop: :fill%>
+</div>
+
+    <div class="reminder-card">
+
+      <div class="reminder-owner">
+        <ul>
+          <li>owner <%= reminder.item.collection.user.email %></li>
+          <li>
+        <%= cl_image_tag reminder.item.user.avatar,  height: 30, width: 30, alt: "alttext", class: "card-user-reminder avatar"  %></li>
+
+
+        </ul>
+      </div>
+    <div class="reminder-object"><%= reminder.item.name %><br></div>
+    <div class="reminder-verb"> <%= reminder.item.verbe %> <br></div>
     <%= humanized_money_with_symbol(reminder.item.price)%> <br>
-    Appartient à : <%= reminder.item.collection.user.email %>
+
+
   </div>
+
 <% end %>

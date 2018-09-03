@@ -23,14 +23,17 @@
 </div>
 
 <div class="col-xs-12 col-md-3">
-  <h2>Items rented or borrow to other persons</h2>
+   <div class="reminder-title"> <h2>Items rented or borrow <br> to other persons</h2> </div>
 
-  <% @reminders_others.each do |reminder|%>
+  <div class="reminder-card">
+    <% @reminders_others.each do |reminder|%>
 
 
       <%= render 'shared/card_reminder', reminder: reminder %>
 
 
-  <% end %>
 
+
+  <% end %>
+  </div>
 </div>
