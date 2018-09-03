@@ -1,4 +1,4 @@
-<%= link_to network_user_path(network_user) do  %>
+<%= link_to user_page_path(network_user.user.token) do  %>
   <div class="card-network">
 
       <% if network_user.user.avatar.file.nil? %>
