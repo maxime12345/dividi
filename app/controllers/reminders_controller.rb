@@ -34,7 +34,7 @@ class RemindersController < ApplicationController
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
-    raise
+
     if @reminder.save
       redirect_to collections_path
     else
