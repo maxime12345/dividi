@@ -4,6 +4,7 @@
     <h4>My friends <%= @default_network_users.count %></h4>
 
         <% @default_network_users.each do |network_user| %>
+
             <%= render 'shared/card_network', network_user: network_user %>
         <% end %>
   </div>
