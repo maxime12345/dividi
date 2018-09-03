@@ -4,22 +4,29 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @items = Item.all
-    @collections = current_user.collections
+    @where = {}
+    @order = {}
+    @query = '*'
+    @params_categories = []
 
-    unless session["query"]
-      session["query"]=""
-      session["col"]=0
-      session["order"]=""
+    # Filter items by category if categories are present in params
+    if params[:cat].present?
+      @where = { category_id: params[:cat] }
+      @params_categories = params[:cat]
     end
 
-    session["query"] = params[:query] if params[:query]
-    session["col"] = params[:col].to_i if params[:col]
-    session["order"] = params[:order] if params[:order]
+    if params[:sort].present?
+      @order = { name: params[:sort] }
+    end
 
-    @items = Item.search_by_name("#{session["query"]}") if session["query"] != ""
-    @items = @items.where(collection: session["col"]) if session["col"] != 0
-    @items = @items.order(session["order"]) if session["order"] != ""
+    if params[:query].present?
+      @query = params[:query]
+    end
+
+    # On prend toutes les catégories de @items
+    @categories = Category.all
+
+    @items = Item.search(@query, { where: @where, order: @order })
 
   end
 

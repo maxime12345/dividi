@@ -1,0 +1,11 @@
+<div class="item-card">
+  Name : <%= reminder.ghost_item %> <br>
+  Belongs to : <%= reminder.ghost_name %> <br>
+  <%= link_to reminder_path(reminder),
+    method: :delete,
+    data: {confirm: "Are you sure you want to delete this reminder ?" } do %>
+        <i class="far fa-trash-alt"></i>
+  <% end %>
+
+</div>
+
