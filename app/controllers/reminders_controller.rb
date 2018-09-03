@@ -42,9 +42,24 @@ class RemindersController < ApplicationController
     end
   end
 
+  def new_item_outside
+    @reminder = Reminder.new
+  end
+
+  def create_item_outside
+    @reminder = Reminder.new(reminder_params)
+    @reminder.user = current_user
+    if @reminder.save
+      redirect_to collections_path
+    else
+      render :new_item_outside
+    end
+
+  end
+
   private
 
   def reminder_params
-    params.require(:reminder).permit(:user_id, :ghost_name)
+    params.require(:reminder).permit(:user_id, :ghost_name, :ghost_item)
   end
 end

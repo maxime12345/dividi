@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_03_124930) do
+ActiveRecord::Schema.define(version: 2018_09_03_140113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2018_09_03_124930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ghost_name"
+    t.string "ghost_item"
     t.index ["item_id"], name: "index_reminders_on_item_id"
     t.index ["user_id"], name: "index_reminders_on_user_id"
   end

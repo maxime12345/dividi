@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   end
 
   resources :reminders, only: :destroy do
+    collection do
+      get :new_item_outside
+      post :create_item_outside
+    end
   end
 
   resources :network_users, only: [:index, :show, :destroy] do
