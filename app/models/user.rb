@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   has_many :friends, through: :default_network_users, source: :user
 
+
   has_many :friend_requests, -> {where(status: "pending")}, class_name: 'NetworkUser'
 
   pg_search_scope :search_by_email_and_username,

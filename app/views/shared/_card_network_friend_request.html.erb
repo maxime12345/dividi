@@ -9,6 +9,7 @@
       <div class="infos">
         <% if network_user.network.user.username.nil? %>
           <%= network_user.network.user.email %>
+
         <% else %>
           <%= network_user.network.user.username %> <br>
           <span class="email"> <%= network_user.network.user.email %> </span>
@@ -24,7 +25,9 @@
         <%= link_to network_user_path(network_user),
         method: :delete,
         data: {confirm: "Are you sure you want to decline this friend request ?" }, class: "little-button"  do %>
-            <i class="far fa-trash-alt"></i>
+
+            <i class="far fa-times-circle"></i>
+
         <% end %>
       </div>
 

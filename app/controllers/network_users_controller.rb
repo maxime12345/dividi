@@ -60,6 +60,7 @@ class NetworkUsersController < ApplicationController
     redirect_to network_users_path
   end
 
+
   def destroy_all_links
     @network_user = NetworkUser.find(params[:id])
     # select all network_users with the same user

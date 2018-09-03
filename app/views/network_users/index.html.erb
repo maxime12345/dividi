@@ -6,6 +6,7 @@
     <% @networks.each do |network| %>
 
       <div class="network">
+
         <h5><%= network.name %> - <%= network.validate_network_users.size %>
           <% unless network == current_user.default_network %>
             <%= link_to add_somebody_in_network_network_path(network) do  %>
@@ -15,7 +16,6 @@
         </h5>
 
         <% network.validate_network_users.each do |network_user| %>
-
             <%= render 'shared/card_network', network_user: network_user %>
 
         <% end %>
