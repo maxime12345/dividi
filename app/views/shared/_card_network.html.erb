@@ -1,11 +1,11 @@
-<%= link_to network_user_path(network_user) do  %>
-  <div class="card-network">
-
+<div class="card-network">
+    <%= link_to network_user_path(network_user) do  %>
       <% if network_user.user.avatar.file.nil? %>
         <i class="fas fa-user avatar avatar-icon" ></i>
       <% else %>
         <%= cl_image_tag network_user.user.avatar, height: 60, width: 60, crop: :fill, class: "avatar-img" %>
       <% end %>
+    <% end %>
 
       <div class="infos">
         <% if network_user.user.username.nil? %>
@@ -16,23 +16,24 @@
         <% end %>
       </div>
 
+      <div class="links">
 
-      <% if network_user.network == current_user.default_network %>
+        <% if network_user.network == current_user.default_network %>
 
-        <%= link_to destroy_all_links_network_user_path(network_user),
-        method: :delete,
-        data: {confirm: "Are you sure you want to delete this friend from all your networks ?" }, class: "little-button"  do %>
-            <i class="far fa-trash-alt"></i>
+          <%= link_to destroy_all_links_network_user_path(network_user),
+          method: :delete,
+          data: {confirm: "Are you sure you want to delete this friend from all your networks ?" }, class: "little-button"  do %>
+              <i class="far fa-trash-alt"></i>
+          <% end %>
+
+        <% else %>
+
+          <%= link_to network_user_path(network_user),
+          method: :delete,
+          data: {confirm: "Are you sure you want to delete this friend from this network ?" }, class: "little-button"  do %>
+              <i class="fas fa-minus-square"></i>
+          <% end %>
+
         <% end %>
-
-      <% else %>
-
-        <%= link_to network_user_path(network_user),
-        method: :delete,
-        data: {confirm: "Are you sure you want to delete this friend from this network ?" }, class: "little-button"  do %>
-            <i class="fas fa-minus-square"></i>
-        <% end %>
-
-      <% end %>
+      </div>
   </div>
-<% end %>
