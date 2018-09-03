@@ -1,17 +1,23 @@
 .container-show {
   height: 100vh;
   padding-top: 50px;
-  width: 80%;
+  // width: 80%;
 
 .card-show {
   max-width: 600px;
   height: 100%;
+  // max-height: 200px;
+  padding-left: 70px;
+  border-right: 2px solid #00D1B1;
+  .cloudinary-show {
+    width: 80%;
+  }
 }
 
 .box1 {
   padding: 50px;
   right: 10px;
-  border-left: 2px solid #00D1B1;
+  // padding-left:70px;
 }
 
 .btn-verbe {
@@ -28,7 +34,6 @@
   color: white;
   background-color: red;
   text-align: center;
-
 }
 
 h1 {

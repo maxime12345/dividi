@@ -1,7 +1,7 @@
 <div class="container-show">
     <ul class="breadcrumb">
-      <li>Collection :<%= link_to "#{@item.collection.name}", collections_path %></li>
-      <li>Category :<%= link_to "#{@item.category.name}", collections_path %></li>
+      <li>Collection : <%= link_to "#{@item.collection.name}", collections_path %></li>
+      <li>Category : <%= link_to "#{@item.category.name}", collections_path %></li>
     </ul>
   <div class="row">
     <div class="col-xs-12 col-md-8">
@@ -28,7 +28,13 @@
             data: {confirm: "Are you sure?" } %>
         </div>
         <div class="far fa-edit"></div>
+        <div>
+          <%= @item.created_at.strftime("Since %m/%d/%Y") %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- poste le .../../18 par ..avatar -->
