@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :networks
   has_many :network_users, through: :networks
 
+  #rdefault network, name is Tous
   has_one :default_network, -> {where(name: "Tous")}, class_name: 'Network'
 
   has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
@@ -25,6 +26,14 @@ class User < ApplicationRecord
   has_many :default_network_users, -> {where(status: nil)}, through: :default_network,  source: :network_users
 
   has_many :friends, through: :default_network_users, source: :user
+
+  has_many :defaults_network_friends, through: :friends, source: :default_network
+
+  has_many :shared_collections_friends, through: :defaults_network_friends, source: :shares
+
+  has_many :collections_friends, through: :shared_collections_friends, source: :collection
+
+  has_many :friends_items, through: :collections_friends, source: :items
 
 
   has_many :friend_requests, -> {where(status: "pending")}, class_name: 'NetworkUser'

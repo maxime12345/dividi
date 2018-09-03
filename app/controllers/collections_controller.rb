@@ -13,6 +13,8 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(params_collection)
     @collection.user = current_user
     @collection.save
+    @share = Share.create(network: user.default_network, collection: @collection)
+    @share.save
     redirect_to collections_path
   end
 
@@ -31,6 +33,8 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
+    @share = Share.where(collection: @collection)[0]
+    @share.destroy
     @collection.destroy
     redirect_to collections_path
   end
@@ -44,6 +48,5 @@ class CollectionsController < ApplicationController
   def set_collection
     @collection = Collection.find(params[:id])
   end
-
 
 end
