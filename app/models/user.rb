@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :collections
   has_many :items, through: :collections
 
-  has_many :reminders_others, class_name: 'Reminder'
+  has_many :reminders_others, -> {where(ghost_item: nil)}, class_name: 'Reminder'
+  has_many :ghost_reminders, -> {where(item_id: nil)}, class_name: 'Reminder'
 
   has_many :my_reminders, through: :items, source: :reminders
 

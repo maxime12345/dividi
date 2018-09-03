@@ -1,43 +1,49 @@
 <div class="wrapper", style="display: flex">
+  <div class="sidebar col-xs-12", style="max-width: 230px">
+    <!-- Side bar -->
+    <form action="/items" method="get" id="filter-form">
+      <!-- Search bar -->
+      <div class="input-group">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search for...",
+          value: params[:query]
+        %>
+      </div>
 
-
-  <!-- Side Bar -->
-  <div class="sidebar col-xs-12", style="max-width: 222px">
-    <h3>Collections</h3>
-    <ul class="nav nav-pills nav-stacked">
-    <li><%= link_to "All collection", items_path + "?col=0"  %></li>
-      <% @collections.each do |collection| %>
-        <li><%= link_to collection.name, items_path + "?col=#{collection.id}"  %></li>
+      <!-- Categories -->
+      <h3 class="category-title">Categories</h3>
+      <% @categories.each do |category| %>
+        <div class="category">
+          <input id="category-<%= category.id %>" type="checkbox" name="cat[]" <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>" style="display: none">
+          <label for="category-<%= category.id %>"><%= category.name %></label>
+        </div>
       <% end %>
-    </ul>
 
-    <h3>Sort</h3>
-    <ul class="nav nav-pills nav-stacked">
-      <li><%= link_to "Name", items_path + "?order=name"  %></li>
-      <li><%= link_to "Reset", items_path + "?order="  %></li>
-    </ul>
+      <!-- Sort -->
+      <h3 class="category-title">Sort</h3>
+      <div class="category">
+        <input type="radio" name="sort" id="sort_order_asc" value="asc">
+        <label for="sort_order_asc">Name</label>
+      </div>
+
+      <!-- Submit button is replace by a click event listener -->
+      <!--<input type="submit" value="filter">-->
+    </form>
   </div>
 
-  <div class="container">
-    <!-- Search bar -->
-    <div class="col-xs-12 filter-zone">
-      <h4> <%= form_tag items_path, method: :get, class: "search" do %>
-            <%= text_field_tag :query,
-              params[:query],
-              placeholder: "Search for an specific item",
-              class: "input",
-                value: session["query"]
-            %><i class="fa fa-search" aria-hidden="true"></i>
-          <% end %></h4>
-    </div>
 
-    <!-- Cards -->
+  <div class="container">
     <div class="row">
+    <!-- Cards -->
       <% @items.each do |item| %>
-        <div class="col-xs-12 col-md-3">
+        <div class="col-xs-12 col-md-4 col-lg-3">
           <%= render 'shared/card_item', item: item %>
         </div>
       <% end %>
     </div>
   </div>
+
 </div>
+

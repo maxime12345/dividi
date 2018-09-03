@@ -25,6 +25,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'pg_search'
+gem 'searchkick', '~> 3.0'
 
 
 group :development do
