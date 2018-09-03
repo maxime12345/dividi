@@ -1,67 +1,49 @@
 <div class="wrapper", style="display: flex">
+  <div class="sidebar col-xs-12", style="max-width: 230px">
+    <!-- Side bar -->
+    <form action="/items" method="get" id="filter-form">
+      <!-- Search bar -->
+      <div class="input-group">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search for...",
+          value: params[:query]
+        %>
+      </div>
 
-  <!-- Side Bar -->
-  <div class="sidebar col-xs-12", style="max-width: 220px">
-    <h3>Categories</h3>
-    <ul class="nav nav-pills nav-stacked">
-    <li>
-      <!-- Permet de transformer nil en array vide -->
-      <% session["cat"] = session["cat"].nil? ? [] : session["cat"] %>
-
-      <!-- Permet de faire du CSS conditionnel -->
-      <% active_class = session["cat"].count == 0 ? "active" : "" %>
-
-      <%= link_to "All categories", items_path(cat: nil, sort: session["sort"]), class: "category #{active_class}" %></li>
-
+      <!-- Categories -->
+      <h3 class="category-title">Categories</h3>
       <% @categories.each do |category| %>
-
-        <% if session["cat"].include?(category[0].id.to_s) %>
-          <% active_class = "active" %>
-          <% cat_value = session["cat"].clone %>
-          <% cat_value.delete(category[0].id.to_s) %>
-        <% else %>
-          <% active_class = "" %>
-          <% cat_value = session["cat"].clone %>
-          <% cat_value.push(category[0].id.to_s) %>
-        <% end %>
-
-        <li><%= link_to category[0].name, items_path(cat: cat_value.join(","), sort: session["sort"]), class: "category #{active_class}", data: cat_value.join(",") %></li>
-
+        <div class="category">
+          <input id="category-<%= category.id %>" type="checkbox" name="cat[]" <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>" style="display: none">
+          <label for="category-<%= category.id %>"><%= category.name %></label>
+        </div>
       <% end %>
-    </ul>
 
-    <h3>Sort</h3>
-    <ul class="nav nav-pills nav-stacked">
-      <% active_class = (session["sort"] == "name") ? "active" : "" %>
-      <% sort_value = (session["sort"] == "name") ? nil : "name" %>
+      <!-- Sort -->
+      <h3 class="category-title">Sort</h3>
+      <div class="category">
+        <input type="radio" name="sort" id="sort_order_asc" value="asc">
+        <label for="sort_order_asc">Name</label>
+      </div>
 
-      <li><%= link_to "Name", items_path(cat: session["cat"], sort: sort_value), class: "sort #{active_class}" %></li>
-    </ul>
+      <!-- Submit button is replace by a click event listener -->
+      <!--<input type="submit" value="filter">-->
+    </form>
   </div>
 
-  <div class="container", style="padding-top: 20px">
 
-    <!-- Elastic search -->
-    <div class="col-lg-12">
-      <div class="input-group">
-          <%= form_tag items_path, method: :get do %>
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Search for...",
-              value: session["query"]
-            %>
-          <% end %>
-      </div>
-    </div>
-
-    <!-- Cards -->
+  <div class="container">
     <div class="row">
+    <!-- Cards -->
       <% @items.each do |item| %>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-4 col-lg-3">
           <%= render 'shared/card_item', item: item %>
         </div>
       <% end %>
     </div>
   </div>
+
 </div>
+

@@ -11,6 +11,10 @@ class Item < ApplicationRecord
   monetize :price_cents
   mount_uploader :photo, PhotoUploader
 
+  # def search_data
+  #   attributes.merge(category: self.categories.map(&:name))
+  # end
+
   # include PgSearch
   # pg_search_scope :search_by_name,
   #   against: [ :name],

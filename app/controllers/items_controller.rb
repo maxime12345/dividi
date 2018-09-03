@@ -4,33 +4,30 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @items = Item.all
-    @categories = @items.group(:category).count
+    @where = {}
+    @order = {}
+    @query = '*'
+    @params_categories = []
 
-    # cat=0,1,17&query=poeut&sort=name&verb=borrow,buy,sell,lease&owner=8
-    # virgule separe les valeurs
-    # si un champ est vide, il est considere comme non filtrant
-
-    #Je créée une variable de session correspondant à l'id de la catégorie
-    # params cat = "27,28" => session["cat"] = ["27","28"]
-    params[:cat] = nil if params[:cat] == ""
-
-    unless params[:cat] == nil
-      session["cat"] = params[:cat].split(",") { |cat| cat.to_i }
-    else
-      session["cat"] = nil
+    # Filter items by category if categories are present in params
+    if params[:cat].present?
+      @where = { category_id: params[:cat] }
+      @params_categories = params[:cat]
     end
 
-    p "sessioncat"
-    p session["cat"]
+    if params[:sort].present?
+      @order = { name: params[:sort] }
+    end
 
-    # session["cat"] = params[:cat].nil? ? nil : (params[:cat].split(",") { |cat| cat.to_i })
-    session["sort"] = params[:sort]
+    if params[:query].present?
+      @query = params[:query]
+    end
 
+    # On prend toutes les catégories de @items
+    @categories = Category.all
 
-    @items = @items.where(category: session["cat"]) unless session["cat"].nil?
+    @items = Item.search(@query, { where: @where, order: @order })
 
-    @items = @items.order(params[:sort]) if params[:sort] != ""
   end
 
   def show
