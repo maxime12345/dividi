@@ -1,7 +1,7 @@
 class NetworkUsersController < ApplicationController
   def index
     #List of validate friends class by networks
-    @networks = current_user.networks
+    @default_network_users = current_user.default_network_users
 
     #List of validate friends to exclude from search
     @friends = current_user.friends
@@ -59,6 +59,7 @@ class NetworkUsersController < ApplicationController
     @network_user.destroy
     redirect_to network_users_path
   end
+
 
   def destroy_all_links
     @network_user = NetworkUser.find(params[:id])

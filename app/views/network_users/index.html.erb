@@ -1,28 +1,11 @@
 <div class="col-xs-12 col-md-3">
   <div class="zone">
 
-    <h4>My networks</h4>
+    <h4>My friends <%= @default_network_users.count %></h4>
 
-    <% @networks.each do |network| %>
-
-      <div class="network">
-        <h5><%= network.name %> - <%= network.validate_network_users.size %>
-          <% unless network == current_user.default_network %>
-            <%= link_to add_somebody_in_network_network_path(network) do  %>
-              <i class="fas fa-plus-circle"></i>
-            <% end %>
-          <% end %>
-        </h5>
-
-        <% network.validate_network_users.each do |network_user| %>
-
+        <% @default_network_users.each do |network_user| %>
             <%= render 'shared/card_network', network_user: network_user %>
-
         <% end %>
-
-      </div>
-
-    <% end %>
   </div>
 </div>
 
