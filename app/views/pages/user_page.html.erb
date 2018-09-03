@@ -1,0 +1,46 @@
+<div class="container container-user-page">
+
+  <div class="user">
+    <%= render 'shared/avatar_big', user: @user %>
+    <div class="infos">
+      <% if @user.username.nil? %>
+        <span class="titre"> <%= @user.email %></span>
+      <% else %>
+        <span class="titre"> <%= @user.username %>  </span><br>
+        <%= @user.email %>
+      <% end %>
+      <br>
+      <br>
+      <%= @user.friends.count %> friends <br>
+      <%= @user.items.count %> objects <br>
+      <span class="date"> On dividi since <%= time_ago_in_words(@user.created_at) %> </span>
+    </div>
+  </div>
+  <div class="under-hr">
+  All objects sorted by collection
+
+  </div>
+
+
+  <div class="collections">
+
+    <% @collections.each do |collection| %>
+
+      <% unless collection.items.size == 0  %>
+
+        <h4 class="collection-title"><%= collection.name %>  <%= collection.items.size %></h4>
+
+          <% collection.items.each do |item| %>
+
+              <%= render 'shared/card_list_outside', item: item %>
+
+          <% end %>
+
+          <% end %>
+
+    <% end %>
+
+
+
+  </div>
+</div>

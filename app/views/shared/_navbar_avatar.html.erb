@@ -1,0 +1,13 @@
+<% if current_user.avatar.file.nil? %>
+  <i class="fas fa-user avatar avatar-icon" ></i>
+<% else %>
+  <%= cl_image_tag current_user.avatar, height: 60, width: 60, crop: :fill, class: "avatar-img" %>
+<% end %>
+<div class="infos">
+  <% if current_user.username.nil? %>
+    <%= current_user.email %>
+  <% else %>
+    <%= current_user.username %> <br>
+    <span class="email"> <%= current_user.email %> </span>
+  <% end %>
+</div>

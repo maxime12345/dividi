@@ -1,0 +1,51 @@
+.container-user-page {
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .infos {
+    border-left: 1px solid #00D1B1;
+    padding-left: 15px;
+  }
+
+  .avatar-img {
+    margin-right: 15px;
+    border-radius: 50%;
+
+  }
+  .avatar-icon {
+    margin-right: 15px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 50px;
+    color: gray;
+  }
+  .titre {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .date {
+    font-size: 0.8em;
+    font-weight: italic;
+  }
+
+  .collections {
+    width: 60%;
+    margin: auto;
+  }
+
+  .under-hr {
+    margin-top: 50px;
+    border-top: 1px solid #C6C6C6;
+    font-size: 0.7em;
+    font-style: italic;
+  }
+}

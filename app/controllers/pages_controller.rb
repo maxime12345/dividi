@@ -3,7 +3,8 @@ class PagesController < ApplicationController
     @user = User.new
   end
 
-  def items_view
-
+  def user_page
+    @user = User.where(token: params[:token])[0]
+    @collections = current_user.collections
   end
 end

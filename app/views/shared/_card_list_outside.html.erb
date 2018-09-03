@@ -1,0 +1,32 @@
+<div class="item-card-list">
+
+    <div class="flex-item">
+      <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card" %>
+    </div>
+
+  <div class="flex-item" id="item-infos">
+    <div id="cell1">
+      <div class="title-card-list"><%= link_to item.name, item_path(item) %></div>
+      <div class="verb"><%= item.verbe %></div>
+    </div>
+  </div>
+
+  <% if item.reminders[0].nil? %>
+
+    <div class="flex-item essai">
+      <div class="disponible">
+        <div class="puce"></div>Available
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="flex-item">
+      <div class="status">
+        <div class="puce"></div>
+            Not available
+      </div>
+    </div>
+
+  <% end %>
+</div>
