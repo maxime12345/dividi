@@ -4,36 +4,35 @@
   // width: 80%;
 
 .card-show {
+  padding: 20px;
+  border-right: 2px solid #00D1B1;
   max-width: 600px;
   height: 100%;
-  // max-height: 200px;
-  padding-left: 70px;
-  border-right: 2px solid #00D1B1;
+  // padding-left: 70px;
   .cloudinary-show {
-    width: 80%;
+    width: 100%;
   }
 }
 
 .box1 {
-  padding: 50px;
-  right: 10px;
-  // padding-left:70px;
+  max-width: 400px;
+  height: 100%;
+  padding-top: 20px;
+  // right: 10px;
 }
 
 .btn-verbe {
+  margin-top: 10px;
   font-weight: 900;
   width: 180px;
   color: white;
   background-color: #00D1B1;
-  text-align: center;
+  border-color: #308edc;
+  display: inline-block;
 }
 
 .btn-verbe-not-available {
-  font-weight: 900;
-  width: 180px;
-  color: white;
-  background-color: red;
-  text-align: center;
+
 }
 
 h1 {
@@ -66,6 +65,7 @@ p {
   font: 18px Sans-Serif;
   text-align: inline;
   color: black;
+
 }
 }
 

@@ -4,16 +4,15 @@
       <li>Category : <%= link_to "#{@item.category.name}", collections_path %></li>
     </ul>
   <div class="row">
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-7">
       <div class="card-show" >
         <%= card_background_image_path @item  %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-md-5">
       <div class="box1">
-
         <h1><%= @item.name %> </h1><br>
-        <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p>
+        <h2><%= humanized_money_with_symbol(@item.price)%></h2>
         <h2>Description :</h2><p> <%= @item.description %> </p>
         <div class="item-available">
           <% if @item.reminders[0].nil? %>
@@ -27,14 +26,14 @@
             method: :delete,
             data: {confirm: "Are you sure?" } %>
         </div>
-        <div class="far fa-edit"></div>
+        <div class="fas fa-pencil-alt"></div>
+
+
         <div>
-          <%= @item.created_at.strftime("Since %m/%d/%Y") %>
+          <%= @item.created_at.strftime("Created on %d/%m/%Y") %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- poste le .../../18 par ..avatar -->

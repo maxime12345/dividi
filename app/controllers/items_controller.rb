@@ -39,7 +39,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-
   end
 
   # POST /collections/:collection_id/items
