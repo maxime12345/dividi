@@ -1,21 +1,18 @@
-
-.container {
+.container-show {
   height: 100vh;
   padding-top: 50px;
   width: 80%;
-}
 
-.cloudinary-show {
-  padding: 50px;
+.card-show {
   max-width: 600px;
   height: 100%;
-  background-size: 600px;
+
 }
 
 .box1 {
   padding: 50px;
   right: 10px;
-  border-left: 1px solid #00D1B1;
+  border-left: 2px solid #00D1B1;
 }
 
 .btn-verbe {
@@ -23,6 +20,14 @@
   width: 180px;
   color: white;
   background-color: #00D1B1;
+  text-align: center;
+}
+
+.btn-verbe-not-available {
+  font-weight: 900;
+  width: 180px;
+  color: white;
+  background-color: red;
   text-align: center;
 
 }
@@ -49,5 +54,20 @@ p {
   font-weight: 100;
   font-size: 24px;
   // text-align: center;
-
 }
+
+.breadcrumb {
+  list-style: none;
+  overflow: hidden;
+  font: 18px Sans-Serif;
+  text-align: inline;
+  color: black;
+}
+}
+
+
+
+
+
+
+

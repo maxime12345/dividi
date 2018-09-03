@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :collections, only: [:index, :show, :new, :create]
 
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:index, :show, :new, :create, :destroy] do
     resources :reminders, only: [:new, :create]
   end
   resources :reminders, only: :destroy

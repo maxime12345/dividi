@@ -39,6 +39,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+
   end
 
   # POST /collections/:collection_id/items
@@ -49,7 +50,11 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
 
+  def destroy
+    @item.destroy
+    redirect_to collections_path
   end
 
   private
