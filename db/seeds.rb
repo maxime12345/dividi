@@ -58,7 +58,7 @@ puts "Creating users and collections..."
   user6 = User.create(email: "paul.dupont@dividi.fr", password: '123456', password_confirmation: '123456')
   user7 = User.create(email: "chuck.norris@dividi.fr", password: '123456', password_confirmation: '123456')
 
-  User.all[1..-1].each{ |user| collections_creation(user) }
+  User.all.select{ |user| user != user_first }.each{ |user| collections_creation(user) }
 
   art_guerre = Item.create(name: "L'art de la guerre - Sun Tzu", verbe: "to_borrow", collection: user_second.collections.where(name: "Bibliothèque")[0], category: Category.all.sample)
 
