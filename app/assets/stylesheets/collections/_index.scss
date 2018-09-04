@@ -1,4 +1,4 @@
-
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
 .collection-title h2 {
   margin-left: 10px;
@@ -16,9 +16,6 @@ font-size: 20px;
 .collection-name {
  font-weight: 900;
 font-size: 14px;
-
-
-
 }
 
 .name-c {
@@ -27,8 +24,16 @@ padding: 10px;
 border-bottom: 1px solid #E1E1E1;
 }
 
+.add-form {
+  width: 100%;
+  height: auto;
 
-  .accordionWrapper{
+  background-color: linear-gradient(#00bfe1, #00E5DB);
+}
+
+
+
+.accordionWrapper{
 
     background:#fff;
     display:block;
@@ -37,15 +42,15 @@ border-bottom: 1px solid #E1E1E1;
   }
 
 .accordionItemHeading{
-  padding: 20px;
+
+    font-size: 20px;
     cursor:pointer;
-    background:#2980b9;
-    color:#fff;
+
     width:100%;
-    box-sizing: border-box;
+    height: 20px;
 }
 .close .accordionItemContent{
-    padding: 20px;
+
     background-color: #fff;
     height:0px;
     transition:height 1s ease-out;
@@ -55,11 +60,10 @@ border-bottom: 1px solid #E1E1E1;
 
 }
 .open .accordionItemContent{
-padding: 20px;
-background-color: #fff;
+
+
 width: 100%;
 margin: 0;
-display:block;
 transform: scaleY(1);
 transform-origin: top;
 transition: transform 0.4s ease-out;
@@ -67,8 +71,14 @@ transition: transform 0.4s ease;
 
 }
 
-.open .accordionItemHeading{
-    margin:0px;
-    background-color: #bdc3c7;
-    color: #7f8c8d;
+
+.open .accordionItemHeading {
+    margin: 0px;
+    font-size: 18px;
+    background-color: white;
+    color: black;
 }
+
+
+
+
