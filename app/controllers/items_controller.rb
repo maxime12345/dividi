@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
     @order = {}
     @query = '*'
     @params_categories = []
+    @params_sort =[]
 
     # Filter items by category if categories are present in params
     if params[:cat].present?
@@ -17,16 +18,19 @@ class ItemsController < ApplicationController
 
     if params[:sort].present?
       @order = { name: params[:sort] }
+      @params_sort = params[:sort]
     end
 
     if params[:query].present?
       @query = params[:query]
     end
 
-    # On prend toutes les catégories de @items
-    @categories = Category.all
+    # On prend tous les items des amis du current user
+    @items = Item.search(@query, { where: @where, order: @order }).select{ |item| current_user.friends_items.include?(item) == true }
 
-    @items = Item.search(@query, { where: @where, order: @order })
+    # On prend uniquement les catégories de @items
+    # User.all.map(&:email) => return an array of user's email
+    @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}
 
   end
 
