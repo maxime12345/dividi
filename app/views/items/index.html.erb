@@ -1,49 +1,69 @@
-<div class="wrapper", style="display: flex">
-  <div class="sidebar col-xs-12", style="max-width: 230px">
-    <!-- Side bar -->
-    <form action="/items" method="get" id="filter-form">
+<div class="wrapper">
+
+
+
+  <form action="/items" method="get" id="filter-form">
+
+    <!-- Header -->
+    <div class="head" style="display: flex">
+      <!-- Reset filters -->
+      <div class="side-bar">
+        <%= link_to "Reset filters", items_path, class: "btn btn-primary" %>
+      </div>
+
       <!-- Search bar -->
-      <div class="input-group">
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Search for...",
-          value: params[:query]
-        %>
-      </div>
-
-      <!-- Categories -->
-      <h3 class="category-title">Categories</h3>
-      <% @categories.each do |category| %>
-        <div class="category">
-          <input id="category-<%= category.id %>" type="checkbox" name="cat[]" <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>" style="display: none">
-          <label for="category-<%= category.id %>"><%= category.name %></label>
+      <div class="search col-xs-12 col-md-4 col-lg-3">
+        <div class="input-group">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search for...",
+            value: params[:query]
+          %>
         </div>
-      <% end %>
-
-      <!-- Sort -->
-      <h3 class="category-title">Sort</h3>
-      <div class="category">
-        <input type="radio" name="sort" id="sort_order_asc" value="asc">
-        <label for="sort_order_asc">Name</label>
       </div>
-
-      <!-- Submit button is replace by a click event listener -->
-      <!--<input type="submit" value="filter">-->
-    </form>
-  </div>
-
-
-  <div class="container">
-    <div class="row">
-    <!-- Cards -->
-      <% @items.each do |item| %>
-        <div class="col-xs-12 col-md-4 col-lg-3">
-          <%= render 'shared/card_item', item: item %>
-        </div>
-      <% end %>
     </div>
-  </div>
 
+    <!-- Body -->
+    <div class="body" style="display: flex">
+      <!-- Side bar -->
+      <div class="side-bar">
+        <!-- Categories -->
+        <h3 class="filer-name">Categories</h3>
+        <% @categories.each do |category| %>
+          <div class="category">
+            <input id="category-<%= category.id %>" type="checkbox" name="cat[]"
+            <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>">
+            <label for="category-<%= category.id %>"><%= category.name %></label>
+          </div>
+        <% end %>
+
+        <!-- Attention à garder le status checked lorsqu'on submit la page cf line 36 -->
+
+        <!-- Sort -->
+        <h3 class="filer-name">Sort</h3>
+        <div class="category">
+          <input type="checkbox" name="sort" id="sort_order_asc"
+            <%= @params_sort.include?("asc") ? 'checked' : '' %>
+            value="asc">
+          <label for="sort_order_asc">Name</label>
+        </div>
+        <!-- Submit button is replace by a click event listener -->
+        <!--<input type="submit" value="filter">-->
+      </div>
+
+      <!-- Cards -->
+      <div class="container">
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-xs-12 col-md-4 col-lg-3">
+              <%= render 'shared/card_item', item: item %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </form>
 </div>
 
