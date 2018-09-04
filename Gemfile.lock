@@ -78,11 +78,21 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
+      multi_json
+    elasticsearch-transport (6.1.0)
+      faraday
+      multi_json
     erubi (1.7.1)
     excon (0.62.0)
     execjs (2.7.0)
     faker (1.9.1)
       i18n (>= 0.7)
+    faraday (0.15.2)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     fog-aws (3.0.0)
       fog-core (~> 2.1)
@@ -105,6 +115,7 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashie (3.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.0.1)
@@ -143,6 +154,7 @@ GEM
       railties (>= 3.0)
     msgpack (1.2.4)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.8.4)
@@ -217,6 +229,10 @@ GEM
     sassc (1.12.1)
       ffi (~> 1.9.6)
       sass (>= 3.3.0)
+    searchkick (3.1.1)
+      activemodel (>= 4.2)
+      elasticsearch (>= 5)
+      hashie
     simple_form (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -284,6 +300,7 @@ DEPENDENCIES
   rails (= 5.2.1)
   redis
   sass-rails
+  searchkick (~> 3.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

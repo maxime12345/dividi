@@ -1,0 +1,10 @@
+<h5>Add a reminder to an item from people not in Network</h5>
+
+<%= simple_form_for(@reminder, url:  create_item_outside_reminders_path) do |f| %>
+  <%= f.input :ghost_name %>
+  <%= f.input :ghost_item %>
+  <%= f.button :submit, class: "btn"%>
+<% end %>
+
+
+

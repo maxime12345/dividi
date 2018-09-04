@@ -29,7 +29,13 @@
           <%= link_to "Available again", reminder_path(item.reminders[0].id),
             method: :delete,
             data: {confirm: "Are you back in possession of this item ?" } %>
-            Prêté à : <%= item.reminders[0].user.email %>
+            Prêté à :
+            <% if item.reminders[0].ghost_name.nil? %>
+              <%= item.reminders[0].user.email %>
+
+            <% else %>
+              <%= item.reminders[0].ghost_name %> (Outside friend)
+            <% end %>
       </div>
     </div>
 

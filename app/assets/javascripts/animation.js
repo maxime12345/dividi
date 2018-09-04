@@ -1,35 +1,37 @@
 const change = document.querySelector('.section2');
 
-window.addEventListener('scroll', () => {
 
-  if (window.scrollY > 337) {
+if (change) {
+  window.addEventListener('scroll', () => {
 
-    change.classList.add('scroll');
+    if (window.scrollY > 337) {
 
-  }
+      change.classList.add('scroll');
 
-  else {
+    }
 
-    change.classList.remove('scroll');
-  }
+    else {
 
-});
+      change.classList.remove('scroll');
+    }
 
-const foot = document.querySelector('.section3');
+  });
 
-window.addEventListener('scroll', () => {
+  const foot = document.querySelector('.section3');
 
-  if (window.scrollY > 437) {
+  window.addEventListener('scroll', () => {
 
-    foot.classList.add('scroll');
+    if (window.scrollY > 437) {
 
-  }
+      foot.classList.add('scroll');
 
-  else {
+    }
 
-    foot.classList.remove('scroll');
-  }
+    else {
 
-});
+      foot.classList.remove('scroll');
+    }
 
+  });
+}
 
