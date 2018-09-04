@@ -57,27 +57,3 @@
 
 </div>
 
-<div class="col-xs-12 col-md-3">
-  <div class="reminder-title">
-    <h2>Items rented or borrow <br> to other persons</h2>
-  </div>
-
-
-    <div class="reminder-card">
-      <% @reminders_others.each do |reminder|%>
-        <%= render 'shared/card_reminder', reminder: reminder %>
-      <% end %>
-    </div>
-
-  <hr>
-
-  <h2>Reminders for objects of other people not in the network</h2>
-
-  <% @ghost_reminders.each do |reminder| %>
-    <%= render 'shared/card_reminder_ghost', reminder: reminder %>
-  <% end %>
-
-  <%= link_to "Add an object outside network",  new_item_outside_reminders_path, class: "btn btn-primary" %>
-
-
-</div>
