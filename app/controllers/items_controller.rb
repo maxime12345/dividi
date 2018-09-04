@@ -15,12 +15,10 @@ class ItemsController < ApplicationController
       @where = { category_id: params[:cat] }
       @params_categories = params[:cat]
     end
-
     if params[:sort].present?
       @order = { name: params[:sort] }
       @params_sort = params[:sort]
     end
-
     if params[:query].present?
       @query = params[:query]
     end
@@ -32,6 +30,8 @@ class ItemsController < ApplicationController
     # User.all.map(&:email) => return an array of user's email
     @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}
 
+    # On prend toutes les catégories de @items
+    @items = Item.search(@query, { where: @where, order: @order })
   end
 
   def show

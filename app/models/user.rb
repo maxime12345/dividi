@@ -58,6 +58,7 @@ class User < ApplicationRecord
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
   def set_email_for_search
     self.email_for_search = self.email.split('@')[0].split('.').join(' ')
+
   end
 
   def token_creation
