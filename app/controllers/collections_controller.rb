@@ -14,7 +14,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(params_collection)
     @collection.user = current_user
     @collection.save
-    @share = Share.create(network: user.default_network, collection: @collection)
+    @share = Share.create(network: current_user.default_network, collection: @collection)
     @share.save
     redirect_to collections_path
   end
