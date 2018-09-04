@@ -45,6 +45,14 @@ class User < ApplicationRecord
     against: [ :email, :username, :email_for_search ],
     using: { tsearch: { prefix: true } }
 
+  def label_method
+    if username.nil?
+      email
+    else
+      return "#{username}   -   #{email}"
+    end
+  end
+
   private
 
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
@@ -55,4 +63,5 @@ class User < ApplicationRecord
   def token_creation
     self.token = SecureRandom.urlsafe_base64(nil, false)
   end
+
 end
