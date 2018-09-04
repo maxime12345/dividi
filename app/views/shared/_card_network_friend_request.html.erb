@@ -2,13 +2,13 @@
 
 <div class="card-network">
 
-
+  <%= link_to user_page_path(network_user.network.user.token) do  %>
       <% if network_user.network.user.avatar.file.nil? %>
         <i class="fas fa-user avatar avatar-icon" ></i>
       <% else %>
         <%= cl_image_tag network_user.network.user.avatar, height: 60, width: 60, crop: :fill, class: "avatar-img" %>
       <% end %>
-
+<% end %>
 
       <div class="infos">
         <% if network_user.network.user.username.nil? %>
