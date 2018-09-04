@@ -3,45 +3,42 @@
 
     <h4>My friends <%= @default_network_users.count %></h4>
 
-        <% @default_network_users.each do |network_user| %>
+    <% @default_network_users.each do |network_user| %>
 
-            <%= render 'shared/card_network', network_user: network_user %>
-        <% end %>
+        <%= render 'shared/card_network', network_user: network_user %>
+
+    <% end %>
   </div>
 </div>
 
-
 <div class="col-xs-12 col-lg-6">
-  <div class="zone">
-
-    <div class="search">
-      <%= form_tag network_users_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
-          placeholder: "Search a people not yet in your network",
-          class: "input"
-        %><i class="fa fa-search" aria-hidden="true"></i>
-      <% end %>
-    </div>
-
-    <div class="row">
-
-      <% if @users.size == 0 %>
-
+    <div class="zone">
+      <div class="row">
         <div class="col-xs-12">
-          Sorry, no friend match with your request.
-        </div>
+          <h4>Search somebody in the network</h4>
+      <%= render 'shared/search_bar', query: params[:query], placeholder: "Search" %>
+      <hr>
 
-      <% else %>
+      </div>
 
-        <% @users.each do |user| %>
-          <div class="col-xs-12 col-md-6 col-lg-4">
-            <%= render 'shared/card_friend', user: user %>
+
+
+        <% if @users.size == 0 %>
+
+          <div class="col-xs-12">
+            Sorry, no friend match with your request.
           </div>
-        <% end %>
 
-      <% end %>
-    </div>
+        <% else %>
+
+          <% @users.each do |user| %>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+              <%= render 'shared/card_friend', user: user %>
+            </div>
+          <% end %>
+
+        <% end %>
+      </div>
   </div>
 </div>
 
@@ -52,13 +49,28 @@
 
 
         <h4>Friend requests</h4>
+
+          <% if @friend_requests.size == 0%>
+
+            No friend requests for the moment.
+
+          <% end %>
+
         <% @friend_requests.each do |network_user| %>
 
             <%= render 'shared/card_network_friend_request', network_user: network_user %>
 
         <% end %>
+        <hr>
 
         <h4>Requests sent</h4>
+
+         <% if @pending_network_users.size == 0%>
+
+          You don't have any friend request pending for the moment.
+
+        <% end %>
+
 
         <% @pending_network_users.each do |network_user| %>
 
@@ -69,3 +81,4 @@
     </div>
   </div>
 </div>
+
