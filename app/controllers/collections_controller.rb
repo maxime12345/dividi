@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new
     @collections = current_user.collections
     @reminders_others = current_user.reminders_others
+    @ghost_reminders = current_user.ghost_reminders
   end
 
   def create

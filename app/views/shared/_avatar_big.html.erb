@@ -1,0 +1,7 @@
+<div class="avatar-big">
+  <% if user.avatar.file.nil? %>
+    <i class="fas fa-user avatar-icon"></i>
+  <% else %>
+    <%= cl_image_tag user.avatar, height: 150, width: 150, crop: :fill, class: "avatar-img" %>
+  <% end %>
+</div>

@@ -2,7 +2,9 @@ class User < ApplicationRecord
   include PgSearch
 
   mount_uploader :avatar, PhotoUploader
+
   after_create :set_email_for_search
+  before_create :token_creation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,7 +13,8 @@ class User < ApplicationRecord
   has_many :collections
   has_many :items, through: :collections
 
-  has_many :reminders_others, class_name: 'Reminder'
+  has_many :reminders_others, -> {where(ghost_item: nil)}, class_name: 'Reminder'
+  has_many :ghost_reminders, -> {where(item_id: nil)}, class_name: 'Reminder'
 
   has_many :my_reminders, through: :items, source: :reminders
 
@@ -47,6 +50,9 @@ class User < ApplicationRecord
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
   def set_email_for_search
     self.email_for_search = self.email.split('@')[0].split('.').join(' ')
-    self.save
+  end
+
+  def token_creation
+    self.token = SecureRandom.urlsafe_base64(nil, false)
   end
 end

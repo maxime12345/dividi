@@ -4,4 +4,8 @@
 
   <%= render 'form_reminder', item: @item, reminder: @reminder %>
 
+  <hr>
+
+  <%= link_to "Add to a friend not in the network", new_outside_item_reminders_path(@item), class: "btn btn-primary" %>
+
 </div>
