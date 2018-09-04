@@ -26,5 +26,10 @@
       <i class="fas fa-ban"></i>
     <% end %>
     </div>
+
+    <div>
+      <%= link_to "Reserve", item_reminders_path(item, reminder: {user_id: item.user.id}), method: :post, class: "btn btn-primary" %>
+    </div>
+
   </div>
 </div>

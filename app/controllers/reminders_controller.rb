@@ -57,6 +57,24 @@ class RemindersController < ApplicationController
 
   end
 
+  def accept
+    @reminder = Reminder.find(params[:id])
+    if @reminder.status == "pending"
+      @reminder.status = "Accepted"
+      @reminder.save
+    end
+    redirect_back(fallback_location: reminders_path)
+  end
+
+  def decline
+    @reminder = Reminder.find(params[:id])
+    if @reminder.status == "pending"
+      @reminder.status = "Declined"
+      @reminder.save
+    end
+    redirect_back(fallback_location: bookings_path)
+  end
+
   private
 
   def reminder_params
