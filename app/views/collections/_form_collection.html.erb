@@ -1,4 +1,5 @@
 <%= simple_form_for(collection) do |f|%>
-  <%= f.input :name%>
-  <%= f.button :submit, class: "btn btn-primary", value: button %>
+  <%= f.input :name, label: false, placeholder:'collection name'%>
+
 <% end %>
+
