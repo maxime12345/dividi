@@ -12,11 +12,10 @@
 </div>
 
 <div class="col-xs-12 col-lg-6">
-    <div class="zone">
-      <div class="row">
+      <div class="zone row">
         <div class="col-xs-12">
           <h4>Search somebody in the network</h4>
-      <%= render 'shared/search_bar', query: params[:query], placeholder: "Search" %>
+      <%= render 'shared/search_bar', query: params[:query], placeholder: "Search", path: network_users_path %>
       <hr>
 
       </div>
@@ -39,7 +38,6 @@
 
         <% end %>
       </div>
-  </div>
 </div>
 
 

@@ -1,6 +1,6 @@
 <div class="search-bar">
   <i class="fa fa-search" aria-hidden="true"></i>
-  <%= form_tag network_users_path, method: :get do %>
+  <%= form_tag path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
       placeholder: placeholder,
