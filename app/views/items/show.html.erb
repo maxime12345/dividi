@@ -13,12 +13,12 @@
       <div class="box1">
         <h1><%= @item.name %> </h1><br>
         <h2><%= humanized_money_with_symbol(@item.price)%></h2>
-        <h2>Description :</h2><p> <%= @item.description %> </p>
+        <p> <%= @item.description %> </p>
         <div class="item-available">
           <% if @item.reminders[0].nil? %>
             <p><%= button_to @text , new_item_reminder_path(@item), class: "btn-verbe" %></p>
           <% else %>
-            <p><%= button_to @text , new_item_path, class: "btn-verbe-not-available" %></p>
+            <a><%= class="btn-verbe-not-available"  href="#" role="button"%>Not available</a>
           <% end %>
         </div>
          <div class="far fa-trash-alt">
@@ -27,8 +27,6 @@
             data: {confirm: "Are you sure?" } %>
         </div>
         <div class="fas fa-pencil-alt"></div>
-
-
         <div>
           <%= @item.created_at.strftime("Created on %d/%m/%Y") %>
         </div>
@@ -37,3 +35,4 @@
   </div>
 </div>
 
+<!-- envoyer le lien edit vers le lien "lend" correspondant dans collection  -->
