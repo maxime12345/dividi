@@ -1,5 +1,7 @@
 class RemindersController < ApplicationController
   def index
+    @reminders_others = current_user.reminders_others
+    @ghost_reminders = current_user.ghost_reminders
   end
 
   def new

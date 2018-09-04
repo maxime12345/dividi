@@ -9,8 +9,21 @@
 
     <% if user_signed_in? %>
 
+        <% unless @on_items_page %>
+
+          <%= form_tag items_path, method: :get, class: "search" do %>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Find an object",
+              class: "input"
+            %><i class="fa fa-search" aria-hidden="true"></i>
+          <% end %>
+
+        <% end %>
+
       <!-- Links when logged in -->
       <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My borrowings", reminders_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My collections", collections_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to network_users_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           My friends <% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>

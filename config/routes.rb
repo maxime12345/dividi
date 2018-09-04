@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reminders, only: :destroy do
+  resources :reminders, only: [:destroy, :index] do
     collection do
       get :new_item_outside
       post :create_item_outside
