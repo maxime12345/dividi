@@ -5,18 +5,16 @@
   position: relative;
   .box1 {
     height: 100%;
-    position: absolute;
+//    position: absolute;
     box-sizing: border-box;
-
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
     padding: 5px;
+    text-align: center;
     }
-
-
 
 .card-show {
   padding: 20px;
-  border-right: 2px solid #00D1B1;
+  // border-right: 2px solid #00D1B1;
   max-width: 600px;
   height: 100%;
   // padding-left: 70px;
@@ -25,22 +23,18 @@
   }
 }
 
+.vertical-edge {
+  height: 414px;
+  width: 2px;
+  background-color: #00D1B1;
+}
+
 .btn-verbe {
   margin-top: 10px;
   font-weight: 900;
   width: 180px;
   color: white;
   background-color: #00D1B1;
-  border-color: #308edc;
-  display: inline-block;
-}
-
-.btn-verbe-not-available {
-  margin-top: 10px;
-  font-weight: 900;
-  width: 180px;
-  color: white;
-  background-color: red;
   border-color: #308edc;
   display: inline-block;
 }
