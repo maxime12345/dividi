@@ -1,4 +1,4 @@
 <%= simple_form_for([item, reminder], url:  create_outside_item_reminders_path(item)) do |f| %>
-  <%= f.input :ghost_name %>
-  <%= f.button :submit, class: "btn"%>
+  <%= f.input :ghost_name, label: "Name" %>
+  <%= f.button :submit, class: "btn", value: "Lend/Rent"%>
 <% end %>

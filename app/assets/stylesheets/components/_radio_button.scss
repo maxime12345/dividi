@@ -12,11 +12,6 @@ fieldset {
   align-items: center;
 }
 
-input[type=radio],
-input.radio {
-  display: none;
-}
-
 .collection_radio_buttons {
   border: solid 1px #00D1B1;
   font-weight: normal;
@@ -24,7 +19,13 @@ input.radio {
   border-radius: 3px;
 }
 
+input[type=radio], input.radio {
+  display: none;
+}
+
 input[type=radio]:checked + label {
   background-color: #00D1B1;
   color: white;
 }
+
+
