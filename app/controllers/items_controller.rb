@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @on_items_page = true
+
     @where = {}
     @order = {}
     @query = '*'
