@@ -8,9 +8,9 @@
     function toggleItem() {
         var itemClass = this.parentNode.className;
         for (i = 0; i < accItem.length; i++) {
-            accItem[i].className = 'accordionItem close';
+            accItem[i].className = 'accordionItem closing';
         }
-        if (itemClass == 'accordionItem close') {
+        if (itemClass == 'accordionItem closing') {
             this.parentNode.className = 'accordionItem open';
         }
     }

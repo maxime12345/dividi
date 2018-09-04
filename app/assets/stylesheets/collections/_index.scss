@@ -1,8 +1,8 @@
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+
 
 .collection-title h2 {
-  margin-left: 10px;
-  font-weight: 900;
+margin-left: 10px;
+font-weight: 900;
 font-size: 20px;
 
 }
@@ -14,14 +14,14 @@ font-size: 20px;
 }
 
 .collection-name {
- font-weight: 900;
-font-size: 14px;
+  font-weight: 900;
+  font-size: 14px;
 }
 
 .name-c {
 
-padding: 10px;
-border-bottom: 1px solid #E1E1E1;
+  padding: 10px;
+  border-bottom: 1px solid #E1E1E1;
 }
 
 .add-form {
@@ -31,54 +31,81 @@ border-bottom: 1px solid #E1E1E1;
   background-color: linear-gradient(#00bfe1, #00E5DB);
 }
 
+::-webkit-input-placeholder {
+
+  font-weight: 400;
+  font-style: italic;
+}
+
 
 
 .accordionWrapper{
 
-    background:#fff;
-    display:block;
-    width:100%;
-    font-family:'Roboto';
+  background:#fff;
+  display:block;
+  width:100%;
+  font-family:'Roboto';
   }
 
 .accordionItemHeading{
 
-    font-size: 20px;
-    cursor:pointer;
+  font-size: 16px;
+  cursor:pointer;
+  font-family: 'Roboto';
+  font-weight: 900;
+  width:100%;
 
-    width:100%;
-    height: 20px;
 }
-.close .accordionItemContent{
+.closing .accordionItemContent{
 
-    background-color: #fff;
-    height:0px;
-    transition:height 1s ease-out;
-    transform: scaleY(0);
-    display:block;
+  background-color: #fff;
+  height:0px;
+  transition:height 1s ease-out;
+  transform: scaleY(0);
+  display:block;
 
 
 }
 .open .accordionItemContent{
 
 
-width: 100%;
-margin: 0;
-transform: scaleY(1);
-transform-origin: top;
-transition: transform 0.4s ease-out;
-transition: transform 0.4s ease;
+  width: 100%;
+  margin: 0;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease;
 
 }
 
 
 .open .accordionItemHeading {
-    margin: 0px;
-    font-size: 18px;
-    background-color: white;
-    color: black;
+  font-weight: 400;
+  margin-top: 20px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
 }
 
+.accordionItemHeading:after h2 {
+ font-size: 14px;
+}
 
+.accordionItemHeading:after {
+  content: "-";
+  font-size: 35px;
+  position: absolute;
 
+  right: 15px;
+  transform: rotate(-180deg);
+  transition: all ease 0.2s;
+}
+
+.accordionItem.closing .accordionItemHeading:after {
+  content: "+";
+  font-size: 18px;
+  transition: ease 0.2s;
+  transform: rotate(-360deg);
+
+}
 
