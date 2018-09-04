@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   end
 
+  get '/pages/:token', to: 'pages#user_page', as: :user_page
+
 
 end
 

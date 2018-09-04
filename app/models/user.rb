@@ -2,7 +2,9 @@ class User < ApplicationRecord
   include PgSearch
 
   mount_uploader :avatar, PhotoUploader
+
   after_create :set_email_for_search
+  before_create :token_creation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -43,11 +45,23 @@ class User < ApplicationRecord
     against: [ :email, :username, :email_for_search ],
     using: { tsearch: { prefix: true } }
 
+  def label_method
+    if username.nil?
+      email
+    else
+      return "#{username}   -   #{email}"
+    end
+  end
+
   private
 
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
   def set_email_for_search
     self.email_for_search = self.email.split('@')[0].split('.').join(' ')
-    self.save
   end
+
+  def token_creation
+    self.token = SecureRandom.urlsafe_base64(nil, false)
+  end
+
 end
