@@ -14,12 +14,17 @@
     </div>
     <div class="col-xs-12 col-md-5">
       <div class="box1">
-        <h1><%= @item.name.capitalize %> </h1>
-        <h2><%= humanized_money_with_symbol(@item.price)%></h2><br>
-        <h2><%= @item.description %></h2><br>
+        <h1><%= @item.name %> </h1><br>
+        <h2>Collection :</h2><p> <%= @item.collection.name %> </p>
+        <h2>Description :</h2><p> <%= @item.description %> </p>
+        <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p><br>
+        <div>
+           <%= link_to "Reserve", item_reminders_path(@item, reminder: {user_id: current_user}), method: :post, class: "btn btn-primary" %>
+        </div>
 
         <div class="conditions" >
          <%= render 'conditions' %>
+
         </div>
   <ul class="bottom-box1">
     <li><%= @item.created_at.strftime("Created on %d/%m/%Y") %></li>
@@ -32,3 +37,4 @@
 </div>
 
 <!-- envoyer le lien edit vers le lien "lend" correspondant dans collection  -->
+

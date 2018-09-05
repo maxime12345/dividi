@@ -24,6 +24,10 @@ Rails.application.routes.draw do
       get :new_item_outside
       post :create_item_outside
     end
+    member do
+      get 'accept', to: 'reminders#accept'
+      get 'decline', to: 'reminders#decline'
+    end
   end
 
   resources :network_users, only: [:index, :show, :destroy] do

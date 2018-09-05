@@ -1,27 +1,40 @@
-<h5>My borrowings</h5>
+<div class="wrapper">
+  <div class="container">
+    <h5>My borrowings</h5>
+    <div class="col-xs-12 col-md-9">
+      <div class="reminder-title">
+        <h2>Items rented or borrow <br> to other persons</h2>
+      </div>
+        <div class="reminder-card">
+          <% @reminders_others.each do |reminder|%>
+            <% if reminder.status.nil? %>
+              <%= render 'shared/card_reminder', reminder: reminder %>
+            <% end %>
+          <% end %>
+        </div>
+      <hr>
 
-
-<div class="col-xs-12 col-md-3">
-  <div class="reminder-title">
-    <h2>Items rented or borrow <br> to other persons</h2>
-  </div>
-
-
-    <div class="reminder-card">
-      <% @reminders_others.each do |reminder|%>
-        <%= render 'shared/card_reminder', reminder: reminder %>
+      <h2>Reminders for objects of other people not in the network</h2>
+      <% @ghost_reminders.each do |reminder| %>
+        <%= render 'shared/card_reminder_ghost', reminder: reminder %>
       <% end %>
+      <%= link_to "Add an object outside network",  new_item_outside_reminders_path, class: "btn btn-primary" %>
     </div>
+    <!-- Demande de réservtion -->
+    <div class="col-xs-12 col-md-3">
+        <div class="collection-title">
+          <h5>Pending reservations</h5>
+          <% @reminders_others.each do |reminder| %>
 
-  <hr>
-
-  <h2>Reminders for objects of other people not in the network</h2>
-
-  <% @ghost_reminders.each do |reminder| %>
-    <%= render 'shared/card_reminder_ghost', reminder: reminder %>
-  <% end %>
-
-  <%= link_to "Add an object outside network",  new_item_outside_reminders_path, class: "btn btn-primary" %>
-
-
+            <% if reminder.status == "pending" %>
+              <div>
+                <p><%= cl_image_tag reminder.user.avatar %></p>
+                <p><%= reminder.item.name %></p>
+                <p><%= reminder.status %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
 </div>
