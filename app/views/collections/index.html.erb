@@ -40,16 +40,22 @@
         <div class="collection-title">
           <h5>Pending reservations</h5>
           <% @my_pending_reminders.each do |reminder| %>
-            <div>
-              <p><%= cl_image_tag reminder.user.avatar %></p>
-              <p><%= reminder.item.name %></p>
-              <!-- Accept -->
-              <%= link_to accept_reminder_path(reminder) do %>
-                <button type="button" class="btn btn-success">Accept</button>
-              <% end %>
-              <!-- Decline -->
-              <%= link_to "Destroy", reminder_path(reminder.id),
-                method: :delete,class: "btn" %>
+            <div class="notification">
+              <div class="notification-body">
+                <div class="notification-avatar">
+                  <%= cl_image_tag reminder.user.avatar, class: "avatar"%>
+                </div>
+                <div class="notification-text">
+                  <h6><%= reminder.item.name%></h6>
+                </div>
+              </div>
+              <div class="notification-button">
+                <!-- Accept -->
+                <%= link_to "Accept", accept_reminder_path(reminder), class: "notification-btn accept" %>
+                <!-- Decline -->
+                <%= link_to "Decline", reminder_path(reminder.id),
+                  method: :delete, class: "notification-btn decline" %>
+              </div>
             </div>
           <% end %>
         </div>
