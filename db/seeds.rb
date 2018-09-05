@@ -16,17 +16,17 @@ puts "Creating categories"
 categories = [
 "Do-it-yourself",
 "Home appliance",
-"Computers"
+"Computers",
 "Musical instruments",
 "Gardening",
 "Board games",
 "Video games",
-"Toys"
+"Toys",
 "Books",
 "Sport material",
 "Furniture",
-"Vehicles"
-"Bicycles"
+"Vehicles",
+"Bicycles",
 "Clothing",
 "Others"]
 
