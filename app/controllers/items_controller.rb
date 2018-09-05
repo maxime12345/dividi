@@ -37,13 +37,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if @item.verbe == "to_sell"
+    if @item.verbe == "Sell"
       @text = "To sell"
-    elsif @item.verbe == "to_rent"
+    elsif @item.verbe == "Rent"
       @text = "To rent"
-    elsif @item.verbe == "to_give"
+    elsif @item.verbe == "Give"
       @text  = "To give"
-    elsif @item.verbe == "to_lend"
+    elsif @item.verbe == "Lend"
       @text = "To lend"
     else
       @text = @item.verbe
@@ -62,7 +62,20 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
 
+  def edit
+
+  end
+
+  def update
+    @item.update(item_params)
+    redirect_to item_path(@item)
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to collections_path
   end
 
   private
@@ -72,7 +85,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price, :photo, :collection_id, :category_id, :verbe)
+    params.require(:item).permit(:name, :price, :photo, :collection_id, :category_id, :verbe, :description)
   end
 
 end

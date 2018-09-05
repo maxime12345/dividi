@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   resources :collections, only: [:index, :show, :create, :edit, :update, :destroy]
 
-  resources :items, only: [:index, :show, :new, :create] do
+
+  # resources :items, only: [:index, :show, :new, :create, :destroy] do
+  #   resources :reminders, only: [:new, :create]
+
+  resources :items, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :reminders, only: [:new, :create] do
       collection do
         get :new_outside
@@ -35,6 +39,7 @@ Rails.application.routes.draw do
       get :add_somebody_in_network
       post :update_somebody_in_network
     end
+
   end
 
   get '/pages/:token', to: 'pages#user_page', as: :user_page
