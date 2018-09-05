@@ -1,29 +1,19 @@
-.friend-card {
-  border: 1px solid gray;
-}
- a {
+  a {
   color: black;
   text-decoration: none;
-  &:hover {
-    text-decoration: none;
-    color: black;
-    opacity: 0.8;
+    &:hover {
+      text-decoration: none;
+      color: black;
+      opacity: 0.8;
+    }
   }
- }
-.zone {
+
+  .zone {
   margin: 20px 5px;
   padding: 10px;
   border: 1px solid #E5E5E5;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   border-radius: 3px;
-  position: relative;
-  .input {
-    width: 100%;
   }
 
-  .fa {
-    position: absolute;
-    right: 25px;
-    top: 20px;
-  }
-}
+
