@@ -1,60 +1,64 @@
-<div class="col-xs-12 col-md-3">
-    <div class="collection-title">
-      <h2>Objects my friends are interested in</h2>
+<div class="wrapper">
+  <div class="container">
+
+    <!-- Liste de mes objets -->
+    <div class="col-xs-12 col-md-9">
+      <h5>My objects</h5>
+        <div>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Available</a></li>
+            <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Not available</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="available">
+              <% @collections.each do |collection| %>
+                  <% collection.items.each do |item| %>
+                    <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
+                      <%= render 'shared/card_list', item: item %>
+                    <% end %>
+                  <% end %>
+              <% end %>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="not-available">
+              <% @collections.each do |collection| %>
+                <% collection.items.each do |item| %>
+                  <% unless item.reminders[0].nil? || item.reminders[0].status == "pending" %>
+                    <%= render 'shared/card_list', item: item %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
     </div>
-</div>
 
-<div class="col-xs-12 col-md-6">
-
-  <h5>My objects</h5>
-
-
-
-
-    <div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Available</a></li>
-    <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Not available</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="available">
-
-      <% @collections.each do |collection| %>
-
-          <% collection.items.each do |item| %>
-
-            <% if item.reminders[0].nil? %>
-              <%= render 'shared/card_list', item: item %>
-            <% end %>
-
-
+    <!-- Demande de réservtion -->
+    <div class="col-xs-12 col-md-3">
+        <div class="collection-title">
+          <h5>Pending reservations</h5>
+          <% @my_pending_reminders.each do |reminder| %>
+            <div class="notification">
+              <div class="notification-body">
+                <div class="notification-avatar">
+                  <%= cl_image_tag reminder.user.avatar, class: "avatar"%>
+                </div>
+                <div class="notification-text">
+                  <h6><%= reminder.item.name%></h6>
+                </div>
+              </div>
+              <div class="notification-button">
+                <!-- Accept -->
+                <%= link_to "Accept", accept_reminder_path(reminder), class: "notification-btn accept" %>
+                <!-- Decline -->
+                <%= link_to "Decline", reminder_path(reminder.id),
+                  method: :delete, class: "notification-btn decline" %>
+              </div>
+            </div>
           <% end %>
-      <% end %>
-
-
-    </div>
-    <div role="tabpanel" class="tab-pane" id="not-available">
-
-      <% @collections.each do |collection| %>
-
-          <% collection.items.each do |item| %>
-          <% unless item.reminders[0].nil? %>
-
-            <%= render 'shared/card_list', item: item %>
-          <% end %>
-
-          <% end %>
-      <% end %>
-
-
+        </div>
     </div>
   </div>
-
-  </div>
-
 </div>
-

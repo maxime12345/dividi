@@ -1,0 +1,72 @@
+.notification {
+  display: flex;
+  position: relative;
+  margin: 0;
+  min-width: 330px;
+  min-height: 80px;
+  max-height: 80px;
+  border-radius: 5px;
+  margin: 20px;
+  background-color: white;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  :hover {
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  }
+}
+
+.notification-body {
+  display: flex;
+}
+
+.notification-avatar {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin-left: 10px;
+  min-width: 60px;
+  padding: 5px;
+}
+
+.notification-text {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.notification-button {
+  position: absolute;
+  align-items: center;
+  top: 0px;
+  right: 0px;
+  max-width: 80px;
+  min-width: 80px;
+}
+
+.notification-btn {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 80px;
+  min-width: 80px;
+  display: flex;
+  min-height: 40px;
+  padding-top: 7px;
+  color: #757575;
+  font-size: smaller;
+  border-left: 1px solid rgba(117, 117, 117, .5);
+}
+
+.decline {
+  border-top: 1px solid rgba(117, 117, 117, .5);
+}
+.accept:hover {
+  background-color: #00D1B1;
+  color: white;
+}
+
+.decline:hover {
+  background-color: red;
+  color: white;
+}

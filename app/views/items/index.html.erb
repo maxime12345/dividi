@@ -1,4 +1,3 @@
-
 <div class="wrapper">
   <form action="/items" method="get" id="filter-form">
 
@@ -11,14 +10,12 @@
 
       <!-- Search bar -->
       <div class="search col-xs-12 col-md-4 col-lg-3">
-        <div class="input-group">
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Search for...",
-            value: params[:query]
-          %>
-        </div>
+        <% if @items.size == 0 %>
+          <p>No objects found</p>
+
+        <% else %>
+          <p> <%= @items.size %> object founded</p>
+        <% end %>
       </div>
     </div>
 

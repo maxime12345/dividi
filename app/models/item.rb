@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   has_many :reminders
 
   validates :name, presence: true
+  validates :verbe, presence: true
 
   monetize :price_cents
   mount_uploader :photo, PhotoUploader
