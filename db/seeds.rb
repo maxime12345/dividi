@@ -31,6 +31,8 @@ categories = [
 "Vélos",
 "Vêtements"]
 
+verbes = [ "To Sell", "To Give", "To Lend", "To Rent"]
+
 categories.each do |category|
   Category.create(name: category)
 end
@@ -48,21 +50,21 @@ puts "Creating users and collections..."
 
   velo = Item.create( name: "velo",
                       description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",
-                      verbe: "to_sell",
+                      verbe: verbes.sample,
                       collection: user_first.collections.where(name: "All")[0],
                       price_cents: 10000,
                       remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382",
                       category: Category.all.sample)
 
   trottinette = Item.create(  name: "trotinette",
-                              verbe: "to_borrow",
+                              verbe: verbes.sample,
                               collection: user_first.collections.where(name: "All")[0],
                               price_cents: 5000,
                               category: Category.all.sample)
 
   test_landscape_image = Item.create( name: "tente familiale",
                                       description: "landscape_image_test",
-                                      verbe: "to_sell",
+                                      verbe: verbes.sample,
                                       collection: user_first.collections.where(name: "All")[0],
                                       price_cents: 10000,
                                       remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg",
@@ -70,7 +72,7 @@ puts "Creating users and collections..."
 
   test_portrait_image = Item.create(  name: "bureau en bois",
                                       description: "portrait image test ce bureau en bois est vraiment le plus beau de tous les objets en bois",
-                                      verbe: "to_sell",
+                                      verbe: verbes.sample,
                                       collection: user_first.collections.where(name: "All")[0],
                                       price_cents: 10000,
                                       remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg",
@@ -78,7 +80,7 @@ puts "Creating users and collections..."
 
   test_little_image = Item.create(  name: "petite boite metal",
                                     description: "test little image",
-                                    verbe: "to_sell",
+                                    verbe: verbes.sample,
                                     collection: user_first.collections.where(name: "All")[0],
                                     price_cents: 10000,
                                     remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg",
@@ -118,7 +120,7 @@ puts "Creating users and collections..."
 
 
   art_guerre = Item.create( name: "L'art de la guerre - Sun Tzu",
-                            verbe: "to_borrow",
+                            verbe: verbes.sample,
                             collection: user_second.collections.where(name: "All")[0],
                             category: Category.all.sample)
 
