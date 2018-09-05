@@ -31,9 +31,6 @@ class ItemsController < ApplicationController
     # On prend uniquement les catégories de @items
     # User.all.map(&:email) => return an array of user's email
     @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}
-
-    # On prend toutes les catégories de @items
-    @items = Item.search(@query, { where: @where, order: @order })
   end
 
   def show
