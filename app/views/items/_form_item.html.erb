@@ -1,4 +1,4 @@
-<%= simple_form_for(item) do |f|%>
+<%= simple_form_for(@item) do |f|%>
   <%= f.input :name %>
   <%= f.input :verbe, as: :radio_buttons, collection: [ "Sell", "Give", "Lend", "Rent"], label: "Action" %>
   <%= f.input :price, label: 'Price €' %>

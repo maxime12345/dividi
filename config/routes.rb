@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # resources :items, only: [:index, :show, :new, :create, :destroy] do
   #   resources :reminders, only: [:new, :create]
 
-  resources :items, only: [:index, :show, :new, :create, :destroy] do
+  resources :items, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :reminders, only: [:new, :create] do
       collection do
         get :new_outside

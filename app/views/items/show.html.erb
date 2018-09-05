@@ -1,13 +1,8 @@
-
-
-
 <div class="container-show">
   <ul class="breadcrumb">
     <li>Collection : <%= link_to "#{@item.collection.name}", collections_path %></li>
     <li>Category : <%= link_to "#{@item.category.name}", collections_path %></li>
   </ul>
-
-
   <div class="row">
     <div class="col-xs-12 col-md-6">
       <div class="card-show" >
@@ -24,18 +19,13 @@
         <h2><%= @item.description %></h2><br>
 
         <div class="conditions" >
-        <%= render 'conditions' %>
-
+         <%= render 'conditions' %>
         </div>
   <ul class="bottom-box1">
     <li><%= @item.created_at.strftime("Created on %d/%m/%Y") %></li>
     <li><%= link_to "Back", collections_path  %></li>
   </ul>
-
-
           </div>
-
-
       </div>
     </div>
   </div>

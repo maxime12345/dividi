@@ -35,13 +35,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if @item.verbe == "to_sell"
+    if @item.verbe == "Sell"
       @text = "To sell"
-    elsif @item.verbe == "to_rent"
+    elsif @item.verbe == "Rent"
       @text = "To rent"
-    elsif @item.verbe == "to_give"
+    elsif @item.verbe == "Give"
       @text  = "To give"
-    elsif @item.verbe == "to_lend"
+    elsif @item.verbe == "Lend"
       @text = "To lend"
     else
       @text = @item.verbe
@@ -63,7 +63,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+
+  end
+
+  def update
+    @item.update(item_params)
+    redirect_to item_path(@item)
   end
 
   def destroy
