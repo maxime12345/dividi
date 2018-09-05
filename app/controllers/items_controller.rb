@@ -62,6 +62,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   def destroy
     @item.destroy
     redirect_to collections_path
@@ -74,7 +78,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price, :photo, :collection_id, :category_id, :verbe)
+    params.require(:item).permit(:name, :price, :photo, :collection_id, :category_id, :verbe, :description)
   end
 
 end

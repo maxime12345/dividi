@@ -1,32 +1,40 @@
 .container-show {
   height: 100vh;
-
   padding-top: 50px;
   position: relative;
+  }
+
+.breadcrumb {
+  list-style: none;
+  overflow: hidden;
+  font: 18px Sans-Serif;
+  text-align: inline;
+  color: black;
+}
+
   .box1 {
     height: 100%;
-//    position: absolute;
     box-sizing: border-box;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
     padding: 5px;
     text-align: center;
+    display: block;
+    min-height: 500px;
     }
 
-.card-show {
-  padding: 20px;
-  // border-right: 2px solid #00D1B1;
-  max-width: 600px;
-  height: 100%;
-  // padding-left: 70px;
-  .cloudinary-show {
-    width: 100%;
-  }
-}
-
-.vertical-edge {
+    .vertical-edge {
   height: 414px;
   width: 2px;
   background-color: #00D1B1;
+}
+
+.card-show {
+  padding: 20px;
+  max-width: 600px;
+  height: 100%;
+  .cloudinary-show {
+    width: 100%;
+  }
 }
 
 .btn-verbe {
@@ -37,6 +45,14 @@
   background-color: #00D1B1;
   border-color: #308edc;
   display: inline-block;
+}
+
+.bottom-box1 {
+  list-style: none;
+  overflow: hidden;
+  font: 12px Sans-Serif;
+  text-align: inline;
+  color: black;
 }
 
 h1 {
@@ -51,30 +67,16 @@ h2{
   width: 100%;
   font-family: 'Roboto';
   font-weight: 100;
-  font-size: 32px;
-  // text-align: center;
+  font-size: 24px;
+  text-align: left;
 }
 
 p {
   width: 100%;
   font-family: 'Roboto';
   font-weight: 100;
-  font-size: 24px;
-  // text-align: center;
+  font-size: 16px;
+  text-align: left;
 }
-
-.breadcrumb {
-  list-style: none;
-  overflow: hidden;
-  font: 18px Sans-Serif;
-  text-align: inline;
-  color: black;
-
-}
-}
-
-
-
-
 
 
