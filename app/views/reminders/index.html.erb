@@ -25,12 +25,21 @@
         <div class="collection-title">
           <h5>Pending reservations</h5>
           <% @reminders_others.each do |reminder| %>
-
             <% if reminder.status == "pending" %>
               <div>
-                <p><%= cl_image_tag reminder.user.avatar %></p>
-                <p><%= reminder.item.name %></p>
-                <p><%= reminder.status %></p>
+                <div class="notification">
+                  <div class="notification-body">
+                    <div class="notification-avatar">
+                      <%= cl_image_tag reminder.item.user.avatar, class: "avatar"%>
+                    </div>
+                    <div class="notification-text">
+                      <h6><%= reminder.item.name%></h6>
+                    </div>
+                  </div>
+                  <div class="notification-button">
+                    <h1 style="color: rgba(202, 202, 202, 0.8); margin-top: 15px">?</h1>
+                  </div>
+                </div>
               </div>
             <% end %>
           <% end %>
