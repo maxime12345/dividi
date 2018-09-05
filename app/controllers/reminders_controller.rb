@@ -81,6 +81,6 @@ class RemindersController < ApplicationController
   private
 
   def reminder_params
-    params.require(:reminder).permit(:user_id, :ghost_name, :ghost_item)
+    params.require(:reminder).permit(:user_id, :ghost_name, :ghost_item, :status)
   end
 end
