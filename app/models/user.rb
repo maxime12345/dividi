@@ -16,7 +16,9 @@ class User < ApplicationRecord
   has_many :reminders_others, -> {where(ghost_item: nil)}, class_name: 'Reminder'
   has_many :ghost_reminders, -> {where(item_id: nil)}, class_name: 'Reminder'
 
-  has_many :my_reminders, through: :items, source: :reminders
+  # Reminders qui m'appartiennent
+  has_many :my_reminders, -> {where(status: nil)}, through: :items, source: :reminders
+  has_many :my_pending_reminders,-> {where(status: "pending")}, through: :items, source: :reminders
 
   has_many :networks
   has_many :network_users, through: :networks
@@ -44,6 +46,7 @@ class User < ApplicationRecord
   pg_search_scope :search_by_email_and_username,
     against: [ :email, :username, :email_for_search ],
     using: { tsearch: { prefix: true } }
+
 
   def label_method
     if username.nil?

@@ -6,6 +6,7 @@ class CollectionsController < ApplicationController
   def index
     @collection = Collection.new
     @collections = current_user.collections
+    @my_pending_reminders = current_user.my_pending_reminders
   end
 
   def create

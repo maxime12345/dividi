@@ -9,7 +9,9 @@
           <h2>Collection :</h2><p> <%= @item.collection.name %> </p>
           <h2>Description :</h2><p> <%= @item.description %> </p>
           <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p><br>
-          <p><%= button_to @text , new_item_path, class: "btn-verbe" %></p>
+          <div>
+            <%= link_to "Reserve", item_reminders_path(@item, reminder: {user_id: current_user}), method: :post, class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>

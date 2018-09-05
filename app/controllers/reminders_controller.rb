@@ -2,6 +2,7 @@ class RemindersController < ApplicationController
   def index
     @reminders_others = current_user.reminders_others
     @ghost_reminders = current_user.ghost_reminders
+    @my_reminders = current_user.my_reminders
   end
 
   def new
@@ -62,7 +63,7 @@ class RemindersController < ApplicationController
   def accept
     @reminder = Reminder.find(params[:id])
     if @reminder.status == "pending"
-      @reminder.status = "Accepted"
+      @reminder.status = nil
       @reminder.save
     end
     redirect_back(fallback_location: reminders_path)
@@ -74,7 +75,7 @@ class RemindersController < ApplicationController
       @reminder.status = "Declined"
       @reminder.save
     end
-    redirect_back(fallback_location: bookings_path)
+    redirect_back(fallback_location: reminders_path)
   end
 
   private
