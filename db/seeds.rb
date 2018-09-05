@@ -28,7 +28,8 @@ categories = [
 "Vehicles",
 "Bicycles",
 "Clothing",
-"Others"]
+"Others",
+"Camping"]
 
 verbes = [ "To Sell", "To Give", "To Lend", "To Rent"]
 
@@ -47,43 +48,39 @@ puts "Creating users and collections..."
                             avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thibault.jpg"))
   collections_creation(user_first)
 
-  velo = Item.create( name: "velo",
+  velo = Item.create( name: "Vélo",
                       description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",
-                      verbe: verbes.sample,
+                      verbe: "To Sell",
                       collection: user_first.collections.where(name: "All")[0],
-                      price_cents: 10000,
+                      price_cents: 1000,
                       remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382",
-                      category: Category.all.sample)
+                      category: Category.where(name: "Bicycles")[0])
 
-  trottinette = Item.create(  name: "trotinette",
-                              verbe: verbes.sample,
+  trottinette = Item.create(  name: "Trotinette",
+                              verbe: "To Lend",
                               collection: user_first.collections.where(name: "All")[0],
-                              price_cents: 5000,
-                              category: Category.all.sample)
+                              category: Category.where(name: "Vehicles")[0])
 
-  test_landscape_image = Item.create( name: "tente familiale",
-                                      description: "landscape_image_test",
-                                      verbe: verbes.sample,
+  test_landscape_image = Item.create( name: "Tente familiale",
+                                      description: "5 places avec un hauvent",
+                                      verbe: "To Rent",
                                       collection: user_first.collections.where(name: "All")[0],
-                                      price_cents: 10000,
+                                      price_cents: 900,
                                       remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg",
-                                      category: Category.all.sample)
+                                      category: Category.where(name: "Camping")[0])
 
-  test_portrait_image = Item.create(  name: "bureau en bois",
-                                      description: "portrait image test ce bureau en bois est vraiment le plus beau de tous les objets en bois",
-                                      verbe: verbes.sample,
+  test_portrait_image = Item.create(  name: "Bureau en bois",
+                                      verbe: "To Give",
                                       collection: user_first.collections.where(name: "All")[0],
-                                      price_cents: 10000,
                                       remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg",
-                                      category: Category.all.sample)
+                                      category: Category.where(name: "Home appliance")[0])
 
-  test_little_image = Item.create(  name: "petite boite metal",
+  test_little_image = Item.create(  name: "Petite boite metal",
                                     description: "test little image",
-                                    verbe: verbes.sample,
+                                    verbe: "To Give",
                                     collection: user_first.collections.where(name: "All")[0],
-                                    price_cents: 10000,
                                     remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg",
-                                    category: Category.all.sample)
+                                    category: Category.where(name: "Others")[0])
 
   user_second = User.create(  username: "Sarah",
                               email: "sl@dividi.fr",
