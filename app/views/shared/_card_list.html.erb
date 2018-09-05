@@ -1,5 +1,6 @@
 <div class="item-card-list">
 
+<!-- IMAGE -->
   <%= link_to item_path(item) do %>
     <div class="flex-item">
       <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card" %>
@@ -8,11 +9,14 @@
 
   <div class="flex-item" id="item-infos">
     <div id="cell1">
+      <!-- TITRE -->
       <div class="title-card-list"><%= link_to item.name, item_path(item) %></div>
+      <!-- VERBE -->
       <div class="verb"><%= item.verbe %></div>
     </div>
   </div>
 
+<!-- TOGGLE BUTTON -->
   <% if item.reminders[0].nil? %>
 
     <div class="flex-item essai">
@@ -23,6 +27,7 @@
 
   <% else %>
 
+<!-- TEMPORARY OWNER -->
     <div class="flex-item">
       <div class="status">
         <div class="puce"></div>
@@ -40,6 +45,8 @@
     </div>
 
   <% end %>
+
+  <!--PRIX FACULTATIF -->
 
   <div class="flex-item">
     <div class="price">
