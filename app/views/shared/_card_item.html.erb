@@ -1,6 +1,9 @@
 <div class="card-container">
 
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= card_background_image_path(item) %>');">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= url_image(item) %>');">
+
+
+
     <div class="card-category"><%= item.category.name %></div>
     <div class="card-description">
       <h2><%= item.name %></h2>
@@ -15,16 +18,6 @@
     <div class="card-transaction">
       <i class="fas fa-handshake"></i>
       <%= item.reminders.count %>
-    </div>
-
-    <!-- Status of the object -->
-    <div class="card-availability">
-    <% if item.reminders[0].nil? %>
-      <i class="fas fa-check-circle" style="color:#00D1B1"></i>
-      <%= link_to item.verbe, new_item_reminder_path(item), class: "action" %>
-    <% else %>
-      <i class="fas fa-ban"></i>
-    <% end %>
     </div>
   </div>
 </div>

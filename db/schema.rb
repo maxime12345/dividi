@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2018_09_04_140318) do
+=======
 ActiveRecord::Schema.define(version: 2018_09_03_140113) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_09_03_140113) do
     t.datetime "updated_at", null: false
     t.string "ghost_name"
     t.string "ghost_item"
+    t.string "status", default: "pending"
     t.index ["item_id"], name: "index_reminders_on_item_id"
     t.index ["user_id"], name: "index_reminders_on_user_id"
   end
