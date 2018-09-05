@@ -7,10 +7,14 @@
   color: #A1A1A7;
   font-weight: bold;
 
+  form {
+    flex-grow: 1;
+  }
+
   .input {
     border: none;
     background-color: transparent;
     margin: 4px;
-    flex-grow: 1;
+    width: 100%;
   }
 }
