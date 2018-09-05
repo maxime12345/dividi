@@ -25,7 +25,7 @@
             <div role="tabpanel" class="tab-pane" id="not-available">
               <% @collections.each do |collection| %>
                 <% collection.items.each do |item| %>
-                  <% unless item.reminders[0].nil? %>
+                  <% unless item.reminders[0].nil? || item.reminders[0].status == "pending" %>
                     <%= render 'shared/card_list', item: item %>
                   <% end %>
                 <% end %>
