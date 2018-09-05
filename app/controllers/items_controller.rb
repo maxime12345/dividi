@@ -54,6 +54,8 @@ class ItemsController < ApplicationController
   # POST /collections/:collection_id/items
   def create
     @item = Item.new(item_params)
+    @collection = current_user.collections[0]
+    @item.collection = @collection
     if @item.save
       redirect_to item_path(@item)
     else
