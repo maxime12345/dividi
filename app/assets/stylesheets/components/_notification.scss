@@ -36,8 +36,11 @@
 
 .notification-button {
   position: absolute;
+  align-items: center;
   top: 0px;
   right: 0px;
+  max-width: 80px;
+  min-width: 80px;
 }
 
 .notification-btn {
