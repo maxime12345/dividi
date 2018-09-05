@@ -1,12 +1,10 @@
 <div class="card-friend">
 
-  <%= link_to user_page_path(user.token) do  %>
     <% if user.avatar.file.nil? %>
       <i class="fas fa-user avatar-icon"></i>
     <% else %>
       <%= cl_image_tag user.avatar, height: 100, width: 100, crop: :fill, class: "avatar-img" %>
     <% end %>
-  <% end %>
 
   <div class="infos">
     <% if user.username.nil? %>

@@ -1,6 +1,6 @@
 
-<%= link_to user_page_path(network_user.user.token) do  %>
   <div class="card-network">
+    <%= link_to user_page_path(network_user.user.token) do  %>
 
       <% if network_user.user.avatar.file.nil? %>
         <i class="fas fa-user avatar avatar-icon" ></i>
