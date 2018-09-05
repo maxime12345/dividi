@@ -1,7 +1,21 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon navbar-fixed-top">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo/D-noir.png", height: 50 %>
+  <% end %>
+
+  <% if user_signed_in? %>
+
+      <div class="search-bar-navbar hidden-xs hidden-sm">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <%= form_tag items_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Search an object"
+          %>
+        <% end %>
+      </div>
+
   <% end %>
 
   <!-- Right Navigation -->
@@ -9,11 +23,7 @@
 
     <% if user_signed_in? %>
 
-        <% unless @on_items_page %>
 
-          <%= render 'shared/search_bar', class: "navbar-wagon-item navbar-wagon-search", query: params[:query], placeholder: "Search an object", path: items_path %>
-
-        <% end %>
 
       <!-- Links when logged in -->
       <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
