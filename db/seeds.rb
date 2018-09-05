@@ -145,8 +145,6 @@ puts "Creating networks and links..."
   link4 = NetworkUser.create(user: user7, network: user_first.networks.where(name: "Tous")[0])
   link4reverse = NetworkUser.create(user: user_first, network: user7.networks.where(name: "Tous")[0])
 
-  link5 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Amis")[0])
-
 
 
 User.all.each{ |user| share_creation(user) }
