@@ -6,4 +6,12 @@ module ItemsHelper
       image_tag("fallback/default-picture.png")
     end
   end
+
+  def url_image(item)
+    if item.photo.present?
+      item.photo
+    else
+      ""
+    end
+  end
 end
