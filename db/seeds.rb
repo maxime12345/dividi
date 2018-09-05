@@ -14,22 +14,21 @@ User.destroy_all
 puts "Creating categories"
 
 categories = [
-"Ameublement",
-"Bricolage",
-"DVD",
-"Electroménager",
-"Informatique",
-"Instruments de musique",
-"Jardinage",
-"Jeux de sociétés",
-"Jeux vidéos",
-"Jouets",
-"Livres",
-"Matériel de Sport",
-"Meubles",
-"Véhicules",
-"Vélos",
-"Vêtements"]
+"Do-it-yourself",
+"Home appliance",
+"Computers"
+"Musical instruments",
+"Gardening",
+"Board games",
+"Video games",
+"Toys"
+"Books",
+"Sport material",
+"Furniture",
+"Vehicles"
+"Bicycles"
+"Clothing",
+"Others"]
 
 categories.each do |category|
   Category.create(name: category)
