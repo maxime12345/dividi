@@ -1,6 +1,5 @@
 .notification {
   display: flex;
-  position: relative;
   margin: 0;
   min-width: 330px;
   min-height: 80px;
@@ -16,6 +15,7 @@
 
 .notification-body {
   display: flex;
+  flex-grow: 1;
 }
 
 .notification-avatar {
@@ -35,7 +35,6 @@
 }
 
 .notification-button {
-  position: absolute;
   align-items: center;
   top: 0px;
   right: 0px;
