@@ -23,12 +23,19 @@
 
     <% if user_signed_in? %>
 
-
-
       <!-- Links when logged in -->
-      <%= link_to "Add an item", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Items", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to "Add an object", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Objects", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <div class="navbar-wagon-item navbar-wagon-link">
+        <%= link_to network_users_path do %>
+            My friends <% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
+        <% end %>
+      </div>
+      <div class="navbar-wagon-item navbar-wagon-link">
+        <%= link_to collections_path do %>
+            My objects <% unless current_user.my_pending_reminders.count == 0 %> <span class="badge badge-success pull-right"> <%= current_user.my_pending_reminders.count %> </span> <% end %>
+        <% end %>
+      </div>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -42,11 +49,7 @@
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to network_users_path do %>
-                  My friends <% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
-              <% end %>
               <%= link_to "My borrowings", reminders_path %>
-              <%= link_to "My items", collections_path  %>
 
             </li>
             <li>

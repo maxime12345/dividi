@@ -1,5 +1,5 @@
 meta_product_name: "Dividi"
 meta_title: "Dividi - Awake your sleeping objects and manage them with your friends !"
-meta_description: "Give back value to your objects and manage them with your community ! "
-meta_image: "logo-noir.png"                       # should exist in `app/assets/images/`
+meta_description: "Enough of the consumerist society ? Dividi helps you to share and manage your objects with your friends and community ! "
+meta_image: "dividi-home.png"                       # should exist in `app/assets/images/`
 twitter_account: "@dividi_twitter_account"   # required for Twitter Cards
