@@ -1,32 +1,68 @@
 <!-- owner -->
-<% owner = (@item.user == current_user) %>
+<% owner = (@item.collection.user == current_user) %>
 
 <% if owner == true %>
-  <!-- delete -->
-  <%= link_to item_path(@item),
-    method: :delete,
-    data: {confirm: "Are you sure you want to delete this item ?" }, class: "little-button"  do %>
-    <i class="far fa-trash-alt"></i>
-  <% end %>
-  <!-- edit -->
-  <%= link_to edit_item_path(@item) do %>
-    <i class="fas fa-pencil-alt"></i>
-  <% end %>
-<% end %>
 
-<!-- bouton preter ou louer -->
-<% if  @item.verbe == "To Lend" %>
-  <p><%= button_to @text , new_item_reminder_path(@item), method: :get, class: "btn-verbe" %></p>
-  <% end %>
+  <div class="main-btn">
 
+    <% if  @verbe == "To Lend" || @verbe == "To Rent" %>
+      <%= link_to @verbe , new_item_reminder_path(@item), method: :get, class: "btn btn-primary" %>
+    <% else %>
+      <div><%= @verbe %></div>
+    <% end %>
+  </div>
 
+  <div class="buttons-bottom">
+    <!-- bqck -->
+    <%= link_to "Back", collections_path  %>
+    <!-- edit -->
+    <%= link_to edit_item_path(@item) do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
 
-
+    <!-- delete -->
+    <%= link_to item_path(@item),
+      method: :delete,
+      data: {confirm: "Are you sure you want to delete this item ?" }, class: "little-button"  do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </div>
 
 <!-- 2/if not owner && object is not available -->
-  <!--  afficher not available-->
-<!-- if not owner && object is available -->
-  <!-- send an object request -->
-<!-- if not owner && request sent to the owner -->
-    <!-- message:vous avez deja envoye une object request -->
+<% elsif !@item.reminders[0].nil? && @item.reminders[0].status.nil? %>
 
+  <div class="main-btn">
+
+      <div>
+        <%= @verbe %> <br>
+        Not available
+      </div>
+  </div>
+
+
+  <div class="buttons-bottom">
+    <!-- bqck -->
+    <%= link_to "Back", collections_path  %>
+  </div>
+
+
+<!-- if not owner && object is available -->
+<% else @item.reminders[0].nil? || @item.reminders[0].status == "pending" %>
+
+  <div class="main-btn">
+
+    <% if  @verbe == "To Lend" || @verbe == "To Rent" %>
+      <%= link_to "Reserve", item_reminders_path(@item,
+      reminder: {user_id: current_user, status: "pending"}),
+      method: :post, class: "btn btn-primary" %>
+    <% else %>
+      <div><%= @verbe %></div>
+    <% end %>
+  </div>
+
+  <div class="buttons-bottom">
+    <!-- bqck -->
+    <%= link_to "Back", collections_path  %>
+  </div>
+
+<% end %>

@@ -34,17 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if @item.verbe == "Sell"
-      @text = "To sell"
-    elsif @item.verbe == "Rent"
-      @text = "To rent"
-    elsif @item.verbe == "Give"
-      @text  = "To give"
-    elsif @item.verbe == "Lend"
-      @text = "To lend"
-    else
-      @text = @item.verbe
-    end
+    @verbe = @item.verbe
   end
 
   def new
@@ -73,6 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.reminders.destroy_all
     @item.destroy
     redirect_to collections_path
   end
