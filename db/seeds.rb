@@ -101,9 +101,11 @@ puts "Creating users and collections..."
                               password_confirmation: '123456',
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/patoche.jpg"))
 
-  user6 = User.create(        email: "paul.dupont@dividi.fr",
+  user6 = User.create(        username: "Chuck",
+                              email: "cn@dividi.fr",
                               password: '123456',
-                              password_confirmation: '123456')
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/chuck.jpg"))
 
   user7 = User.create(        email: "jpheos@dividi.fr", password: '123456', password_confirmation: '123456',
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jpheos.jpeg"))
@@ -133,6 +135,7 @@ puts "Creating users and collections..."
   appareil_raclette = Item.create(name: "Appareil à raclette 8 personnes",
                                   verbe: "To Lend",
                                   collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/raclette.jpg"),
                                   category: Category.where(name: "Cooking")[0])
 
   miroir = Item.create(           name: "Miroir",
@@ -166,9 +169,9 @@ puts "Creating users and collections..."
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
 
-puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"
+  puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"
 
-puts "Creating networks and links..."
+  puts "Creating networks and links..."
 
   User.all.each{ |user| networks_creation(user) }
 
