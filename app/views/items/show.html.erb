@@ -1,3 +1,9 @@
+<!-- app/views/offers/show.html.erb -->
+<% content_for :meta_title, @item.name %>
+<% content_for :meta_description, @item.description %>
+<% content_for :meta_image, cl_image_path(@item.photo) %>
+
+
 <div class="container-show">
   <ul class="breadcrumb">
     <li>Collection : <%= link_to "#{@item.collection.name}", collections_path %></li>
@@ -23,10 +29,8 @@
             reminder: {user_id: current_user, status: "pending"}),
             method: :post, class: "btn btn-primary" %>
         </div>
-
         <div class="conditions" >
          <%= render 'conditions' %>
-
         </div>
   <ul class="bottom-box1">
     <li><%= @item.created_at.strftime("Created on %d/%m/%Y") %></li>

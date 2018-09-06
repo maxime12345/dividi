@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_160615) do
+
+ActiveRecord::Schema.define(version: 2018_09_04_140318) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_160615) do
     t.string "photo"
     t.string "description"
     t.bigint "category_id"
+    t.string "image"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["collection_id"], name: "index_items_on_collection_id"
   end
