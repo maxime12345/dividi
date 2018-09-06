@@ -25,7 +25,9 @@
         <h2>Description :</h2><p> <%= @item.description %> </p>
         <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p><br>
         <div>
-           <%= link_to "Reserve", item_reminders_path(@item, reminder: {user_id: current_user}), method: :post, class: "btn btn-primary" %>
+           <%= link_to "Reserve", item_reminders_path(@item,
+            reminder: {user_id: current_user, status: "pending"}),
+            method: :post, class: "btn btn-primary" %>
         </div>
         <div class="conditions" >
          <%= render 'conditions' %>

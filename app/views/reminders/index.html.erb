@@ -40,12 +40,13 @@
               </div>
             <% end %>
           <% end %>
+          <!-- Saisir une réservation -->
+          <% @ghost_reminders.each do |reminder| %>
+            <%= render 'shared/card_reminder_ghost', reminder: reminder %>
+          <% end %>
+          <%= link_to "New borrow",  new_item_outside_reminders_path, class: "btn btn-primary" %>
+
         </div>
     </div>
   </div>
 </div>
-      <h2>Reminders for objects of other people not in the network</h2>
-      <% @ghost_reminders.each do |reminder| %>
-        <%= render 'shared/card_reminder_ghost', reminder: reminder %>
-      <% end %>
-      <%= link_to "Add an object outside network",  new_item_outside_reminders_path, class: "btn btn-primary" %>
