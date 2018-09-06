@@ -22,7 +22,9 @@ end %>
           <%= humanized_money_with_symbol(@item.price) %>
         <% end %>
       </h2>      <br>
-      <p> <%= @item.description.capitalize %> </p>
+      <% unless @item.description.nil? %>
+        <p> <%= @item.description.capitalize %> </p>
+      <% end %>
     </div>
 
     <% if @item.collection.user != current_user   %>
