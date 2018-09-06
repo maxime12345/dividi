@@ -1,41 +1,56 @@
 .container-show {
-  height: 100vh;
-  padding-top: 50px;
-  position: relative;
+  height: calc( 100vh - 70px );
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
 
-.breadcrumb {
-  list-style: none;
-  overflow: hidden;
-  font: 18px Sans-Serif;
-  text-align: inline;
-  color: black;
+.describe {
+  border-left: 2px solid #00D1B1;
+  padding-left: 70px;
+  // min-height: 500px;
+  width: 30%;
 }
+
+.image-item {
+  margin-right:70px;
+  max-width: 30%;
+  // max-width: 600px;
+  // height: 100%;
+}
+
+.avatar-item {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.buttons-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 60%;
+}
+
+.main-btn {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
 
   .box1 {
     height: 100%;
     box-sizing: border-box;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-    padding: 5px;
+
     text-align: center;
     display: block;
-    min-height: 500px;
   }
-
-  .vertical-edge {
-  height: 414px;
-  width: 2px;
-  background-color: #00D1B1;
-}
-
-.card-show {
-  padding: 20px;
-  max-width: 600px;
-  height: 100%;
-  .cloudinary-show {
-    width: 100%;
-  }
-}
 
 .btn-verbe {
   margin-top: 10px;
@@ -56,27 +71,19 @@
 }
 
 h1 {
-  width: 100%;
   font-family: 'Roboto';
-  font-weight: 100;
   font-size: 40px;
   text-align: center;
 }
 
 h2{
-  width: 100%;
   font-family: 'Roboto';
-  font-weight: 100;
-  font-size: 24px;
-  text-align: left;
+  font-size: 32px;
 }
 
 p {
-  width: 100%;
   font-family: 'Roboto';
-  font-weight: 100;
   font-size: 16px;
-  text-align: left;
 }
 
 
