@@ -6,42 +6,43 @@ content_for :meta_image, cl_image_path(@item.photo)
 end %>
 
 <div class="container-show">
-  <ul class="breadcrumb">
-    <li>Collection : <%= link_to "#{@item.collection.name}", collections_path %></li>
-    <li>Category : <%= link_to "#{@item.category.name}", collections_path %></li>
-  </ul>
-  <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <div class="card-show" >
-        <%= card_background_image_path @item  %>
+
+  <%= card_background_image_path @item%>
+  <div class="describe">
+    <div class="info">
+      <h1><%= @item.name.capitalize %> </h1>
+      <p>Category : <%= @item.category.name %></p>
+      <p><%= @item.created_at.strftime("Created on %d/%m/%Y") %></p>
+      <h2>
+        <% if @verbe == "To Rent" %>
+          <%= humanized_money_with_symbol(@item.price) %> / day
+        <% end %>
+
+        <% if @verbe == "To Sell" %>
+          <%= humanized_money_with_symbol(@item.price) %>
+        <% end %>
+      </h2>      <br>
+      <p> <%= @item.description.capitalize %> </p>
+    </div>
+
+    <% if @item.collection.user != current_user   %>
+
+      <div style="width: 100%">
+        <% if @item.collection.user.avatar.file.nil? %>
+          <i class="fas fa-user avatar-icon"></i>
+        <% else %>
+          <%= cl_image_tag @item.collection.user.avatar, height: 100, width: 100, crop: :fill, class: "avatar-item" %>
+        <% end %>
       </div>
+    <% end %>
+    <div class="conditions" >
+      <%= render 'conditions' %>
     </div>
-    <div class="col-xs-12 col-md-1">
-      <div class="vertical-edge"></div>
-    </div>
-    <div class="col-xs-12 col-md-5">
-      <div class="box1">
-        <h1><%= @item.name %> </h1><br>
-        <h2>Collection :</h2><p> <%= @item.collection.name %> </p>
-        <h2>Description :</h2><p> <%= @item.description %> </p>
-        <h2>Price :</h2><p> <%= humanized_money_with_symbol(@item.price)%></p><br>
-        <div>
-           <%= link_to "Reserve", item_reminders_path(@item,
-            reminder: {user_id: current_user, status: "pending"}),
-            method: :post, class: "btn btn-primary" %>
-        </div>
-        <div class="conditions" >
-         <%= render 'conditions' %>
-        </div>
-  <ul class="bottom-box1">
-    <li><%= @item.created_at.strftime("Created on %d/%m/%Y") %></li>
-    <li><%= link_to "Back", collections_path  %></li>
-  </ul>
-          </div>
-      </div>
-    </div>
+
+
   </div>
 </div>
 
-<!-- envoyer le lien edit vers le lien "lend" correspondant dans collection  -->
+
+
 
