@@ -1,10 +1,15 @@
-<h5>Add a reminder to an item from people not in Network</h5>
+<div class="wrapper">
+    <div class="container form col-xs-12 col-sm-4 col-sm-offset-4">
+      <h2>New Borrow from outside Dividi</h2>
 
-<%= simple_form_for(@reminder, url:  create_item_outside_reminders_path) do |f| %>
-  <%= f.input :ghost_name %>
-  <%= f.input :ghost_item %>
-  <%= f.button :submit, class: "btn"%>
-<% end %>
+      <%= simple_form_for(@reminder, url:  create_item_outside_reminders_path) do |f| %>
+        <%= f.input :ghost_name, label: "Friend outside Dividi" %>
+        <%= f.input :ghost_item, label: "Item outside Dividi" %>
+        <%= f.button :submit, class: "btn"%>
+      <% end %>
+
+  </div>
+</div>
 
 
 
