@@ -15,6 +15,7 @@ puts "Creating categories"
 
 categories = [
 "Do-it-yourself",
+"High-tech",
 "Home appliance",
 "Computers",
 "Musical instruments",
@@ -23,6 +24,7 @@ categories = [
 "Video games",
 "Toys",
 "Books",
+"Cooking",
 "Sport material",
 "Furniture",
 "Vehicles",
@@ -61,13 +63,6 @@ puts "Creating users and collections..."
                               collection: user_first.collections.where(name: "All")[0],
                               category: Category.where(name: "Vehicles")[0])
 
-  test_landscape_image = Item.create( name: "Tente familiale",
-                                      description: "5 places avec un hauvent",
-                                      verbe: "To Rent",
-                                      collection: user_first.collections.where(name: "All")[0],
-                                      price_cents: 900,
-                                      remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg",
-                                      category: Category.where(name: "Camping")[0])
 
   test_portrait_image = Item.create(  name: "Bureau en bois",
                                       verbe: "To Give",
@@ -110,15 +105,62 @@ puts "Creating users and collections..."
                               password: '123456',
                               password_confirmation: '123456')
 
-  user7 = User.create(        email: "jpheos@dividi.fr", password: '123456', password_confirmation: '123456')
+  user7 = User.create(        email: "jpheos@dividi.fr", password: '123456', password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jpheos.jpeg"))
+
+  user8 = User.create(        username: "Titouan",
+                              email: "tm@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/titouan.jpeg"))
 
   User.all.select{ |user| user != user_first }.each{ |user| collections_creation(user) }
 
+  test_landscape_image = Item.create( name: "Tente familiale",
+                                      description: "5 places avec un hauvent",
+                                      verbe: "To Rent",
+                                      collection: user_second.collections.where(name: "All")[0],
+                                      price_cents: 900,
+                                      remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg",
+                                      category: Category.where(name: "Camping")[0])
 
   art_guerre = Item.create( name: "L'art de la guerre - Sun Tzu",
-                            verbe: verbes.sample,
+                            verbe: "To Lend",
                             collection: user_second.collections.where(name: "All")[0],
-                            category: Category.all.sample)
+                            category: Category.where(name: "Books")[0])
+
+  appareil_raclette = Item.create(name: "Appareil à raclette 8 personnes",
+                                  verbe: "To Lend",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  category: Category.where(name: "Cooking")[0])
+
+  miroir = Item.create(           name: "Miroir",
+                                  verbe: "To Sell",
+                                  price_cents: 2000,
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/miroir.jpg"),
+                                  category: Category.where(name: "Furniture")[0])
+
+  lampes = Item.create(          name: "Lampes et Lustres",
+                                  verbe: "To Give",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/lampes.jpg"),
+                                  category: Category.where(name: "Furniture")[0])
+
+  iphone = Item.create(          name: "Iphone",
+                                  verbe: "To Sell",
+                                  price_cents: 22000,
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/iphone.jpg"),
+                                  category: Category.where(name: "High-tech")[0])
+
+  msi = Item.create(          name: "Ordi MSI",
+                                  verbe: "To Sell",
+                                  price_cents: 60000,
+                                  collection: user7.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/msi.jpg"),
+                                  category: Category.where(name: "High-tech")[0])
+
 
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
