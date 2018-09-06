@@ -12,6 +12,10 @@ class Item < ApplicationRecord
   monetize :price_cents
   mount_uploader :photo, PhotoUploader
 
+  def available?
+    reminders[0].nil? || reminders[0].status == "pending"
+  end
+
   # def search_data
   #   attributes.merge(category: self.categories.map(&:name))
   # end
