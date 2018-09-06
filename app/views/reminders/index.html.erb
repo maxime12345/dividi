@@ -6,16 +6,15 @@
         <h2>Items rented or borrow to other persons</h2>
       </div>
         <div class="row">
-          <div class="reminder-card col-xs-12 col-md-2"">
-            <% @reminders_others.each do |reminder|%>
-              <% if reminder.status.nil? %>
-                <%= render 'shared/card_reminder', reminder: reminder %>
-              <% end %>
+          <% @reminders_others.each do |reminder|%>
+            <div class="col-xs-12 col-md-4"">
+            <% if reminder.status.nil? %>
+              <%= render 'shared/card_reminder', reminder: reminder %>
             <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       <hr>
-
     </div>
     <!-- Demande de réservation -->
     <div class="col-xs-12 col-md-3">
