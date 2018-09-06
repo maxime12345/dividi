@@ -54,7 +54,7 @@
 .card-footer{
   display: flex;
   background-color: white;
-  justify-content: space-around;
+  justify-content: space-between;
   min-height: 30px;
   align-items: center;
 }
@@ -67,3 +67,7 @@
   border-radius: 3px;
   margin: 5px;
 }
+.card-padding {
+  padding: 5px;
+}
+
