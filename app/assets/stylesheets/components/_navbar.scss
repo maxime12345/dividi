@@ -54,8 +54,8 @@
   color: black;
   font-family: 'Roboto';
   font-weight: 900;
-  padding-top: 24px;
-  padding-bottom: 26px;
+  // padding-top: 24px;
+  // padding-bottom: 26px;
 }
 .navbar-wagon-link:hover {
   color: #00d0b0;
@@ -176,4 +176,8 @@
   margin: 4px;
   width: 100%;
   }
+}
+
+.badge {
+  background-color: #ee5f5b;
 }
