@@ -16,6 +16,7 @@
   <!-- Footer -->
   <div class="card-footer">
 
+    <!-- When available -->
     <% if item.available? %>
     <div class="card-tag" style="margin-left: 5px">
       <%= item.verbe %>
@@ -29,7 +30,7 @@
     </div>
     <% end %>
 
-    <!-- TEMPORARY OWNER -->
+    <!-- When not available -->
     <% if !item.available? && freeable %>
       <%= link_to "Available again", reminder_path(item.reminders[0].id),
       method: :delete,
