@@ -15,14 +15,28 @@
   </div>
   <!-- Footer -->
   <div class="card-footer">
-    <div class="card-tag"><%= item.verbe %></div>
-    <div>
+
+    <!-- When available -->
+    <% if item.available? %>
+    <div class="card-tag" style="margin-left: 5px">
+      <%= item.verbe %>
+    </div>
+    <div style="margin-right: 5px">
       <% if item.verbe == "To Rent" %>
         <%= humanized_money_with_symbol(item.price) %><span>/d</span>
       <% elsif item.verbe == "To Sell"%>
         <%= humanized_money_with_symbol(item.price) %>
       <% end %>
     </div>
+    <% end %>
 
+    <!-- When not available -->
+    <% if !item.available? && freeable %>
+      <%= link_to "Available again", reminder_path(item.reminders[0].id),
+      method: :delete,
+      data: {confirm: "Are you back in possession of this item ?" },
+      class: "card-tag" %>
+      <%= cl_image_tag item.reminders[0].user.avatar, class: "avatar card-padding " %>
+    <% end %>
   </div>
 </div>

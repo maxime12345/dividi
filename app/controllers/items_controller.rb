@@ -26,8 +26,9 @@ class ItemsController < ApplicationController
     end
 
     # On prend tous les items des amis du current user
-    @items = Item.search(@query, { where: @where, order: @order }).select{ |item| current_user.friends_items.include?(item) == true }
+    # @items = Item.search(@query, { where: @where, order: @order }) #.select{ |item| current_user.friends_items.include?(item) == true }
 
+    @items = Item.search(@query, { where: @where, order: @order }).select{ |item| current_user.friends_items.include?(item) == true }
     # On prend uniquement les catégories de @items
     # User.all.map(&:email) => return an array of user's email
     @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}

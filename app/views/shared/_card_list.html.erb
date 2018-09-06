@@ -30,17 +30,15 @@
         <%= cl_image_tag item.reminders[0].user.avatar, class: "avatar" %>
       </div>
       <div class="status">
-        <div class="puce"></div>
-          <%= link_to "Available again", reminder_path(item.reminders[0].id),
-            method: :delete,
-            data: {confirm: "Are you back in possession of this item ?" } %>
-            Prêté à :
-            <% if item.reminders[0].ghost_name.nil? %>
-              <%= item.reminders[0].user.email %>
-
-            <% else %>
-              <%= item.reminders[0].ghost_name %> (Outside friend)
-            <% end %>
+        <%= link_to "Available again", reminder_path(item.reminders[0].id),
+          method: :delete,
+          data: {confirm: "Are you back in possession of this item ?" } %>
+        Prêté à :
+        <% if item.reminders[0].ghost_name.nil? %>
+          <%= item.reminders[0].user.email %>
+        <% else %>
+          <%= item.reminders[0].ghost_name %> (Outside friend)
+        <% end %>
       </div>
     </div>
 

@@ -15,18 +15,22 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="available">
               <% @collections.each do |collection| %>
-                  <% collection.items.each do |item| %>
-                    <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
-                      <%= render 'shared/card_list', item: item %>
-                    <% end %>
+                <% collection.items.each do |item| %>
+                  <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
+                    <div class="col-xs-12 col-md-4"">
+                      <%= render 'shared/card_item', item: item %>
+                    </div>
                   <% end %>
+                <% end %>
               <% end %>
             </div>
             <div role="tabpanel" class="tab-pane" id="not-available">
               <% @collections.each do |collection| %>
                 <% collection.items.each do |item| %>
-                  <% unless item.reminders[0].nil? || item.reminders[0].status == "pending" %>
-                    <%= render 'shared/card_item', item: item %>
+                  <% unless item.available? %>
+                    <div class="col-xs-12 col-md-4"">
+                      <%= render 'shared/card_item', item: item, freeable: true %>
+                    </div>
                   <% end %>
                 <% end %>
               <% end %>

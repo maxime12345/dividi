@@ -19,18 +19,18 @@
   </div>
 
   <hr>
-    <!-- Liste des articles de l'utilisateur -->
-    <div class="collections">
-      <% @collections.each do |collection| %>
-        <% unless collection.items.size == 0  %>
-          <div class="row">
-            <% collection.items.each do |item| %>
-              <div class="col-xs-12 col-md-4"">
-                <%= render 'shared/card_item', item: item%>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+  <!-- Liste des articles de l'utilisateur -->
+  <div class="collections">
+    <% @collections.each do |collection| %>
+      <% unless collection.items.size == 0  %>
+        <div class="row">
+          <% collection.items.each do |item| %>
+            <div class="col-xs-12 col-md-4"">
+              <%= render 'shared/card_item', item: item, freeable: false%>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

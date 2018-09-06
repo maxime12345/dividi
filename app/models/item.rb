@@ -12,15 +12,15 @@ class Item < ApplicationRecord
   monetize :price_cents
   mount_uploader :photo, PhotoUploader
 
-  # def search_data
-  #   attributes.merge(category: self.categories.map(&:name))
-  # end
+  def available?
+    reminders[0].nil? || reminders[0].status == "pending"
+  end
 
-  # include PgSearch
-  # pg_search_scope :search_by_name,
-  #   against: [ :name],
-  #   using: {
-  #     tsearch: { prefix: true }
-  #   }
+  def self.to_give
+    where(verbe: 'To Give')
+  end
 
+  def self.to_lend
+    where(verbe: 'To Lend')
+  end
 end
