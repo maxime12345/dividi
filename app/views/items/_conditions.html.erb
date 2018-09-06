@@ -1,5 +1,5 @@
 <!-- owner -->
-<% owner = (@item.user == current_user) %>
+<% owner = (@item.collection.user == current_user) %>
 
 <% if owner == true %>
 
@@ -29,7 +29,7 @@
   </div>
 
 <!-- 2/if not owner && object is not available -->
-<% elsif !@item.reminders[0].nil? && @item.reminders[0].status == "pending" %>
+<% elsif !@item.reminders[0].nil? && @item.reminders[0].status.nil? %>
 
   <div class="main-btn">
 
@@ -47,7 +47,7 @@
 
 
 <!-- if not owner && object is available -->
-<% elsif @item.reminders[0].nil? || @item.reminders[0].status == "pending" %>
+<% else @item.reminders[0].nil? || @item.reminders[0].status == "pending" %>
 
   <div class="main-btn">
 
