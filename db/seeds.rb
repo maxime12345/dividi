@@ -127,6 +127,7 @@ puts "Creating users and collections..."
   art_guerre = Item.create( name: "L'art de la guerre - Sun Tzu",
                             verbe: "To Lend",
                             collection: user_second.collections.where(name: "All")[0],
+                            photo: File.open("#{Rails.root}/app/assets/images/images_seed/art_guerre.jpeg"),
                             category: Category.where(name: "Books")[0])
 
   appareil_raclette = Item.create(name: "Appareil à raclette 8 personnes",
@@ -141,20 +142,20 @@ puts "Creating users and collections..."
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/miroir.jpg"),
                                   category: Category.where(name: "Furniture")[0])
 
-  lampes = Item.create(          name: "Lampes et Lustres",
+  lampes = Item.create(           name: "Lampes et Lustres",
                                   verbe: "To Give",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/lampes.jpg"),
                                   category: Category.where(name: "Furniture")[0])
 
-  iphone = Item.create(          name: "Iphone",
+  iphone = Item.create(           name: "Iphone",
                                   verbe: "To Sell",
                                   price_cents: 22000,
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/iphone.jpg"),
                                   category: Category.where(name: "High-tech")[0])
 
-  msi = Item.create(          name: "Ordi MSI",
+  msi = Item.create(              name: "Ordi MSI",
                                   verbe: "To Sell",
                                   price_cents: 60000,
                                   collection: user7.collections.where(name: "All")[0],
