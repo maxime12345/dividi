@@ -8,11 +8,10 @@
   </div>
 <!-- IMAGE -->
     <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card title-card-list-avatar" %>
+
 <!-- AVATAR -->
-  <% if item.reminders[0].nil? %>
-    <div class="title-card-list-avatar">
-      <%= cl_image_tag item.user.avatar, class: "avatar" %>
-    </div>
+  <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
+
 
 <!-- Name + Description -->
     <div class="detail-card-list">
@@ -22,10 +21,14 @@
           <%= item.description %>
         </div>
     </div>
+
   <% else %>
 
 <!-- TEMPORARY OWNER -->
     <div class="flex-item">
+      <div class="title-card-list-avatar">
+        <%= cl_image_tag item.reminders[0].user.avatar, class: "avatar" %>
+      </div>
       <div class="status">
         <div class="puce"></div>
           <%= link_to "Available again", reminder_path(item.reminders[0].id),
