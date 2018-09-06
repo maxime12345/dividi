@@ -14,7 +14,19 @@
   <% end %>
 <% end %>
 
-<!-- action a vendre  -->
-<% if owner == true %>
+<!-- bouton preter ou louer -->
+<% if  @item.verbe == "To Lend" %>
   <p><%= button_to @text , new_item_reminder_path(@item), method: :get, class: "btn-verbe" %></p>
-<% end %>
+  <% end %>
+
+
+
+
+
+<!-- 2/if not owner && object is not available -->
+  <!--  afficher not available-->
+<!-- if not owner && object is available -->
+  <!-- send an object request -->
+<!-- if not owner && request sent to the owner -->
+    <!-- message:vous avez deja envoye une object request -->
+
