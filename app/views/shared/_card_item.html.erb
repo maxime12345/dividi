@@ -7,17 +7,22 @@
     <div class="card-category"><%= item.category.name %></div>
     <div class="card-description">
       <h2><%= item.name %></h2>
-      <p><%= humanized_money_with_symbol(item.price)%></p>
     </div>
-    <%= cl_image_tag item.user.avatar, alt: "alttext", class: "card-user avatar" %>
+    <% unless item.user == current_user %>
+      <%= cl_image_tag item.user.avatar, alt: "alttext", class: "card-user avatar" %>
+    <% end %>
     <%= link_to "", item_path(item), class: "card-link"  %>
   </div>
   <!-- Footer -->
   <div class="card-footer">
-    <!-- Number of reminders -->
-    <div class="card-transaction">
-      <i class="fas fa-handshake"></i>
-      <%= item.reminders.count %>
+    <div class="card-tag"><%= item.verbe %></div>
+    <div>
+      <% if item.verbe == "To Rent" %>
+        <%= humanized_money_with_symbol(item.price) %><span>/d</span>
+      <% elsif item.verbe == "To Sell"%>
+        <%= humanized_money_with_symbol(item.price) %>
+      <% end %>
     </div>
+
   </div>
 </div>
