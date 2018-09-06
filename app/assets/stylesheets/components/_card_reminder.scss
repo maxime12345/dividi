@@ -1,8 +1,6 @@
 .reminder-title h2  {
-
   font-weight: 900;
   font-size: 20px;
-
 }
 
 .reminder-card {
@@ -15,20 +13,17 @@
 .reminder-image {
   margin-top: 20px;
   width: 100%;
-
+  max-height: 200px;
 }
 
 .reminder-image:hover {
   opacity: 0.6;
 }
 
-
-
 .reminder-object {
-
-font-family: 'Roboto';
-font-size: 20px;
-font-weight: 900;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .reminder-verb {
@@ -48,17 +43,14 @@ display: inline-block;
 }
 
 
-
 .reminder-owner li {
-
-display: inline-block;
+  display: inline-block;
 }
 
 .card-user-reminder.avatar {
-
-width: 30px;
-height: 30px;
-border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .belongs {
@@ -74,27 +66,23 @@ border-radius: 50%;
   right: 0;
   position: absolute;
   font-weight: 900;
-
 }
 
 .reminder-description {
   margin-left: 10px;
   padding-bottom: 10px;
+  padding-right: 10px;
   text-decoration: none;
-
   font-size: 14px;
   font-weight: 400;
   color: #595959;
-
   text-overflow: ellipsis;
   width: 250px;
   white-space: nowrap;
   overflow: hidden;
-
 }
 
 .reminder-name {
-
   font-size: 16px;
   margin: 10px;
 }

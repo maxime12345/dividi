@@ -47,7 +47,11 @@
   <% end %>
   <!--PRIX FACULTATIF -->
   <div class="price">
-    <%= humanized_money_with_symbol(item.price)%>
+          <% if item.verbe == "To Rent" %>
+        <%= humanized_money_with_symbol(item.price) %><span>/d</span>
+      <% elsif item.verbe == "To Sell"%>
+        <%= humanized_money_with_symbol(item.price) %>
+      <% end %>
   </div>
 </div>
 

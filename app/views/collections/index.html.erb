@@ -26,7 +26,7 @@
               <% @collections.each do |collection| %>
                 <% collection.items.each do |item| %>
                   <% unless item.reminders[0].nil? || item.reminders[0].status == "pending" %>
-                    <%= render 'shared/card_list', item: item %>
+                    <%= render 'shared/card_item', item: item %>
                   <% end %>
                 <% end %>
               <% end %>
