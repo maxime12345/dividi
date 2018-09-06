@@ -28,7 +28,7 @@ end %>
 
     <% if @item.collection.user != current_user   %>
 
-      <div style="width: 100%">
+      <div style="width: 100%; text-align: center;">
         <% if @item.collection.user.avatar.file.nil? %>
           <i class="fas fa-user avatar-icon"></i>
         <% else %>
