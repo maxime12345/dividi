@@ -91,9 +91,10 @@ border-radius: none !important;
 .content-design {
 
   width: 100%;
-  height: 1000px;
+  height: calc(100vh - 70px);
   background-image: asset-url('slideshow.gif');
   background-size: 950px;
+  background-image: no-repeat;
 }
 
 .col-xs-6 {
