@@ -1,28 +1,30 @@
 <div class="item-card-list">
 
-  <%= link_to item_path(item) do %>
-    <div class="flex-item">
-      <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card" %>
-    </div>
-  <% end %>
-
-  <div class="flex-item" id="item-infos">
-    <div id="cell1">
-      <div class="title-card-list"><%= link_to item.name, item_path(item) %></div>
-      <div class="verb"><%= item.verbe %></div>
+<!-- VERB -->
+  <div class="verb-container">
+    <div class="verb">
+      <%= item.verbe %>
     </div>
   </div>
-
+<!-- IMAGE -->
+    <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card title-card-list-avatar" %>
+<!-- AVATAR -->
   <% if item.reminders[0].nil? %>
-
-    <div class="flex-item essai">
-      <div class="disponible">
-        <div class="puce"></div>Disponible - <%= link_to "Lend", new_item_reminder_path(item), class: "action" %>
-      </div>
+    <div class="title-card-list-avatar">
+      <%= cl_image_tag item.user.avatar, class: "avatar" %>
     </div>
 
+<!-- Name + Description -->
+    <div class="detail-card-list">
+        <%= link_to item.name, item_path(item), class: "title-card-list" %>
+
+        <div class="description">
+          <%= item.description %>
+        </div>
+    </div>
   <% else %>
 
+<!-- TEMPORARY OWNER -->
     <div class="flex-item">
       <div class="status">
         <div class="puce"></div>
@@ -40,13 +42,10 @@
     </div>
 
   <% end %>
-
-  <div class="flex-item">
-    <div class="price">
-      <%= humanized_money_with_symbol(item.price) %>€
-    </div>
+  <!--PRIX FACULTATIF -->
+  <div class="price">
+    <%= humanized_money_with_symbol(item.price)%>
   </div>
-
 </div>
 
 

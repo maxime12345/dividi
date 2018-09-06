@@ -1,14 +1,11 @@
+
 <div class="wrapper">
-  <div class="container">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="container container-form-item">
+        <h1>Edit my object</h1>
 
-      <div class="form">
-        <h1>Edit an item</h1>
+        <%= render 'form_item', item: @item, button: "Update my object" %>
 
-        <%= render 'form_item', item: @item %>
-
-        <%= link_to "Back", root_path  %>
+        <%= link_to "Back", item_path(@item)  %>
       </div>
-    </div>
-  </div>
+
 </div>
