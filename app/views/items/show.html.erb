@@ -1,8 +1,9 @@
 <!-- app/views/offers/show.html.erb -->
 <% content_for :meta_title, @item.name %>
 <% content_for :meta_description, @item.description %>
-<% content_for :meta_image, cl_image_path(@item.photo) %>
-
+<% if @item.photo.present?
+content_for :meta_image, cl_image_path(@item.photo)
+end %>
 
 <div class="container-show">
   <ul class="breadcrumb">
