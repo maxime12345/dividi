@@ -139,6 +139,7 @@ puts "Creating users and collections..."
                                   category: Category.where(name: "Cooking")[0])
 
   radeau = Item.create(name: "Radeau ancien",
+                                  price_cents: 1000,
                                   verbe: "To Rent",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/radeau.jpg"),
@@ -146,12 +147,14 @@ puts "Creating users and collections..."
 
 
   barbecue = Item.create(name: "Barbecue braséro Boston",
+                                  price_cents: 700,
                                   verbe: "To Rent",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/barbecue2.jpg"),
                                   category: Category.where(name: "Cooking")[0])
 
   mini_babyfoot = Item.create(name: "Mini Babyfoot",
+                                  price_cents: 500,
                                   verbe: "To Sell",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/minibabyfoot.jpg"),
