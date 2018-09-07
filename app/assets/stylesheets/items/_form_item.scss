@@ -1,19 +1,25 @@
 .container-form-item {
-  width: 35%;
-  background-color: white;
+  position: absolute;
+  margin-right: 20px;
+  right: 0;
+  width: 40%;
+  background-color: transparent;
   margin-top: 20px;
 
-  .hr {
-    border-top: 1px solid #00D1B1;
-  }
+  // .hr {
+  //   border-top: 1px solid #00D1B1;
+  // }
 
   .form-group.radio_buttons {
-    display: flex;
 
+    display: flex;
+    display: inline-block;
     justify-content: space-between;
   }
 
   textarea {
+    border: none;
+    background-color: white;
     width: 100%;
   }
 
@@ -23,9 +29,75 @@
   }
 
   .form-check {
+    border-radius: 50%;
   }
 
   .hr.bottom {
     height: 50px;
   }
+}
+
+.form-title {
+  font-family: 'Roboto';
+  font-weight: bold;
+  text-align: left;
+}
+
+
+label.form-control-label {
+  font-family: 'Roboto';
+  color: black;
+  font-weight: 900;
+}
+
+.collection_radio_buttons {
+border-color: black;
+border-radius: 50px!important;
+}
+
+
+abbr[title] {
+
+  color: #FF5435;
+}
+
+
+input[type=radio]:checked + label {
+
+  font-weight: bold;
+  border: none;
+  background-color: #FF5435 !important;
+}
+
+.btn-primary {
+border-radius: none !important;
+
+}
+
+.back-button {
+  font-family: 'Roboto';
+  font-weight: bold;
+  margin-right: 20px;
+  position: absolute;
+  right: 0;
+  display: inline-block;
+}
+
+.form-description {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.content-design {
+
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-image: asset-url('slideshow.gif');
+  background-size: 950px;
+  background-image: no-repeat;
+}
+
+.col-xs-6 {
+
+  padding: 0;
 }

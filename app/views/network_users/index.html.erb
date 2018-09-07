@@ -6,19 +6,18 @@
     <% end %>
 
     <!-- Request sent -->
-    <h4>Requests sent</h4>
-     <% if @pending_network_users.size == 0%>
-      You don't have any friend request pending for the moment.
-    <% end %>
-    <% @pending_network_users.each do |network_user| %>
-        <%= render 'shared/card_network_request_sended', network_user: network_user %>
+     <% if @pending_network_users.size != 0%>
+      <h4>Requests sent</h4>
+      <% @pending_network_users.each do |network_user| %>
+          <%= render 'shared/card_network_request_sended', network_user: network_user %>
+      <% end %>
     <% end %>
 </div>
 
 <div class="col-xs-12 col-lg-6">
   <div class="zone row">
     <div class="col-xs-12">
-    <%= render 'shared/search_bar', query: params[:query], placeholder: "Search a friend", path: network_users_path %>
+    <%= render 'shared/search_bar', query: params[:query], placeholder: "Search a friend not in your network", path: network_users_path %>
   <hr>
   </div>
 
@@ -37,7 +36,7 @@
 </div>
 
 <div class="col-xs-12 col-lg-3">
-  <div class=" friends row">
+  <div class="friends row">
     <!-- Friends request -->
     <h4>Friend requests</h4>
       <% if @friend_requests.size == 0%>
