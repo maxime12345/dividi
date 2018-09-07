@@ -1,6 +1,6 @@
 .card-network {
-  box-shadow: 1px 1px 1px gray;
-  background-color: #FFFFFF;
+  box-shadow: $base-box-shadow;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   font-size: 0.9em;
@@ -9,9 +9,9 @@
   font-color: gray;
   position: relative;
 
- .avatar-icon {
+  .avatar-icon {
     width: 60px;
-    height:60px;
+    height: 60px;
     border: 1px solid gray;
     border-radius: 50%;
     display: flex;
@@ -21,12 +21,12 @@
   .infos {
     margin-left: 10px;
     flex-grow: 1;
-      }
+  }
   .email {
     font-size: 0.9em;
   }
   &:hover {
-    box-shadow: 1px 1px 1px gray;
+    box-shadow: $base-box-shadow-hover;
   }
   .avatar-img {
     height: 60px;
@@ -51,4 +51,3 @@
     font-size: 15px;
   }
 }
-
