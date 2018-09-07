@@ -155,6 +155,42 @@ puts "Creating users and collections..."
                               password_confirmation: '123456',
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/mat.jpeg"))
 
+
+  thomaspottier = User.create(        username: "Thomas",
+                              email: "tp@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thomas.jpeg"))
+
+
+   jane = User.create(        username: "Jennifer",
+                              email: "jm@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jane.jpg"))
+
+
+   amy = User.create(        username:  "Amy",
+                              email: "amy@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/amy.jpg"))
+
+   jain = User.create(        username: "Jain",
+                              email: "j@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/jain.jpg"))
+
+    nico = User.create(        username: "Nicolas H.",
+                              email: "nh@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/nico.jpeg"))
+
+
+
+
   User.all.select{ |user| user != user_first }.each{ |user| collections_creation(user) }
 
   test_landscape_image = Item.create( name: "Tente familiale",
@@ -234,9 +270,11 @@ puts "Creating users and collections..."
                                   category: Category.where(name: "High-tech")[0])
 
 
+
+
+
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
-  Reminder.create(user: user_third, item: test_little_image, status: "pending" )
 
   puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"
 
