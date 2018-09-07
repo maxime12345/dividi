@@ -50,6 +50,12 @@ puts "Creating users and collections..."
                             avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thibault.jpg"))
   collections_creation(user_first)
 
+  tournevis = Item.create( name: "Tournevis de précision",
+                      verbe: "To Lend",
+                      collection: user_first.collections.where(name: "All")[0],
+                      photo: File.open("#{Rails.root}/app/assets/images/images_seed/tournevis.jpg"),
+                      category: Category.where(name: "Do-it-yourself")[0])
+
   velo = Item.create( name: "Vélo",
                       description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",
                       verbe: "To Sell",
@@ -120,9 +126,8 @@ puts "Creating users and collections..."
 
   test_landscape_image = Item.create( name: "Tente familiale",
                                       description: "5 places avec un hauvent",
-                                      verbe: "To Rent",
+                                      verbe: "To Lend",
                                       collection: user_second.collections.where(name: "All")[0],
-                                      price_cents: 900,
                                       remote_photo_url: "https://www.voyagesetenfants.com/wp-content/uploads/2017/05/P1130541-cmp.jpg",
                                       category: Category.where(name: "Camping")[0])
 
