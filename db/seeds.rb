@@ -64,9 +64,11 @@ puts "Creating users and collections..."
                       remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382",
                       category: Category.where(name: "Bicycles")[0])
 
-  trottinette = Item.create(  name: "Trotinette",
-                              verbe: "To Lend",
+  trottinette = Item.create(  name: "Trottinette",
+                              verbe: "To Sell",
+                              price_cents: 6000,
                               collection: user_first.collections.where(name: "All")[0],
+                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/trottinette.jpeg"),
                               category: Category.where(name: "Vehicles")[0])
 
 
