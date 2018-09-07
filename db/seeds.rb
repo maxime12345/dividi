@@ -156,13 +156,6 @@ puts "Creating users and collections..."
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/mat.jpeg"))
 
 
-  thomaspottier = User.create(        username: "Thomas",
-                              email: "tp@dividi.fr",
-                              password: '123456',
-                              password_confirmation: '123456',
-                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thomas.jpeg"))
-
-
    jane = User.create(        username: "Jennifer",
                               email: "jm@dividi.fr",
                               password: '123456',
