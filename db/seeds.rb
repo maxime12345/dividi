@@ -71,6 +71,12 @@ puts "Creating users and collections..."
                               photo: File.open("#{Rails.root}/app/assets/images/images_seed/trottinette.jpeg"),
                               category: Category.where(name: "Vehicles")[0])
 
+   wonders = Item.create( name: "7 wonders",
+                              verbe: "To Lend",
+                              collection: user_first.collections.where(name: "All")[0],
+                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/7wonders.jpg"),
+                              category: Category.where(name: "Board games")[0])
+
 
   test_portrait_image = Item.create(  name: "Bureau en bois",
                                       verbe: "To Give",
