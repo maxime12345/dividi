@@ -138,6 +138,33 @@ puts "Creating users and collections..."
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/raclette.jpg"),
                                   category: Category.where(name: "Cooking")[0])
 
+  radeau = Item.create(name: "Radeau ancien",
+                                  verbe: "To Rent",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/radeau.jpg"),
+                                  category: Category.where(name: "Vehicles")[0])
+
+
+  barbecue = Item.create(name: "Barbecue braséro Boston",
+                                  verbe: "To Rent",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/barbecue2.jpg"),
+                                  category: Category.where(name: "Cooking")[0])
+
+  mini_babyfoot = Item.create(name: "Mini Babyfoot",
+                                  verbe: "To Sell",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/minibabyfoot.jpg"),
+                                  category: Category.where(name: "Others")[0])
+
+  jumanji = Item.create(name: "Jumanji game",
+                                  verbe: "To Give",
+                                  collection: user_second.collections.where(name: "All")[0],
+                                  photo: File.open("#{Rails.root}/app/assets/images/images_seed/jumanji.jpg"),
+                                  category: Category.where(name: "Board games")[0])
+
+
+
   miroir = Item.create(           name: "Miroir",
                                   verbe: "To Sell",
                                   price_cents: 2000,
