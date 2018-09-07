@@ -68,13 +68,13 @@ puts "Creating users and collections..."
                               verbe: "To Sell",
                               price_cents: 6000,
                               collection: user_first.collections.where(name: "All")[0],
-                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/trottinette.jpeg",
+                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/trottinette.jpeg"),
                               category: Category.where(name: "Vehicles")[0])
 
-   7wonders = Item.create(    name: "7 wonders",
+   wonders = Item.create( name: "7 wonders",
                               verbe: "To Lend",
                               collection: user_first.collections.where(name: "All")[0],
-                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/7wonders.jpg",
+                              photo: File.open("#{Rails.root}/app/assets/images/images_seed/7wonders.jpg"),
                               category: Category.where(name: "Board games")[0])
 
 
