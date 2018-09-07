@@ -168,6 +168,7 @@ puts "Creating users and collections..."
 
   Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
+  Reminder.create(user: user_third, item: test_little_image, status: "pending" )
 
   puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"
 
@@ -175,7 +176,7 @@ puts "Creating users and collections..."
 
   User.all.each{ |user| networks_creation(user) }
 
-  # User 1 have all people as friends, and 1 friend in a special network
+  # User 1 have all people as friends
   link1 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Tous")[0])
   link1reverse = NetworkUser.create(user: user_first, network: user_second.networks.where(name: "Tous")[0])
 
@@ -188,9 +189,11 @@ puts "Creating users and collections..."
   link4 = NetworkUser.create(user: user7, network: user_first.networks.where(name: "Tous")[0])
   link4reverse = NetworkUser.create(user: user_first, network: user7.networks.where(name: "Tous")[0])
 
+  link_friend_request = NetworkUser.create(user: user_first, status: "pending", network: user8.networks.where(name: "Tous")[0])
 
 
-User.all.each{ |user| share_creation(user) }
+
+  User.all.each{ |user| share_creation(user) }
 
 puts "#{Share.all.size} table shared, #{Network.all.size} networks declared, #{NetworkUser.all.size} links network-user in database !"
 
