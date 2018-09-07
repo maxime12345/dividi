@@ -124,6 +124,31 @@ puts "Creating users and collections..."
                               password_confirmation: '123456',
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/titouan.jpeg"))
 
+  user9 = User.create(        username: "Mike Horn",
+                              email: "mh@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/mike.jpg"))
+
+  user10 = User.create(        username: "Mark",
+                              email: "mz@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/mark.jpg"))
+
+  user11 = User.create(        username: "Kevin",
+                              email: "kc@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/kev.png"))
+
+
+  user12 = User.create(        username: "Mat",
+                              email: "mc@dividi.fr",
+                              password: '123456',
+                              password_confirmation: '123456',
+                              avatar: File.open("#{Rails.root}/app/assets/images/images_seed/mat.jpeg"))
+
   User.all.select{ |user| user != user_first }.each{ |user| collections_creation(user) }
 
   test_landscape_image = Item.create( name: "Tente familiale",
