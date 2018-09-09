@@ -6,7 +6,7 @@
         <% if network_user.network.user.avatar.file.nil? %>
           <i class="fas fa-user avatar avatar-icon" ></i>
           <% else %>
-            <%= cl_image_tag network_user.network.user.avatar, class: "avatar" %>
+          <%= render 'shared/avatar', user: network_user.network.user, size: "standard" %>
         <% end %>
       <% end %>
     </div>

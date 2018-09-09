@@ -36,7 +36,7 @@
       method: :delete,
       data: {confirm: "Are you back in possession of this item ?" },
       class: "card-tag" %>
-      <%= cl_image_tag item.reminders[0].user.avatar, class: "avatar card-padding " %>
+      <%= render 'shared/avatar', user: item.reminders[0].user, size: "standard" %>
     <% end %>
   </div>
 </div>
