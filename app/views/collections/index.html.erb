@@ -47,7 +47,7 @@
             <div class="notification">
               <div class="notification-body">
                 <div class="notification-avatar">
-                  <%= cl_image_tag reminder.user.avatar, class: "avatar"%>
+                  <%= render 'shared/avatar', user: reminder.user, size: "standard" %>
                 </div>
                 <div class="notification-text">
                   <h6><%= reminder.item.name%></h6>

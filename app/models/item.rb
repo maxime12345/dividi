@@ -16,6 +16,30 @@ class Item < ApplicationRecord
     reminders[0].nil? || reminders[0].status == "pending"
   end
 
+  def text
+    if available?
+      if verbe == "To Give"
+        "Don"
+      elsif verbe == "To Sell"
+        "Vente: #{price_cents.fdiv(100).to_i}€"
+      elsif verbe == "To Lend"
+        "Prêt"
+      elsif verbe == "To Rent"
+        "Location: #{price_cents.fdiv(100).to_i}€/jour"
+      else
+        verbe
+      end
+    else
+      if verbe == "To Lend"
+        "Emprunté à:"
+      elsif verbe == "To Rent"
+        "Loué #{price_cents.fdiv(100).to_i}€/jour à:"
+      else
+        verbe
+      end
+    end
+  end
+
   def self.to_give
     where(verbe: 'To Give')
   end

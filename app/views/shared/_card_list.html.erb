@@ -1,55 +1,41 @@
-<div class="item-card-list">
-
-<!-- VERB -->
-  <div class="verb-container">
-    <div class="verb">
-      <%= item.verbe %>
-    </div>
+<div class="card-list">
+  <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= url_image(item) %>');">
+    <% if ghost_reminder.nil? %>
+      <%= link_to "", item_path(item), class: "card-link"  %>
+    <% end %>
   </div>
-<!-- IMAGE -->
-    <%= cl_image_tag item.photo, height: 150, width: 150, crop: :fill, class: "img-card title-card-list-avatar" %>
-
-<!-- AVATAR -->
-  <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
-
-
-<!-- Name + Description -->
-    <div class="detail-card-list">
-        <%= link_to item.name, item_path(item), class: "title-card-list" %>
-
-        <div class="description">
-          <%= item.description %>
-        </div>
+  <div class="card-infos">
+    <div class="item-name">
+      <%= item.name %>
     </div>
-
-  <% else %>
-
-<!-- TEMPORARY OWNER -->
-    <div class="flex-item">
-      <div class="title-card-list-avatar">
-        <%= cl_image_tag item.reminders[0].user.avatar, class: "avatar" %>
-      </div>
-      <div class="status">
-        <%= link_to "Available again", reminder_path(item.reminders[0].id),
-          method: :delete,
-          data: {confirm: "Are you back in possession of this item ?" } %>
-        Prêté à :
-        <% if item.reminders[0].ghost_name.nil? %>
-          <%= item.reminders[0].user.email %>
-        <% else %>
-          <%= item.reminders[0].ghost_name %> (Outside friend)
-        <% end %>
-      </div>
+    <div class="item-category">
+      <% if ghost_reminder.nil? %><%= item.category.name %> <% end %>
     </div>
+    <% unless item.description.nil? || item.description == "" %>
+      <div class="item-description">
+        <%= item.description %>
+      </div>
+    <% end %>
+  </div>
 
-  <% end %>
-  <!--PRIX FACULTATIF -->
-  <div class="price">
-          <% if item.verbe == "To Rent" %>
-        <%= humanized_money_with_symbol(item.price) %><span>/d</span>
-      <% elsif item.verbe == "To Sell"%>
-        <%= humanized_money_with_symbol(item.price) %>
+  <div class="card-state">
+    <div class="item-text">
+      <% if ghost_reminder.nil? %>
+        <%= item.text %>
+      <% else %>
+        Emprunté à:
       <% end %>
+    </div>
+    <% if ghost_reminder.nil? %>
+      <%= render 'shared/avatar_name', user: item.user %>
+    <% else %>
+      <%= render 'shared/avatar_name', user: User.new(username: ghost_reminder.ghost_name, email: "(Hors réseau)") %>
+      <%= link_to reminder_path(ghost_reminder),
+      method: :delete,
+      data: {confirm: "Voulez-vous supprimer ce rappel ?" }  do %>
+          <i class="far fa-trash-alt"></i>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
