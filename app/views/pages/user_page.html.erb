@@ -2,7 +2,7 @@
 
   <!-- Info sur l'utilisateur -->
   <div class="user">
-    <%= render 'shared/avatar_big', user: @user %>
+    <%= render 'shared/avatar', user: @user, size: "big" %>
     <div class="infos">
       <% if @user.username.nil? %>
         <span class="titre"> <%= @user.email %></span>

@@ -43,7 +43,17 @@
 
           <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
 
-            <%= render 'shared/navbar_avatar' %>
+
+            <%= render 'shared/avatar', user: current_user, size: "standard" %>
+
+            <div class="infos">
+              <% if current_user.username.nil? %>
+                <%= current_user.email %>
+              <% else %>
+                <%= current_user.username %> <br>
+                <span class="email"> <%= current_user.email %> </span>
+              <% end %>
+            </div>
 
           </div>
 
