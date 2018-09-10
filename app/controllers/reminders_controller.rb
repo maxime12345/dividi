@@ -3,6 +3,8 @@ class RemindersController < ApplicationController
     @reminders_others = current_user.reminders_others
     @ghost_reminders = current_user.ghost_reminders
     @my_reminders = current_user.my_reminders
+    @validate_reminders = current_user.validate_reminders
+    @reminder = Reminder.new
   end
 
   def new
@@ -24,7 +26,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
-    redirect_to collections_path
+    redirect_to reminders_path
   end
 
 
@@ -52,11 +54,8 @@ class RemindersController < ApplicationController
   def create_item_outside
     @reminder = Reminder.new(reminder_params)
     @reminder.user = current_user
-    if @reminder.save
-      redirect_to collections_path
-    else
-      render :new_item_outside
-    end
+    @reminder.save
+    redirect_to reminders_path
 
   end
 

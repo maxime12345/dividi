@@ -11,7 +11,7 @@ module ItemsHelper
     if item.photo.present?
       item.photo
     else
-      ""
+      File.open("#{Rails.root}/app/assets/images/fallback/default-picture.png")
     end
   end
 end
