@@ -2,36 +2,33 @@ require_relative 'data_for_seed'
 
 puts "Cleaning database..."
 
-Reminder.destroy_all
-Share.destroy_all
-Item.destroy_all
-Category.destroy_all
-Collection.destroy_all
-NetworkUser.destroy_all
-Network.destroy_all
-User.destroy_all
+  Reminder.destroy_all
+  Share.destroy_all
+  Item.destroy_all
+  Category.destroy_all
+  Collection.destroy_all
+  NetworkUser.destroy_all
+  Network.destroy_all
+  User.destroy_all
 
 puts "Creating categories"
 
 categories = [
-"Do-it-yourself",
-"High-tech",
-"Home appliance",
-"Computers",
-"Musical instruments",
-"Gardening",
-"Board games",
-"Video games",
-"Toys",
-"Books",
-"Cooking",
-"Sport material",
-"Furniture",
-"Vehicles",
-"Bicycles",
-"Clothing",
-"Others",
-"Camping"]
+"Bricolage/Jardinage",
+"Camping",
+"CD/DVD",
+"Cuisine",
+"Equipement automobile",
+"Jeux",
+"Livres",
+"Meubles",
+"Multimédia",
+"Matériel de sport",
+"Véhicules",
+"Vêtements",
+"Autres"]
+
+
 
 verbes = [ "To Sell", "To Give", "To Lend", "To Rent"]
 
@@ -54,7 +51,7 @@ puts "Creating users and collections..."
                       verbe: "To Lend",
                       collection: user_first.collections.where(name: "All")[0],
                       photo: File.open("#{Rails.root}/app/assets/images/images_seed/tournevis.jpg"),
-                      category: Category.where(name: "Do-it-yourself")[0])
+                      category: Category.where(name: "Bricolage/Jardinage")[0])
 
   velo = Item.create( name: "Vélo",
                       description: "Une affaire : une seule vitesse pour éviter de payer la salle de gym. Klaxon intégré dans le frein arrière pour éviter les dangers !",
@@ -62,34 +59,34 @@ puts "Creating users and collections..."
                       collection: user_first.collections.where(name: "All")[0],
                       price_cents: 1000,
                       remote_photo_url: "https://forum.tontonvelo.com/download/file.php?id=38382",
-                      category: Category.where(name: "Bicycles")[0])
+                      category: Category.where(name: "Véhicules")[0])
 
   trottinette = Item.create(  name: "Trottinette",
                               verbe: "To Sell",
                               price_cents: 6000,
                               collection: user_first.collections.where(name: "All")[0],
                               photo: File.open("#{Rails.root}/app/assets/images/images_seed/trottinette.jpeg"),
-                              category: Category.where(name: "Vehicles")[0])
+                              category: Category.where(name: "Véhicules")[0])
 
    wonders = Item.create( name: "7 wonders",
                               verbe: "To Lend",
                               collection: user_first.collections.where(name: "All")[0],
                               photo: File.open("#{Rails.root}/app/assets/images/images_seed/7wonders.jpg"),
-                              category: Category.where(name: "Board games")[0])
+                              category: Category.where(name: "Jeux")[0])
 
 
   test_portrait_image = Item.create(  name: "Bureau en bois",
                                       verbe: "To Give",
                                       collection: user_first.collections.where(name: "All")[0],
                                       remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg",
-                                      category: Category.where(name: "Home appliance")[0])
+                                      category: Category.where(name: "Meubles")[0])
 
   test_little_image = Item.create(  name: "Petite boite metal",
                                     description: "test little image",
                                     verbe: "To Give",
                                     collection: user_first.collections.where(name: "All")[0],
                                     remote_photo_url: "https://www.chezfee.com/images/stories/virtuemart/product/petit-boite-metal-coeur-lion1-chezfee1.jpg",
-                                    category: Category.where(name: "Others")[0])
+                                    category: Category.where(name: "Autres")[0])
 
   user_second = User.create(  username: "Sarah",
                               email: "sl@dividi.fr",
@@ -196,20 +193,20 @@ puts "Creating users and collections..."
                             verbe: "To Lend",
                             collection: user_second.collections.where(name: "All")[0],
                             photo: File.open("#{Rails.root}/app/assets/images/images_seed/art_guerre.jpeg"),
-                            category: Category.where(name: "Books")[0])
+                            category: Category.where(name: "Livres")[0])
 
   appareil_raclette = Item.create(name: "Appareil à raclette 8 personnes",
                                   verbe: "To Lend",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/raclette.jpg"),
-                                  category: Category.where(name: "Cooking")[0])
+                                  category: Category.where(name: "Cuisine")[0])
 
   radeau = Item.create(name: "Radeau ancien",
                                   price_cents: 1000,
                                   verbe: "To Rent",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/radeau.jpg"),
-                                  category: Category.where(name: "Vehicles")[0])
+                                  category: Category.where(name: "Véhicules")[0])
 
 
   barbecue = Item.create(name: "Barbecue braséro Boston",
@@ -217,20 +214,20 @@ puts "Creating users and collections..."
                                   verbe: "To Rent",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/barbecue2.jpg"),
-                                  category: Category.where(name: "Cooking")[0])
+                                  category: Category.where(name: "Cuisine")[0])
 
   mini_babyfoot = Item.create(name: "Mini Babyfoot",
                                   price_cents: 500,
                                   verbe: "To Sell",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/minibabyfoot.jpg"),
-                                  category: Category.where(name: "Others")[0])
+                                  category: Category.where(name: "Autres")[0])
 
   jumanji = Item.create(name: "Jumanji game",
                                   verbe: "To Give",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/jumanji.jpg"),
-                                  category: Category.where(name: "Board games")[0])
+                                  category: Category.where(name: "Jeux")[0])
 
 
 
@@ -239,33 +236,31 @@ puts "Creating users and collections..."
                                   price_cents: 2000,
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/miroir.jpg"),
-                                  category: Category.where(name: "Furniture")[0])
+                                  category: Category.where(name: "Meubles")[0])
 
   lampes = Item.create(           name: "Lampes et Lustres",
                                   verbe: "To Give",
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/lampes.jpg"),
-                                  category: Category.where(name: "Furniture")[0])
+                                  category: Category.where(name: "Meubles")[0])
 
   iphone = Item.create(           name: "Iphone",
                                   verbe: "To Sell",
                                   price_cents: 22000,
                                   collection: user_second.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/iphone.jpg"),
-                                  category: Category.where(name: "High-tech")[0])
+                                  category: Category.where(name: "Multimédia")[0])
 
   msi = Item.create(              name: "Ordi MSI",
                                   verbe: "To Sell",
                                   price_cents: 60000,
                                   collection: user7.collections.where(name: "All")[0],
                                   photo: File.open("#{Rails.root}/app/assets/images/images_seed/msi.jpg"),
-                                  category: Category.where(name: "High-tech")[0])
+                                  category: Category.where(name: "Multimédia")[0])
 
 
 
 
-
-  Reminder.create(user: user_second, item: velo)
   Reminder.create(user: user_first, item: art_guerre)
 
   puts "#{User.all.size} users, #{Collection.all.size} collections, #{Item.all.size} items, #{Reminder.all.size} reminders in database !"

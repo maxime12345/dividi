@@ -21,7 +21,7 @@
   <div class="card-state">
     <div class="item-text">
       <% if ghost_reminder.nil? %>
-        <%= item.text %>
+        <%= item.text("out") %>
       <% else %>
         Emprunté à:
       <% end %>

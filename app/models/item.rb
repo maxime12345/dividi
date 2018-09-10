@@ -16,24 +16,20 @@ class Item < ApplicationRecord
     reminders[0].nil? || reminders[0].status == "pending"
   end
 
-  def text
-    if available?
-      if verbe == "To Give"
-        "Don"
-      elsif verbe == "To Sell"
-        "Vente: #{price_cents.fdiv(100).to_i}€"
-      elsif verbe == "To Lend"
-        "Prêt"
-      elsif verbe == "To Rent"
-        "Location: #{price_cents.fdiv(100).to_i}€/jour"
+  def text(point_of_view)
+    if point_of_view == "out"
+      case verbe
+      when "To Give" then "Don"
+      when "To Sell" then "Vente: #{price_cents.fdiv(100).to_i}€"
+      when "To Lend" then "Prêt"
+      when "To Rent" then "Location: #{price_cents.fdiv(100).to_i}€/jour"
       else
         verbe
       end
     else
-      if verbe == "To Lend"
-        "Emprunté à:"
-      elsif verbe == "To Rent"
-        "Loué #{price_cents.fdiv(100).to_i}€/jour à:"
+      case verbe
+      when "To Lend" then "Emprunté à:"
+      when "To Rent" then "Loué #{price_cents.fdiv(100).to_i}€/jour à:"
       else
         verbe
       end

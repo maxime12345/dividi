@@ -3,12 +3,12 @@
 
     <!-- Liste de mes objets -->
     <div class="col-xs-12 col-md-9">
-      <h5>My objects</h5>
+      <h5>Mes objets</h5>
         <div>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Available</a></li>
-            <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Not available</a></li>
+            <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Disponibles</a></li>
+            <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Prêtés ou loués</a></li>
           </ul>
 
           <!-- Tab panes -->
@@ -29,7 +29,7 @@
                 <% collection.items.each do |item| %>
                   <% unless item.available? %>
                     <div class="col-xs-12 col-md-4"">
-                      <%= render 'shared/card_item', item: item, freeable: true %>
+                      <%= render 'shared/card_item', item: item %>
                     </div>
                   <% end %>
                 <% end %>
