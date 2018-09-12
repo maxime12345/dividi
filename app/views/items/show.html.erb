@@ -6,40 +6,52 @@ end %>
 
 <div class="container-show">
 
-  <%= card_background_image_path @item%>
-  <div class="describe">
-    <div class="info">
-      <h1><%= @item.name.capitalize %> </h1>
-      <p>Category : <%= @item.category.name %></p>
-      <p><%= @item.created_at.strftime("Created on %d/%m/%Y") %></p>
-      <h2>
-        <% if @verbe == "To Rent" %>
-          <%= humanized_money_with_symbol(@item.price) %> / day
-        <% end %>
+  <div class="picture">
+    <%= card_background_image_path @item %>
+  </div>
 
-        <% if @verbe == "To Sell" %>
-          <%= humanized_money_with_symbol(@item.price) %>
+  <div class="describe">
+    <div class="owner">
+      <div class="avatar-name"><%= render 'shared/avatar_name', user: @item.collection.user,  size: "standard" %></div>
+      <div class="verbe"><%=  @item.text("out") %></div>
+    </div>
+    <div class="infos">
+      <div class="titles">
+        <span class="show-category"><%= @item.category.name %></span>
+        <br>
+        <span class="item-name"><%= @item.name %></span>
+
+      </div>
+
+      <div class="description">
+        <% unless @item.description.nil? || @item.description == "" %>
+            <span class="title-description">Description :</span><br>
+            <%= @item.description %>
         <% end %>
-      </h2>      <br>
-      <% unless @item.description.nil? %>
-        <p> <%= @item.description.capitalize %> </p>
+      </div>
+      <div class="creation">
+
+        <%= @item.created_at.strftime("Créé le %d/%m/%Y") %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="status">
+        <i class="<%= hash_status(@item)[:icon] %>" ></i> <%= hash_status(@item)[:text] %>
+      </div>
+      <% unless hash_status(@item)[:renter].nil? %>
+            <div class="avatar-name"><%= render 'shared/avatar_name', user: hash_status(@item)[:renter], size: "standard"  %></div>
+      <% end %>
+      <% unless hash_status(@item)[:button].nil? %>
+            <%= button(hash_status(@item)[:button]) %>
       <% end %>
     </div>
 
-    <% if @item.collection.user != current_user   %>
-
-      <div style="width: 100%; text-align: center;">
-        <% if @item.collection.user.avatar.file.nil? %>
-          <i class="fas fa-user avatar-icon"></i>
-        <% else %>
-          <%= cl_image_tag @item.collection.user.avatar, height: 100, width: 100, crop: :fill, class: "avatar-item" %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="conditions" >
-      <%= render 'conditions' %>
-    </div>
-
+      <% if @item.collection.user == current_user %>
+        <div class="owner-actions">
+          modify delete
+        </div>
+      <% end %>
 
   </div>
 </div>

@@ -38,9 +38,6 @@
 
 
 
-
-
-
 <!-- 2/if not owner && object is not available -->
 <% elsif !@item.reminders[0].nil? && @item.reminders[0].status.nil? %>
 
@@ -67,6 +64,5 @@
       <div><%= @verbe %></div>
     <% end %>
   </div>
-
 
 <% end %>

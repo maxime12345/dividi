@@ -90,17 +90,17 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 5px;
+}
 
 
 
 
-  .fa-check-circle, .fa-user-circle {
-    color: $green;
-  }
-  .fa-times-circle {
-    color: $red;
-  }
-  .fa-question-circle {
-    color: $orange;
-  }
+.fa-check-circle, .fa-user-circle {
+  color: $green;
+}
+.fa-times-circle {
+  color: $red;
+}
+.fa-question-circle {
+  color: $orange;
 }
