@@ -1,42 +1,67 @@
 <div class="card-container">
 
   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= url_image(item) %>');">
-
-
-    <div class="card-category"><%= item.category.name %></div>
-    <div class="card-description">
-      <h2><%= item.name %></h2>
-    </div>
-    <% unless item.user == current_user %>
-      <%= cl_image_tag item.user.avatar, alt: "alttext", class: "card-user avatar" %>
+    <% if item.id.nil? %>
+      <div class="card-category">
+        <i>Rappel</i>
+        <%= link_to reminder_path(ghost_reminder),
+        method: :delete,
+        data: {confirm: "Voulez-vous supprimer ce rappel ?" }  do %>
+            <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="card-category"><%= item.category.name %></div>
+      <%= link_to "", item_path(item), class: "card-link"  %>
     <% end %>
-    <%= link_to "", item_path(item), class: "card-link"  %>
   </div>
 
-  <!-- Footer -->
   <div class="card-footer">
-
-    <!-- When available -->
-    <% if item.available? %>
-    <div class="card-tag" style="margin-left: 5px">
-      <%= item.verbe %>
+    <div class="card-name">
+      <%= item.name %>
     </div>
-    <div style="margin-right: 5px">
-      <% if item.verbe == "To Rent" %>
-        <%= humanized_money_with_symbol(item.price) %><span>/d</span>
-      <% elsif item.verbe == "To Sell"%>
-        <%= humanized_money_with_symbol(item.price) %>
+
+    <div class="card-text">
+      <%= item.text("out") %>
+    </div>
+  </div>
+
+  <div class="owner">
+    <!-- Si propriétaire fantôme -->
+    <% if item.user.nil? %>
+      <% ghost_user = User.new(username: ghost_reminder.ghost_name, email: "(Hors réseau)") %>
+      <%= render 'shared/avatar_name', user: ghost_user, size: "standard" %>
+    <% else %>
+      <% if item.user != current_user && item.collection.user.token != params[:token] %>
+          <%= render 'shared/avatar_name', user: item.user, size: "standard" %>
       <% end %>
-    </div>
-    <% end %>
-
-    <!-- When not available -->
-    <% if !item.available? && freeable %>
-      <%= link_to "Available again", reminder_path(item.reminders[0].id),
-      method: :delete,
-      data: {confirm: "Are you back in possession of this item ?" },
-      class: "card-tag" %>
-      <%= render 'shared/avatar', user: item.reminders[0].user, size: "standard" %>
     <% end %>
   </div>
+
+  <div class="card-status">
+    <div class="status">
+      <!-- helper -->
+      <%= status(item) %>
+    </div>
+  </div>
+
+
+
+  <!-- Section affichée uniquement si propriétaire de l'objet et page autre que user page -->
+  <% unless item.user.nil? %>
+    <% if item.collection.user == current_user && !item.available? && params[:token].nil? %>
+      <% if item.reminders[0].ghost_name.nil? %>
+        <div class="renter">
+          <%= render 'shared/avatar_name', user: item.reminders[0].user, size: "standard" %>
+        </div>
+      <% else %>
+
+        <div class="renter">
+          <% ghost_user = User.new(username: item.reminders[0].ghost_name, email: "(Hors réseau)") %>
+          <%= render 'shared/avatar_name', user: ghost_user, size: "standard" %>
+        </div>
+
+      <% end %>
+    <% end %>
+  <% end %>
 </div>
