@@ -26,17 +26,17 @@
     </div>
   </div>
 
-  <div class="owner">
     <!-- Si propriétaire fantôme -->
     <% if item.user.nil? %>
-      <% ghost_user = User.new(username: ghost_reminder.ghost_name, email: "(Hors réseau)") %>
-      <%= render 'shared/avatar_name', user: ghost_user, size: "standard" %>
+        <% ghost_user = User.new(username: ghost_reminder.ghost_name, email: "(Hors réseau)") %>
+        <div class="owner"><%= render 'shared/avatar_name', user: ghost_user, size: "standard" %></div>
     <% else %>
-      <% if item.user != current_user && item.collection.user.token != params[:token] %>
-          <%= render 'shared/avatar_name', user: item.user, size: "standard" %>
-      <% end %>
+
+        <% if item.user != current_user && item.collection.user.token != params[:token] %>
+          <div class="owner"><%= render 'shared/avatar_name', user: item.user, size: "standard" %></div>
+        <% end %>
+
     <% end %>
-  </div>
 
   <div class="card-status">
     <div class="status">
