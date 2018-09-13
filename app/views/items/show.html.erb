@@ -40,7 +40,7 @@ end %>
         <i class="<%= hash_status(@item)[:icon] %>" ></i> <%= hash_status(@item)[:text] %>
       </div>
       <% unless hash_status(@item)[:renter].nil? %>
-            <div class="avatar-name"><%= render 'shared/avatar_name', user: hash_status(@item)[:renter], size: "standard"  %></div>
+            <div class="avatar-name"><%= render 'shared/avatar_name', user: hash_status(@item)[:renter], size: "standard" %></div>
       <% end %>
       <% unless hash_status(@item)[:button].nil? %>
             <%= button(hash_status(@item)[:button]) %>

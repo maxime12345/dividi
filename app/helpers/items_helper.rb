@@ -42,7 +42,11 @@ module ItemsHelper
         if item.collection.user == current_user
           status[:icon] = "far fa-times-circle"
           status[:button] = "available again"
-          status[:renter] = item.reminders.where(status: nil)[0].user
+            if item.reminders.where(status: nil)[0].user.nil?
+              status[:renter] = User.new(username: item.reminders.where(status: nil)[0].ghost_name, email: "(Hors réseau)")
+            else
+              status[:renter] = item.reminders.where(status: nil)[0].user
+            end
           if item.verbe == "To Rent"
             status[:text] = "En cours de location"
           else
