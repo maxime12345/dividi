@@ -26,7 +26,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminder = Reminder.find(params[:id])
     @reminder.destroy
-    redirect_to reminders_path
+    redirect_to collections_path
   end
 
 

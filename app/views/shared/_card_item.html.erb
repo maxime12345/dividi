@@ -41,7 +41,7 @@
   <div class="card-status">
     <div class="status">
       <!-- helper -->
-      <%= status(item) %>
+      <i class="<%= hash_status(item)[:icon] %>" ></i> <%= hash_status(item)[:text] %>
     </div>
   </div>
 
