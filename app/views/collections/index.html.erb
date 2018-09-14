@@ -1,68 +1,53 @@
-<div class="wrapper">
-  <div class="container">
+<div class="container container-collections">
 
-    <!-- Liste de mes objets -->
-    <div class="col-xs-12 col-md-9">
-      <h5>Mes objets</h5>
-        <div>
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Disponibles</a></li>
-            <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Prêtés ou loués</a></li>
-          </ul>
+  <!-- Liste de mes objets -->
+    <h5>Mes objets</h5>
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Disponibles</a></li>
+          <li role="presentation"><a href="#question" aria-controls="not-available" role="tab" data-toggle="tab">Demandes en cours</a></li>
+          <li role="presentation"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Prêtés ou loués</a></li>
+        </ul>
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="available">
-              <% @collections.each do |collection| %>
-                <% collection.items.each do |item| %>
-                  <% if item.reminders[0].nil? || item.reminders[0].status == "pending" %>
-                    <div class="col-xs-12 col-md-4"">
-                      <%= render 'shared/card_item', item: item %>
-                    </div>
-                  <% end %>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="available">
+            <% @collections.each do |collection| %>
+              <% collection.items.each do |item| %>
+                <% if item.reminders.size.zero? %>
+                  <div class="col-xs-12 col-md-3"">
+                    <%= render 'shared/card_item', item: item %>
+                  </div>
                 <% end %>
               <% end %>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="not-available">
-              <% @collections.each do |collection| %>
-                <% collection.items.each do |item| %>
-                  <% unless item.available? %>
-                    <div class="col-xs-12 col-md-4"">
-                      <%= render 'shared/card_item', item: item %>
-                    </div>
-                  <% end %>
+            <% end %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="question">
+            <% @collections.each do |collection| %>
+              <% collection.items.each do |item| %>
+                <% if item.validate_reminder.nil? && !item.pending_reminders.size.zero?%>
+                  <div class="col-xs-12 col-md-3"">
+                    <%= render 'shared/card_item', item: item %>
+                  </div>
                 <% end %>
               <% end %>
-            </div>
+            <% end %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="not-available">
+            <% @collections.each do |collection| %>
+              <% collection.items.each do |item| %>
+                <% unless item.validate_reminder.nil? %>
+                  <div class="col-xs-12 col-md-3"">
+                    <%= render 'shared/card_item', item: item %>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
-    </div>
-
-    <!-- Demande de réservtion -->
-    <div class="col-xs-12 col-md-3">
-        <div class="collection-title">
-          <h5>Pending reservations</h5>
-          <% @my_pending_reminders.each do |reminder| %>
-            <div class="notification">
-              <div class="notification-body">
-                <div class="notification-avatar">
-                  <%= render 'shared/avatar', user: reminder.user, size: "standard" %>
-                </div>
-                <div class="notification-text">
-                  <h6><%= reminder.item.name%></h6>
-                </div>
-              </div>
-              <div class="notification-button">
-                <!-- Accept -->
-                <%= link_to "Accept", accept_reminder_path(reminder), class: "notification-btn accept" %>
-                <!-- Decline -->
-                <%= link_to "Decline", reminder_path(reminder.id),
-                  method: :delete, class: "notification-btn decline" %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-    </div>
-  </div>
+      </div>
 </div>
+

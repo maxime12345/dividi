@@ -1,60 +1,57 @@
-<div class="wrapper">
+<div class="container container-reminders">
 
-    <div class="col-xs-12 col-md-3">
-      <h5>Ajouter un rappel</h5>
-      <p class="text-rappel">Besoin de vous souvenir d'un objet que vous avez emprunté à un ami en dehors du réseau ?</p> <br>
+    <div class="col-lg-9">
 
-      <%= render 'form_item_outside', reminder: @reminder %>
+      <h5>Mes emprunts</h5>
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#emprunts" aria-controls="available" role="tab" data-toggle="tab">Empruntés</a></li>
+          <li role="presentation"><a href="#demandes" aria-controls="not-available" role="tab" data-toggle="tab">Demandes en cours</a></li>
+        </ul>
 
-    </div>
-
-    <div class="col-xs-12 col-md-6">
-    <h5>Mes emprunts</h5>
-        <div class="row">
-          <% @validate_reminders.each do |reminder| %>
-            <div class="col-xs-4"">
-              <% if reminder.item.nil? %>
-                <% item_ghost = Item.new(name: reminder.ghost_item, verbe: "To Lend") %>
-                <% reminder.item = item_ghost %>
-                <%= render 'shared/card_item', item: reminder.item, ghost_reminder: reminder %>
-              <% else %>
-                <%= render 'shared/card_item', item: reminder.item %>
-              <% end %>
-            </div>
-          <% end %>
-
-        </div>
-      <hr>
-    </div>
-
-    <!-- Demande de réservation -->
-    <div class="col-xs-12 col-md-3">
-      <h5>Demandes de réservation envoyées</h5>
-        <div class="collection-title">
-          <% @reminders_others.each do |reminder| %>
-            <% if reminder.status == "pending" %>
-              <div>
-                <div class="notification">
-                  <div class="notification-body">
-                    <div class="notification-avatar">
-                      <%= cl_image_tag reminder.item.user.avatar, class: "avatar"%>
-                    </div>
-                    <div class="notification-text">
-                      <h6><%= reminder.item.name%></h6>
-                    </div>
-                  </div>
-                  <div class="notification-button">
-                    <h1 style="color: rgba(202, 202, 202, 0.8); margin-top: 15px">?</h1>
-                  </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="emprunts">
+            <div class="row">
+              <% @validate_reminders.each do |reminder| %>
+                <div class="col-xs-12 col-md-4"">
+                  <% if reminder.item.nil? %>
+                    <% item_ghost = Item.new(name: reminder.ghost_item, verbe: "To Lend") %>
+                    <% reminder.item = item_ghost %>
+                    <%= render 'shared/card_item', item: reminder.item, ghost_reminder: reminder %>
+                  <% else %>
+                    <%= render 'shared/card_item', item: reminder.item %>
+                  <% end %>
                 </div>
-              </div>
-            <% end %>
-          <% end %>
+              <% end %>
 
-          <!-- Saisir une réservation -->
+            </div>
 
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="demandes">
+            <div class="row">
+              <% @waiting_reminders.each do |reminder| %>
+                <div class="col-xs-12 col-md-4"">
+
+                    <%= render 'shared/card_item', item: reminder.item %>
+
+                </div>
+              <% end %>
+
+            </div>
+          </div>
 
         </div>
+      </div>
     </div>
 
+      <div class="col-xs-3 rappel">
+        <h5>Ajouter un rappel</h5>
+        <p class="text-rappel">Besoin de vous souvenir d'un objet que vous avez emprunté à un ami en dehors du réseau ?</p> <br>
+
+        <%= render 'form_item_outside', reminder: @reminder %>
+
+      </div>
 </div>

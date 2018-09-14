@@ -11,8 +11,8 @@ end %>
   </div>
 
   <div class="describe">
-    <div class="owner">
-      <div class="avatar-name"><%= render 'shared/avatar_name', user: @item.collection.user,  size: "standard" %></div>
+    <div class="navbar-owner">
+      <%= render 'shared/avatar_name', user: @item.collection.user,  size: "standard" %>
       <div class="verbe"><%=  @item.text("out") %></div>
     </div>
     <div class="infos">
@@ -45,13 +45,36 @@ end %>
       <% unless hash_status(@item)[:button].nil? %>
             <%= button(hash_status(@item)[:button]) %>
       <% end %>
-    </div>
 
-      <% if @item.collection.user == current_user %>
-        <div class="owner-actions">
-          modify delete
+      <% if @item.collection.user == current_user && @item.reminders.size == 0 %>
+        <div class="buttons-bottom">
+          <!-- edit -->
+          <%= link_to edit_item_path(@item) do %>
+            <i class="fas fa-pencil-alt"></i>
+          <% end %>
+
+          <!-- delete -->
+          <%= link_to item_path(@item),
+            method: :delete,
+            data: {confirm: "Are you sure you want to delete this item ?" }, class: "little-button"  do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
         </div>
       <% end %>
+    </div>
+
+    <% if @item.collection.user == current_user && !@item.pending_reminders.size.zero? %>
+
+    <div class="waiting-list">
+      File d'attente :
+      <% @item.pending_reminders.each do |reminder| %>
+        <%= render 'shared/avatar_name', user: reminder.user, size: "standard" %>
+        <%= link_to "Reserve", item_reminders_path(@item,
+        reminder: {user_id: current_user, status: "pending"}),
+        method: :post, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <% end %>
 
   </div>
 </div>

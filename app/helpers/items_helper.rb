@@ -15,7 +15,7 @@ module ItemsHelper
     end
   end
 
-  # retourne un hash avec toutes les informations pour les vues
+  # retourne un hash avec toutes les informations en fonction de l'utilisateur connecté
   def hash_status(item)
     status = {text: "", icon: "", button: nil, renter: nil}
     # Si item fantome
@@ -27,21 +27,22 @@ module ItemsHelper
     elsif item.reminders.size.zero?
       status[:text] = "Disponible"
       status[:icon] = "far fa-check-circle"
-      if item.collection.user == current_user
-        if item.verbe == "To Rent" || item.verbe == "To Lend"
-          status[:button] = "declare"
+        if item.collection.user == current_user
+          if item.verbe == "To Rent" || item.verbe == "To Lend"
+            status[:button] = "declare"
+          end
+        else
+          status[:button] = "notifier"
         end
-      else
-        status[:button] = "notifier"
-      end
     else
 
       # si reminder avec le statut nil (réservation validée)
-      if !item.reminders.where(status: nil).size.zero?
+      if !item.validate_reminder.nil?
         # Si l'item appartient à l'utilisateur
         if item.collection.user == current_user
           status[:icon] = "far fa-times-circle"
           status[:button] = "available again"
+            # Si l'item est prêt à qqun hors réseau (pas de user dans la bdd)
             if item.reminders.where(status: nil)[0].user.nil?
               status[:renter] = User.new(username: item.reminders.where(status: nil)[0].ghost_name, email: "(Hors réseau)")
             else
@@ -52,22 +53,32 @@ module ItemsHelper
           else
             status[:text] = "En cours de prêt"
           end
-        elsif item.reminders[0].user == current_user
+        # si le reminder validé appartient au current_user
+        elsif item.validate_reminder.user == current_user
           status[:icon] = "fas fa-user-circle"
           if item.verbe == "To Rent"
             status[:text] = "Je le loue"
           else
             status[:text] = "Je l\'emprunte"
           end
-        else
-          status[:text] = "Indisponible"
+        else # l'objet est loué par quelqu'un d'autre
           status[:icon] = "far fa-times-circle"
+          if item.pending_reminders.where(user: current_user).size.zero?
+            status[:button] = "notifier"
+            status[:text] = "Indisponible"
+          else
+            status[:button] = "cancel"
+            status[:text] = "Indisponible, demande envoyée"
+          end
         end
 
       else # status "pending"
         if item.collection.user == current_user
           status[:text] = "Demandes en cours"
           status[:icon] = "far fa-question-circle"
+          if item.borrowable?
+            status[:button] = "declare"
+          end
         elsif !item.reminders.where(user: current_user).size.zero?
           status[:text] = "Attente de retour"
           status[:icon] = "far fa-question-circle"
@@ -82,6 +93,10 @@ module ItemsHelper
   return status
   end
 
+  def my_reminder(item)
+    item.reminders.where(user: current_user)[0]
+  end
+
   def button(verbe)
     if verbe == "declare"
       link_to "Déclarer", new_item_reminder_path(params[:id]), class: "btn btn-primary"
@@ -90,13 +105,14 @@ module ItemsHelper
       reminder: {user_id: current_user, status: "pending"}),
       method: :post, class: "btn btn-primary"
     elsif verbe == "available again"
-      link_to "Objet rendu", reminder_path(@item.reminders[0].id), class: "btn btn-primary",
+      link_to "Objet rendu", reminder_path(@item.validate_reminder), class: "btn btn-primary",
       method: :delete,
       data: {confirm: "Etes-vous à nouveau en possession de cet objet ?" }
     elsif verbe == "cancel"
-      link_to "Annuler ma notification", reminder_path(@item.reminders[0].id), class: "btn btn-primary",
+      link_to "Annuler ma notification", reminder_path(my_reminder(@item)), class: "btn btn-primary",
       method: :delete,
       data: {confirm: "Etes-vous sûr d'annuler cette notification ?" }
     end
+
   end
 end

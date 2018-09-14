@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :ghost_reminders, -> {where(item_id: nil)}, class_name: 'Reminder'
 
   has_many :validate_reminders, -> {where(status: nil)}, class_name: 'Reminder'
+  has_many :waiting_reminders, -> {where(status: "pending")}, class_name: 'Reminder'
 
   has_many :my_reminders, -> {where(status: nil)}, through: :items, source: :reminders
   # Reminders sur les objets qui m'appartiennent

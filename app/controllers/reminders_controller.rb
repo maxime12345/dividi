@@ -4,6 +4,7 @@ class RemindersController < ApplicationController
     @ghost_reminders = current_user.ghost_reminders
     @my_reminders = current_user.my_reminders
     @validate_reminders = current_user.validate_reminders
+    @waiting_reminders = current_user.waiting_reminders
     @reminder = Reminder.new
   end
 
@@ -17,7 +18,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
     if @reminder.save
-      redirect_to collections_path
+      redirect_to item_path(@item)
     else
       render :new
     end
@@ -25,8 +26,9 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder = Reminder.find(params[:id])
+    @item = @reminder.item
     @reminder.destroy
-    redirect_to collections_path
+    redirect_to item_path(@item)
   end
 
 
