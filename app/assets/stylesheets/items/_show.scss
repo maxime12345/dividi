@@ -111,7 +111,22 @@
 
 .waiting-list {
   >* {
-    margin: 5px;
+  margin: 0px 8px;
+  }
+
+  .btn {
+    font-size: 0.7em;
+  }
+
+  .friend{
+    display: flex;
+    align-items: center;
+    padding: 8px 0px;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-gray;
+    }
   }
 }
 

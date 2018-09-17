@@ -68,10 +68,22 @@ end %>
     <div class="waiting-list">
       File d'attente :
       <% @item.pending_reminders.each do |reminder| %>
+      <div class="friend">
+
         <%= render 'shared/avatar_name', user: reminder.user, size: "standard" %>
-        <%= link_to "Reserve", item_reminders_path(@item,
-        reminder: {user_id: current_user, status: "pending"}),
-        method: :post, class: "btn btn-primary" %>
+
+        <div class="buttons">
+
+          <% if @item.validate_reminder.nil? && @item.borrowable? %>
+            <%= link_to "Accepter", accept_reminder_path(reminder), class: "btn btn-primary" %>
+          <% end %>
+          <%= link_to decline_reminder_path(reminder),
+            method: :delete,
+            data: {confirm: "Etes-vous sûr de supprimer cet ami de la file d'attente ?" }, class: "little-button"  do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>
       <% end %>
     </div>
     <% end %>

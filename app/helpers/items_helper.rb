@@ -78,6 +78,8 @@ module ItemsHelper
           status[:icon] = "far fa-question-circle"
           if item.borrowable?
             status[:button] = "declare"
+          else
+            status[:button] = "delete"
           end
         elsif !item.reminders.where(user: current_user).size.zero?
           status[:text] = "Attente de retour"
@@ -112,7 +114,10 @@ module ItemsHelper
       link_to "Annuler ma notification", reminder_path(my_reminder(@item)), class: "btn btn-primary",
       method: :delete,
       data: {confirm: "Etes-vous sûr d'annuler cette notification ?" }
+    elsif verbe = "delete"
+      link_to "Objet vendu ou donné", item_path(@item) , class: "btn btn-primary",
+      method: :delete,
+      data: {confirm: "Voulez-vous supprimer cet objet car il est vendu ou donné ?" }
     end
-
   end
 end

@@ -15,6 +15,8 @@ class RemindersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+    @reminders_to_destroy = @item.reminders.where(user_id: params[:reminder][:user_id])
+    @reminders_to_destroy.each{ |reminder| reminder.destroy}
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
     if @reminder.save
@@ -72,10 +74,7 @@ class RemindersController < ApplicationController
 
   def decline
     @reminder = Reminder.find(params[:id])
-    if @reminder.status == "pending"
-      @reminder.status = "Declined"
-      @reminder.save
-    end
+    @reminder.destroy
     redirect_back(fallback_location: reminders_path)
   end
 
