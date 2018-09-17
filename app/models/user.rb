@@ -6,9 +6,9 @@ class User < ApplicationRecord
   after_create :set_email_for_search
   before_create :token_creation
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :collections
   has_many :items, through: :collections
