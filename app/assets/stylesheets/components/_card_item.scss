@@ -5,6 +5,14 @@
   overflow: hidden;
   box-shadow: $base-box-shadow;
   white-space: nowrap;
+  .owner, .renter {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 0.8em;
+  }
 }
 
 .card {
@@ -60,14 +68,6 @@
   font-size: 0.7em;
 }
 
-.owner, .renter {
-  display: flex;
-  padding: 5px;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  font-size: 0.8em;
-}
 
 .owner {
   border-right: 1px solid $middle-gray;

@@ -6,6 +6,9 @@ class Item < ApplicationRecord
   has_one :user, through: :collection
   has_many :reminders
 
+  has_many :pending_reminders, -> {where(status: "pending")}, class_name: 'Reminder'
+  has_one :validate_reminder, -> {where(status: nil)}, class_name: 'Reminder'
+
   validates :name, presence: true
   validates :verbe, presence: true
 
@@ -13,7 +16,15 @@ class Item < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   def available?
-    reminders[0].nil? || reminders[0].status == "pending"
+    validate_reminder.nil?
+  end
+
+  def waiting_list?
+    pending_reminders.size != 0
+  end
+
+  def borrowable?
+    verbe == "To Lend" || verbe == "To Rent"
   end
 
   def text(point_of_view)

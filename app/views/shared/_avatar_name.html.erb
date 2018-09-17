@@ -1,10 +1,12 @@
-<%= render 'shared/avatar', user: user, size: "standard" %>
+<div class="avatar-name">
+  <%= render 'shared/avatar', user: user, size: "standard" %>
 
-<div class="infos-user">
-  <% if user.username.nil? %>
-    <%= user.email %>
-  <% else %>
-    <%= user.username %> <br>
-    <span class="email"> <%= user.email %></span>
-  <% end %>
+  <div class="infos-user">
+    <% if user.username.nil? %>
+      <%= user.email %>
+    <% else %>
+      <%= user.username %> <br>
+      <span class="email"> <%= user.email %></span>
+    <% end %>
+  </div>
 </div>

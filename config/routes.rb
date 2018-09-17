@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'accept', to: 'reminders#accept'
-      get 'decline', to: 'reminders#decline'
+      delete 'decline', to: 'reminders#decline'
     end
   end
 

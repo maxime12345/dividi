@@ -48,16 +48,16 @@
 
 
   <!-- Section affichée uniquement si propriétaire de l'objet et page autre que user page -->
-  <% unless item.user.nil? %>
-    <% if item.collection.user == current_user && !item.available? && params[:token].nil? %>
-      <% if item.reminders[0].ghost_name.nil? %>
+  <% unless item.user.nil? || item.validate_reminder.nil? %>
+    <% if item.collection.user == current_user && params[:token].nil? %>
+      <% if item.validate_reminder.ghost_name.nil? %>
         <div class="renter">
-          <%= render 'shared/avatar_name', user: item.reminders[0].user, size: "standard" %>
+          <%= render 'shared/avatar_name', user: item.validate_reminder.user, size: "standard" %>
         </div>
       <% else %>
 
         <div class="renter">
-          <% ghost_user = User.new(username: item.reminders[0].ghost_name, email: "(Hors réseau)") %>
+          <% ghost_user = User.new(username: item.validate_reminder.ghost_name, email: "(Hors réseau)") %>
           <%= render 'shared/avatar_name', user: ghost_user, size: "standard" %>
         </div>
 
