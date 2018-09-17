@@ -11,7 +11,7 @@
         <%= form_tag items_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
-            placeholder: "Search an object"
+            placeholder: "Chercher un objet dans mon réseau"
           %>
         <% end %>
       </div>
@@ -24,17 +24,10 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Add an object", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Objects", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Ajouter un objet", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Tous les objets", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <div class="navbar-wagon-item navbar-wagon-link">
-        <%= link_to network_users_path do %>
-            My friends <% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
-        <% end %>
-      </div>
-      <div class="navbar-wagon-item navbar-wagon-link">
-        <%= link_to collections_path do %>
-            My objects <% unless current_user.my_pending_reminders.count == 0 %> <span class="badge badge-success pull-right"> <%= current_user.my_pending_reminders.count %> </span> <% end %>
-        <% end %>
+
       </div>
 
       <!-- Avatar with dropdown menu -->
@@ -59,22 +52,33 @@
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "My borrowings", reminders_path %>
+              <%= link_to collections_path do %>
+              Mes objets <% unless current_user.my_pending_reminders.count == 0 %> <span class="badge badge-success pull-right"> <%= current_user.my_pending_reminders.count %> </span> <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "Mes emprunts", reminders_path %>
 
             </li>
             <li>
+              <%= link_to network_users_path do %>
+                Mes amis<% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
+              <% end %>
+            </li>
+
+            <li>
               <%= link_to user_page_path(current_user.token) do %>
-                My page
+                Ma page
               <% end %>
             </li>
             <li>
               <%= link_to edit_user_registration_path do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Edit profile") %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
               <% end %>
             </li>
           </ul>
@@ -82,7 +86,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Se connecter"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
