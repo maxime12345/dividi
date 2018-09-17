@@ -1,16 +1,20 @@
 <%= simple_form_for(@item) do |f|%>
-  <div class="form-sty"><%= f.input :name %></div>
-  <%= f.association :category %>
+  <div class="form-sty"><%= f.input :name, label: "Nom" %></div>
+  <%= f.association :category, label: "Catégorie" %>
 
-   <%= f.input :verbe, legend_tag: false, as: :radio_buttons,  collection: [ "To Sell", "To Give", "To Lend", "To Rent"]  %>
-  <%= f.input :price, label: 'Price €' %> </li>
-
+  <%= f.input :verbe, legend_tag: false, as: :radio_buttons,
+    collection: [["To Sell", "Vendre"],
+                  ["To Give", "Donner"],
+                  ["To Lend", "Prêter"],
+                  ["To Rent", "Louer"]],
+    label_method: :second, value_method: :first %>
+  <%= f.input :price, label: 'Prix en €' %> </li>
 
 
 <div class="hr"></div>
-  <div class= "form-description"> Description (Optional) </div>
+  <div class= "form-description"> Description :</div>
   <%= f.text_area :description %>
-  <%= f.input :photo, input_html: {accept: ('image') } %>
+  <%= f.input :photo, input_html: { accept: ('image') } %>
   <%= f.input :photo_cache, as: :hidden %>
   <div class="hr bottom"></div>
   <%= f.button :submit, value: button, class: "btn btn-primary"%>

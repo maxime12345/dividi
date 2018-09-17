@@ -3,11 +3,11 @@
 <div class="formulaire">
 
   <%= simple_form_for user, url: user_session_path do |f| %>
-    <%= f.input :email, placeholder: 'Email', label: false, error: 'Username is mandatory, please specify one' %>
-    <%= f.input :password, placeholder: 'your password', label: false %>
-    <%= f.button :submit, value: 'Sign in' %>
+    <%= f.input :email, placeholder: 'email', label: false, error: 'Username is mandatory, please specify one' %>
+    <%= f.input :password, placeholder: 'mot de passe', label: false %>
+    <%= f.button :submit, value: 'Se connecter' %>
 
-    <div class="signuplink">"Don't have a Dividi account?<%= link_to  "Sign up now!", new_user_registration_path%></div>
+    <div class="signuplink">"Pas encore de compte Dividi ?<%= link_to  "S'inscrire maintenant !", new_user_registration_path%></div>
 
   <% end %>
 </div>

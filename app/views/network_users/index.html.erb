@@ -1,13 +1,13 @@
 <div class="col-xs-12 col-lg-3">
     <!-- Current friends -->
-    <h4>My friends <%= @default_network_users.count %></h4>
+    <h4>Mes amis - <%= @default_network_users.count %></h4>
     <% @default_network_users.each do |network_user| %>
         <%= render 'shared/card_network', network_user: network_user %>
     <% end %>
 
     <!-- Request sent -->
      <% if @pending_network_users.size != 0%>
-      <h4>Requests sent</h4>
+      <h4>Demandes envoyées</h4>
       <% @pending_network_users.each do |network_user| %>
           <%= render 'shared/card_network_request_sended', network_user: network_user %>
       <% end %>
@@ -17,13 +17,13 @@
 <div class="col-xs-12 col-lg-6">
   <div class="zone row">
     <div class="col-xs-12">
-    <%= render 'shared/search_bar', query: params[:query], placeholder: "Search a friend not in your network", path: network_users_path %>
+    <%= render 'shared/search_bar', query: params[:query], placeholder: "Chercher un contact", path: network_users_path %>
   <hr>
   </div>
 
     <% if @users.size == 0 %>
       <div class="col-xs-12">
-        Sorry, no friend match with your request.
+        Aucune personne trouvée avec votre recherche.
       </div>
     <% else %>
       <% @users.each do |user| %>
@@ -38,9 +38,9 @@
 <div class="col-xs-12 col-lg-3">
   <div class="friends row">
     <!-- Friends request -->
-    <h4>Friend requests</h4>
+    <h4>Demandes de mise en relation</h4>
       <% if @friend_requests.size == 0%>
-        No friend requests for the moment.
+        Aucune demande pour le moment.
       <% end %>
     <% @friend_requests.each do |network_user| %>
         <%= render 'shared/card_network_friend_request', network_user: network_user %>
