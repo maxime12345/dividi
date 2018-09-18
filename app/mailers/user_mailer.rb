@@ -1,7 +1,3 @@
-def deliver_later
-   Devise::Mailer.delay(queue: 'my_queue').send(...)
-end
-
 class UserMailer < Devise::Mailer
 
   helper :application # gives access to all helpers defined within `application_helper`.
@@ -10,8 +6,14 @@ class UserMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     headers["Custom-header"] = "Bar"
-    opts[:from] = 'my_custom_from@domain.com'
-    opts[:reply_to] = 'my_custom_from@domain.com'
+    opts[:from] = 'noreply@dividi-project.pro'
     super
+  end
+
+  def welcome(user)
+    @user = user  # Instance variable => available in view
+
+    mail(to: @user.email, subject: 'Welcome to Dividi')
+    # This will render a view in `app/views/user_mailer`!
   end
 end
