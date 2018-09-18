@@ -1,5 +1,3 @@
-require_relative 'data_for_seed'
-
 puts "Cleaning database..."
 
   Reminder.destroy_all
@@ -45,7 +43,6 @@ puts "Creating users and collections..."
                             password: '123456',
                             password_confirmation: '123456',
                             avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thibault.jpg"))
-  collections_creation(user_first)
 
   tournevis = Item.create( name: "Tournevis de précision",
                       verbe: "To Lend",
@@ -178,10 +175,6 @@ puts "Creating users and collections..."
                               avatar: File.open("#{Rails.root}/app/assets/images/images_seed/stefansagmeister.jpg"))
 
 
-
-
-  User.all.select{ |user| user != user_first }.each{ |user| collections_creation(user) }
-
   test_landscape_image = Item.create( name: "Tente familiale",
                                       description: "5 places avec un hauvent",
                                       verbe: "To Lend",
@@ -267,8 +260,6 @@ puts "Creating users and collections..."
 
   puts "Creating networks and links..."
 
-  User.all.each{ |user| networks_creation(user) }
-
   # User 1 have all people as friends
   link1 = NetworkUser.create(user: user_second, network: user_first.networks.where(name: "Tous")[0])
   link1reverse = NetworkUser.create(user: user_first, network: user_second.networks.where(name: "Tous")[0])
@@ -284,9 +275,10 @@ puts "Creating users and collections..."
 
   link_friend_request = NetworkUser.create(user: user_first, status: "pending", network: user8.networks.where(name: "Tous")[0])
 
+  # confirmation des emails
+  User.all.update_all confirmed_at: DateTime.now
 
 
-  User.all.each{ |user| share_creation(user) }
 
 puts "#{Share.all.size} table shared, #{Network.all.size} networks declared, #{NetworkUser.all.size} links network-user in database !"
 

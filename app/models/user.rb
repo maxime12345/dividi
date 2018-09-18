@@ -3,14 +3,15 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, PhotoUploader
 
-  after_create :set_email_for_search
-  before_create :token_creation
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  after_create :default_share
+  before_create :token_creation, :set_email_for_search
 
-  has_many :collections
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
+
+  has_many :collections, dependent: :destroy
   has_many :items, through: :collections
 
   has_many :reminders_others, -> {where(ghost_item: nil)}, class_name: 'Reminder'
@@ -23,11 +24,12 @@ class User < ApplicationRecord
   # Reminders sur les objets qui m'appartiennent
   has_many :my_pending_reminders,-> {where(status: "pending")}, through: :items, source: :reminders
 
-  has_many :networks
+  has_many :networks, dependent: :destroy
   has_many :network_users, through: :networks
 
   #rdefault network, name is Tous
   has_one :default_network, -> {where(name: "Tous")}, class_name: 'Network'
+  has_one :default_collection, -> {where(name: "All")}, class_name: 'Collection'
 
   has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
   has_many :validate_network_users, -> {where(status: nil)}, through: :networks, source: :network_users
@@ -64,11 +66,17 @@ class User < ApplicationRecord
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
   def set_email_for_search
     self.email_for_search = self.email.split('@')[0].split('.').join(' ')
-
   end
 
   def token_creation
     self.token = SecureRandom.urlsafe_base64(nil, false)
   end
 
+  def default_share
+    if default_network.nil? && default_collection.nil?
+      default_collection = Collection.create(user: self, name: "All")
+      default_network = Network.create(user: self, name: "Tous")
+      Share.create(collection: default_collection, network: default_network)
+    end
+  end
 end
