@@ -5,15 +5,15 @@ class UserMailer < Devise::Mailer
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
   def confirmation_instructions(record, token, opts={})
-    headers["Custom-header"] = "Bar"
-    opts[:from] = 'noreply@dividi-project.pro'
+    opts[:from] = 'contact@dividi-project.pro'
+    opts[:reply_to] = 'contact@dividi-project.pro'
     super
   end
 
-  def welcome(user)
-    @user = user  # Instance variable => available in view
-
-    mail(to: @user.email, subject: 'Welcome to Dividi')
-    # This will render a view in `app/views/user_mailer`!
+  def reset_password_instructions(record, token, opts={})
+    opts[:from] = 'maintenance@dividi-project.pro'
+    opts[:reply_to] = 'maintenance@dividi-project.pro'
+    super
   end
+
 end

@@ -5,7 +5,7 @@
   <%= simple_form_for user, url: user_session_path do |f| %>
     <%= f.input :email, placeholder: 'email', label: false, error: 'Username is mandatory, please specify one' %>
     <%= f.input :password, placeholder: 'mot de passe', label: false %>
-    <%= f.button :submit, value: 'Se connecter' %>
+    <%= f.button :submit, value: 'Se connecter', class: "btn-primary" %>
 
     <div class="signuplink">"Pas encore de compte Dividi ?<%= link_to  "S'inscrire maintenant !", new_user_registration_path%></div>
 
