@@ -1,4 +1,4 @@
 <%= simple_form_for([item, reminder]) do |f| %>
-  <%= f.association :user, label_method: :label_method, include_blank: false, prompt: "Select a friend", collection: User.select{ |user| current_user.friends.include? user }, label: false %>
-  <%= f.button :submit, class: "btn", value: "Lend/Rent" %>
+  <%= f.association :user, label_method: :label_method, include_blank: false, prompt: "Sélectionner un ami", collection: User.select{ |user| current_user.friends.include? user }, label: false %>
+  <%= f.button :submit, class: "btn btn-primary", value: "Prêter/Louer" %>
 <% end %>

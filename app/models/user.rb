@@ -74,9 +74,9 @@ class User < ApplicationRecord
 
   def default_share
     if default_network.nil? && default_collection.nil?
-      default_collection = Collection.create(user: self, name: "All")
-      default_network = Network.create(user: self, name: "Tous")
-      Share.create(collection: default_collection, network: default_network)
+      default_collection = Collection.create!(user: self, name: "All")
+      default_network = Network.create!(user: self, name: "Tous")
+      Share.create!(collection: default_collection, network: default_network)
     end
   end
 end
