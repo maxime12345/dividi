@@ -21,4 +21,11 @@ box-shadow: none;
 
 .friends {
   min-width: 355px;
+  max-height: calc( 100vh - 70px);
+  overflow: scroll;
+}
+
+.results {
+  overflow: scroll;
+  height: calc( 100vh - 181px);
 }

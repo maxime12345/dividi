@@ -30,7 +30,11 @@ class RemindersController < ApplicationController
     @reminder = Reminder.find(params[:id])
     @item = @reminder.item
     @reminder.destroy
-    redirect_to item_path(@item)
+    if !@reminder.ghost_name.nil?
+      redirect_to reminders_path
+    else
+      redirect_to item_path(@item)
+    end
   end
 
 
