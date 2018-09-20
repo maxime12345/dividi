@@ -1,4 +1,7 @@
 class NetworksController < ApplicationController
+  protect_from_forgery
+  before_action :authenticate_user!
+
   def add_somebody_in_network
     @network = Network.find(params[:id])
   end

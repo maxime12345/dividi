@@ -1,4 +1,8 @@
 class NetworkUsersController < ApplicationController
+
+  protect_from_forgery
+  before_action :authenticate_user!
+
   def index
     #List of validate friends class by networks
     @default_network_users = current_user.default_network_users

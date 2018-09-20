@@ -77,6 +77,12 @@
                   <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
                 <% end %>
               </li>
+              <% if current_user.try(:admin?)%>
+              <hr>
+              <li>
+                <%= link_to "Dashboard", pages_dashboard_path %>
+              </li>
+            <% end %>
             </ul>
           </div>
         </div>
@@ -113,6 +119,12 @@
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
               <% end %>
             </li>
+            <% if current_user.try(:admin?)%>
+              <hr>
+              <li>
+                <%= link_to "Dashboard", pages_dashboard_path %>
+              </li>
+            <% end %>
           </ul>
         </div>
     </div>

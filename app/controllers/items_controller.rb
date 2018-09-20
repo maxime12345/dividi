@@ -25,26 +25,30 @@ class ItemsController < ApplicationController
       @query = params[:query]
     end
 
-    # On prend tous les items des amis du current user
-    # @items = Item.search(@query, { where: @where, order: @order }) #.select{ |item| current_user.friends_items.include?(item) == true }
+    @scope_items = policy_scope(Item)
 
-    @items = Item.search(@query, { where: @where, order: @order }).select{ |item| current_user.friends_items.include?(item) == true }
+    @items = Item.search(@query, { where: @where, order: @order, scope_results: ->(r) { r.where(id: @scope_items.pluck(:id)) }})
+
+
     # On prend uniquement les catégories de @items
     # User.all.map(&:email) => return an array of user's email
     @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}
   end
 
   def show
+    authorize(@item)
     @verbe = @item.verbe
   end
 
   def new
     @item = Item.new
+    authorize(@item)
   end
 
   # POST /collections/:collection_id/items
   def create
     @item = Item.new(item_params)
+    authorize(@item)
     @collection = current_user.collections[0]
     @item.collection = @collection
     if @item.save
@@ -55,15 +59,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
+    authorize(@item)
   end
 
   def update
+    authorize(@item)
     @item.update(item_params)
     redirect_to item_path(@item)
   end
 
   def destroy
+    authorize(@item)
     @item.reminders.destroy_all
     @item.destroy
     redirect_to collections_path

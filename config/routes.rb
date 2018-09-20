@@ -6,10 +6,6 @@ Rails.application.routes.draw do
 
   resources :collections, only: [:index, :show, :create, :edit, :update, :destroy]
 
-
-  # resources :items, only: [:index, :show, :new, :create, :destroy] do
-  #   resources :reminders, only: [:new, :create]
-
   resources :items, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :reminders, only: [:new, :create] do
       collection do
@@ -46,7 +42,8 @@ Rails.application.routes.draw do
 
   end
 
-  get '/pages/:token', to: 'pages#user_page', as: :user_page
+  get 'pages/dashboard', to: 'pages#dashboard'
+  get 'pages/:token', to: 'pages#user_page', as: :user_page
 
 end
 
