@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   after_create :default_share
   before_create :token_creation, :set_email_for_search
+  before_destroy :modify_reminders
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,8 +25,11 @@ class User < ApplicationRecord
   # Reminders sur les objets qui m'appartiennent
   has_many :my_pending_reminders,-> {where(status: "pending")}, through: :items, source: :reminders
 
+  has_many :network_users_others, class_name: 'NetworkUser', dependent: :destroy
+
   has_many :networks, dependent: :destroy
   has_many :network_users, through: :networks
+
 
   #rdefault network, name is Tous
   has_one :default_network, -> {where(name: "Tous")}, class_name: 'Network'
@@ -77,6 +81,33 @@ class User < ApplicationRecord
       default_collection = Collection.create!(user: self, name: "All")
       default_network = Network.create!(user: self, name: "Tous")
       Share.create!(collection: default_collection, network: default_network)
+    end
+  end
+
+  def modify_reminders
+    # a supprimer
+    my_pending_reminders.destroy_all
+    waiting_reminders.destroy_all
+    ghost_reminders.destroy_all
+
+    # a modifier
+    validate_reminders.each do |reminder|
+        reminder.ghost_name = email
+        reminder.user = nil
+        reminder.save
+    end
+
+    my_reminders.each do |reminder|
+      if reminder.user.nil?
+        reminder.destroy
+      else
+        ghost_item = reminder.item.name
+        reminder.ghost_item = ghost_item
+        ghost_name = reminder.item.collection.user.email
+        reminder.ghost_name = ghost_name
+        reminder.item = nil
+        reminder.save
+      end
     end
   end
 end
