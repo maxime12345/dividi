@@ -12,7 +12,6 @@
       <div class="search col-xs-12 col-md-4 col-lg-3">
         <% if @items.size == 0 %>
           <p>Pas d'objet trouvé.</p>
-
         <% else %>
           <p> <%= @items.size %> objets trouvés</p>
         <% end %>
@@ -48,11 +47,11 @@
       </div>
 
       <!-- Cards -->
-      <div class="">
+      <div class="container container-items">
         <div class="row">
           <% @items.each do |item| %>
-            <div class="col-xs-12 col-md-4 col-lg-2">
-              <%= render 'shared/card_item', item: item, freeable: false %>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <%= render 'shared/card_item', item: item %>
             </div>
           <% end %>
         </div>

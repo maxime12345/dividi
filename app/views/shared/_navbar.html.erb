@@ -6,70 +6,102 @@
 
   <% if user_signed_in? %>
 
-      <div class="search-bar-navbar hidden-xs hidden-sm">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <%= form_tag items_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            placeholder: "Chercher un objet dans mon réseau"
-          %>
-        <% end %>
-      </div>
+    <div class="search-bar-navbar">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <%= form_tag items_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Chercher un objet dans mon réseau"
+        %>
+      <% end %>
+    </div>
 
-  <% end %>
+    <!-- Right Navigation -->
+    <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+        <!-- Links when logged in -->
+        <%= link_to "Ajouter un objet", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%= link_to "Tous les objets", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <div class="navbar-wagon-item navbar-wagon-link">
 
-    <% if user_signed_in? %>
+        </div>
 
-      <!-- Links when logged in -->
-      <%= link_to "Ajouter un objet", new_item_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Tous les objets", items_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <div class="navbar-wagon-item navbar-wagon-link">
+        <!-- Avatar with dropdown menu -->
+        <div class="navbar-wagon-item">
+          <div class="dropdown">
 
-      </div>
-
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-
-          <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+            <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
 
 
-            <%= render 'shared/avatar', user: current_user, size: "standard" %>
+              <%= render 'shared/avatar', user: current_user, size: "standard" %>
 
-            <div class="infos">
-              <% if current_user.username.nil? %>
-                <%= current_user.email %>
-              <% else %>
-                <%= current_user.username %> <br>
-                <span class="email"> <%= current_user.email %> </span>
-              <% end %>
+              <div class="infos">
+                <% if current_user.username.nil? %>
+                  <%= current_user.email %>
+                <% else %>
+                  <%= current_user.username %> <br>
+                  <span class="email"> <%= current_user.email %> </span>
+                <% end %>
+              </div>
+
             </div>
 
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <li>
+                <%= link_to collections_path do %>
+                Mes objets <% unless current_user.my_pending_reminders.count == 0 %> <span class="badge badge-success pull-right"> <%= current_user.my_pending_reminders.count %> </span> <% end %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "Mes emprunts", reminders_path %>
+
+              </li>
+              <li>
+                <%= link_to network_users_path do %>
+                  Mes amis<% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
+                <% end %>
+              </li>
+
+              <li>
+                <%= link_to user_page_path(current_user.token) do %>
+                  Ma page
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
+                <% end %>
+              </li>
+            </ul>
           </div>
+        </div>
+    </div>
 
+    <!-- Dropdown list appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <%= link_to new_item_path do %>
+      <i class="fas fa-plus-circle"></i>
+      <% end %>
+    </div>
+
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li><%= link_to "Tous les objets", items_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+            <li><%= link_to "Mes objets", collections_path %></li>
+            <li><%= link_to "Mes amis", network_users_path %></li>
+            <li><%= link_to "Mes emprunts", reminders_path %></li>
+            <hr>
             <li>
-              <%= link_to collections_path do %>
-              Mes objets <% unless current_user.my_pending_reminders.count == 0 %> <span class="badge badge-success pull-right"> <%= current_user.my_pending_reminders.count %> </span> <% end %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "Mes emprunts", reminders_path %>
-
-            </li>
-            <li>
-              <%= link_to network_users_path do %>
-                Mes amis<% unless current_user.friend_requests.size == 0 %> <span class="badge badge-success pull-right"> <%= current_user.friend_requests.size %> </span> <% end %>
-              <% end %>
-            </li>
-
-            <li>
-              <%= link_to user_page_path(current_user.token) do %>
-                Ma page
-              <% end %>
+                 <%= link_to user_page_path(current_user.token) do %>
+                    Ma page
+                  <% end %>
             </li>
             <li>
               <%= link_to edit_user_registration_path do %>
@@ -83,23 +115,11 @@
             </li>
           </ul>
         </div>
-      </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Se connecter"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% end %>
-  </div>
-
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
     </div>
-  </div>
+
+  <% else %>
+    <!-- Login link (when logged out) -->
+    <%= link_to t(".sign_in", default: "Se connecter"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <% end %>
 </div>
 

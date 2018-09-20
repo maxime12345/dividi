@@ -2,7 +2,6 @@
   background-color: white;
   margin-top: 20px;
   border-radius: 4px;
-  overflow: hidden;
   box-shadow: $base-box-shadow;
   white-space: nowrap;
   .owner, .renter {
@@ -12,6 +11,9 @@
     justify-content: center;
     flex-grow: 1;
     font-size: 0.8em;
+  }
+  >* {
+  overflow: hidden;
   }
 }
 
@@ -23,6 +25,7 @@
   flex-direction: column;
   justify-content: end;
   position: relative;
+  border-radius: 4px 4px 0px 0px;
 }
 
 .card-category {
@@ -91,8 +94,6 @@
   justify-content: center;
   padding-bottom: 5px;
 }
-
-
 
 
 .fa-check-circle, .fa-user-circle {

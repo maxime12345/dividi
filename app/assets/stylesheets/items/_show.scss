@@ -1,8 +1,32 @@
 .container-show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: calc( 100vh - 70px );
+}
+
+@media screen and (max-width: 768px) {
+
+
+  .describe {
+    margin: auto;
+  }
+
+  .picture {
+    max-width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .describe {
+    margin-left: 25px;
+  }
 }
 
 .picture {
@@ -36,7 +60,6 @@
 .describe {
   min-width: 20%;
   max-width: 350px;
-  margin-left: 25px;
 
   > * {
   box-shadow: $base-box-shadow;
