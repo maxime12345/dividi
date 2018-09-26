@@ -1,5 +1,11 @@
 class NetworkUsersController < ApplicationController
+
+  protect_from_forgery
+  before_action :authenticate_user!
+
   def index
+    skip_policy_scope
+
     #List of validate friends class by networks
     @default_network_users = current_user.default_network_users
 
@@ -30,14 +36,11 @@ class NetworkUsersController < ApplicationController
 
   end
 
-  def show
-    @network_user = NetworkUser.find(params[:id])
-  end
-
   def create
     @network_user = NetworkUser.new(params_network_user)
     @network_user.network = Network.find(params[:network_id])
     @network_user.status = "pending"
+    authorize(@network_user)
     if @network_user.save
       redirect_to network_users_path
     else
@@ -48,6 +51,7 @@ class NetworkUsersController < ApplicationController
   def accept
     @network_user = NetworkUser.find(params[:id])
     @reverse_network_user = NetworkUser.new(user: @network_user.owner, network: current_user.default_network)
+    authorize(@network_user)
     @network_user.status = nil
     @network_user.save
     @reverse_network_user.save
@@ -56,6 +60,7 @@ class NetworkUsersController < ApplicationController
 
   def destroy
     @network_user = NetworkUser.find(params[:id])
+    authorize(@network_user)
     @network_user.destroy
     redirect_to network_users_path
   end
@@ -63,6 +68,7 @@ class NetworkUsersController < ApplicationController
 
   def destroy_all_links
     @network_user = NetworkUser.find(params[:id])
+    authorize(@network_user)
     # select all network_users with the same user
     @network_users_to_delete = current_user.network_users.where(user: @network_user.user)
 

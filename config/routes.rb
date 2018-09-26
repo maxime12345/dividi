@@ -6,10 +6,6 @@ Rails.application.routes.draw do
 
   resources :collections, only: [:index, :show, :create, :edit, :update, :destroy]
 
-
-  # resources :items, only: [:index, :show, :new, :create, :destroy] do
-  #   resources :reminders, only: [:new, :create]
-
   resources :items, only: [:index, :show, :new, :create, :destroy, :edit, :update] do
     resources :reminders, only: [:new, :create] do
       collection do
@@ -30,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :network_users, only: [:index, :show, :destroy] do
+  resources :network_users, only: [:index, :destroy] do
     member do
       get :accept
       delete :destroy_all_links
@@ -39,14 +35,10 @@ Rails.application.routes.draw do
 
   resources :networks, only: [:show, :update] do
     resources :network_users, only: :create
-    member do
-      get :add_somebody_in_network
-      post :update_somebody_in_network
-    end
-
   end
 
-  get '/pages/:token', to: 'pages#user_page', as: :user_page
+  get 'pages/dashboard', to: 'pages#dashboard'
+  get 'pages/:token', to: 'pages#user_page', as: :user_page
 
 end
 

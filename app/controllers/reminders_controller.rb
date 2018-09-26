@@ -1,16 +1,22 @@
 class RemindersController < ApplicationController
+  protect_from_forgery
+  before_action :authenticate_user!
+
   def index
+    skip_policy_scope
     @reminders_others = current_user.reminders_others
     @ghost_reminders = current_user.ghost_reminders
     @my_reminders = current_user.my_reminders
     @validate_reminders = current_user.validate_reminders
     @waiting_reminders = current_user.waiting_reminders
     @reminder = Reminder.new
+
   end
 
   def new
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new
+    authorize(@reminder)
   end
 
   def create
@@ -18,6 +24,7 @@ class RemindersController < ApplicationController
     @reminders_to_destroy = @item.reminders.where(user_id: params[:reminder][:user_id])
     @reminders_to_destroy.each{ |reminder| reminder.destroy}
     @reminder = Reminder.new(reminder_params)
+    authorize(@reminder)
     @reminder.item = @item
     if @reminder.save
       redirect_to item_path(@item)
@@ -28,6 +35,7 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder = Reminder.find(params[:id])
+    authorize(@reminder)
     @item = @reminder.item
     @reminder.destroy
     if !@reminder.ghost_item.nil?
@@ -41,13 +49,14 @@ class RemindersController < ApplicationController
   def new_outside
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new
+    authorize(@reminder)
   end
 
   def create_outside
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new(reminder_params)
+    authorize(@reminder)
     @reminder.item = @item
-
     if @reminder.save
       redirect_to item_path(@item)
     else
@@ -57,18 +66,23 @@ class RemindersController < ApplicationController
 
   def new_item_outside
     @reminder = Reminder.new
+    authorize(@reminder)
   end
 
   def create_item_outside
     @reminder = Reminder.new(reminder_params)
+    authorize(@reminder)
     @reminder.user = current_user
-    @reminder.save
-    redirect_to reminders_path
 
+    unless @reminder.ghost_item == "" || @reminder.ghost_name == ""
+      @reminder.save
+    end
+    redirect_to reminders_path
   end
 
   def accept
     @reminder = Reminder.find(params[:id])
+    authorize(@reminder)
     if @reminder.status == "pending"
       @reminder.status = nil
       @reminder.save
@@ -78,6 +92,7 @@ class RemindersController < ApplicationController
 
   def decline
     @reminder = Reminder.find(params[:id])
+    authorize(@reminder)
     @reminder.destroy
     redirect_back(fallback_location: reminders_path)
   end
