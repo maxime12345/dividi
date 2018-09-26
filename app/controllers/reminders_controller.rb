@@ -55,8 +55,8 @@ class RemindersController < ApplicationController
   def create_outside
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new(reminder_params)
-    authorize(@reminder)
     @reminder.item = @item
+    authorize(@reminder)
     if @reminder.save
       redirect_to item_path(@item)
     else

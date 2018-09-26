@@ -12,8 +12,8 @@ class CollectionsController < ApplicationController
 
   def create
     @collection = Collection.new(params_collection)
-    authorize(@collection)
     @collection.user = current_user
+    authorize(@collection)
     @collection.save
     @share = Share.create(network: current_user.default_network, collection: @collection)
     @share.save
