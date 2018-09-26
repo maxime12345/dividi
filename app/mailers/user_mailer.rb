@@ -5,13 +5,13 @@ class UserMailer < Devise::Mailer
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
 
   def confirmation_instructions(record, token, opts={})
-    opts[:from] = 'contact@dividi-project.pro'
+    opts[:from] = 'Dividi'
     opts[:reply_to] = 'contact@dividi-project.pro'
     super
   end
 
   def reset_password_instructions(record, token, opts={})
-    opts[:from] = 'maintenance@dividi-project.pro'
+    opts[:from] = 'Dividi'
     opts[:reply_to] = 'maintenance@dividi-project.pro'
     super
   end

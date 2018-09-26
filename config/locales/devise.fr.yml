@@ -18,13 +18,13 @@ fr:
       unconfirmed: "Vous devez valider votre compte pour continuer."
     mailer:
       confirmation_instructions:
-        subject: "Instructions de confirmation"
+        subject: "Dividi - Instructions de confirmation"
       reset_password_instructions:
-        subject: "Instructions pour changer le mot de passe"
+        subject: "Dividi - Instructions pour changer le mot de passe"
       unlock_instructions:
-        subject: "Instructions pour déverrouiller le compte"
+        subject: "Dividi - Instructions pour déverrouiller le compte"
       password_change:
-        subject: "Votre mot de passe a été modifié avec succés."
+        subject: "Dividi - Votre mot de passe a été modifié avec succés."
     omniauth_callbacks:
       failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'."
       success: "Authentifié avec succès via %{kind}."

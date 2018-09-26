@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   before_action :authenticate_user!
+
   include Pundit
 
   # Pundit: white-list approach.
@@ -42,6 +43,5 @@ class ApplicationController < ActionController::Base
     # facebook or google connect OR access to page requested by log out user OR choice_path
     request.env['omniauth.origin'] || stored_location_for(resource) || items_path
   end
-
 end
 
