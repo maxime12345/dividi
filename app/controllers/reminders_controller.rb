@@ -3,12 +3,14 @@ class RemindersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    skip_policy_scope
     @reminders_others = current_user.reminders_others
     @ghost_reminders = current_user.ghost_reminders
     @my_reminders = current_user.my_reminders
     @validate_reminders = current_user.validate_reminders
     @waiting_reminders = current_user.waiting_reminders
     @reminder = Reminder.new
+
   end
 
   def new
@@ -22,8 +24,8 @@ class RemindersController < ApplicationController
     @reminders_to_destroy = @item.reminders.where(user_id: params[:reminder][:user_id])
     @reminders_to_destroy.each{ |reminder| reminder.destroy}
     @reminder = Reminder.new(reminder_params)
-    @reminder.item = @item
     authorize(@reminder)
+    @reminder.item = @item
     if @reminder.save
       redirect_to item_path(@item)
     else
@@ -33,7 +35,6 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder = Reminder.find(params[:id])
-    authorize(@reminder)
     authorize(@reminder)
     @item = @reminder.item
     @reminder.destroy

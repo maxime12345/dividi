@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :network_users, only: [:index, :show, :destroy] do
+  resources :network_users, only: [:index, :destroy] do
     member do
       get :accept
       delete :destroy_all_links
@@ -35,11 +35,6 @@ Rails.application.routes.draw do
 
   resources :networks, only: [:show, :update] do
     resources :network_users, only: :create
-    member do
-      get :add_somebody_in_network
-      post :update_somebody_in_network
-    end
-
   end
 
   get 'pages/dashboard', to: 'pages#dashboard'
