@@ -15,14 +15,6 @@ class ReminderPolicy < ApplicationPolicy
 
   def destroy?
     # première condition : le record est un rappel, deuxième condition: l'objet m'appartient (l'ordre est important)
-    puts "debug record"
-    p record
-    puts "debug record.item"
-    p record.item
-    puts "debug record.item.collection"
-    p record.item.collection
-    puts "debug record.item.collection.user"
-    p record.item.collection.user
     (record.user == user && record.item.nil?) || ( record.item.collection.user == user )
   end
 
