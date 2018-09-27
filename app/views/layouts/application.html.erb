@@ -30,6 +30,11 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <script type="text/javascript"> //<![CDATA[
+    var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+    document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+    //]]>
+    </script>
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -41,5 +46,9 @@
     <%= javascript_pack_tag 'application' %>
     <script type="animation.js"></script>
     <script type="accordeon.js"></script>
+    <script language="JavaScript" type="text/javascript">
+    TrustLogo("http://www.dividi-project.pro/assets/comodo_secure_seal-43da8e046d0b60b7bb2b81765522d2e660ccd81364a5f2a7072c2f0194678465.png", "CL1", "none");
+    </script>
+    <a  href="https://ssl.comodo.com" id="comodoTL">Comodo SSL</a>
   </body>
 </html>
