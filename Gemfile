@@ -32,6 +32,7 @@ gem 'pundit'
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem "letter_opener"
+  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
@@ -41,4 +42,6 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.6.0'
+  gem "factory_girl_rails", "~> 4.8.0"
 end

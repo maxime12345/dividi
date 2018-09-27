@@ -74,6 +74,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.5.0)
@@ -91,6 +92,11 @@ GEM
     erubi (1.7.1)
     excon (0.62.0)
     execjs (2.7.0)
+    factory_girl (4.8.1)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     faker (1.9.1)
       i18n (>= 0.7)
     faraday (0.15.2)
@@ -227,6 +233,23 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.6.0)
+    rspec-mocks (3.6.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.6.0)
+    rspec-rails (3.6.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-support (3.6.0)
     ruby_http_client (3.3.0)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
@@ -259,6 +282,8 @@ GEM
       tilt (~> 2.0)
     spring (2.0.2)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -306,6 +331,7 @@ DEPENDENCIES
   cloudinary
   devise
   dotenv-rails
+  factory_girl_rails (~> 4.8.0)
   faker
   fog-aws
   font-awesome-sass (~> 5.0.9)
@@ -322,11 +348,13 @@ DEPENDENCIES
   pundit
   rails (= 5.2.1)
   redis
+  rspec-rails (~> 3.6.0)
   sass-rails
   searchkick (~> 3.0)
   sendgrid-ruby
   simple_form
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   uglifier
   web-console (>= 3.3.0)
