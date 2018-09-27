@@ -1,6 +1,6 @@
 <%= simple_form_for(@item) do |f|%>
   <div class="form-sty"><%= f.input :name, label: "Nom" %></div>
-  <%= f.association :category, label: "Catégorie" %>
+  <%= f.association :category, label: "Catégorie", prompt: "Sélectionner une catégorie" %>
 
   <%= f.input :verbe, legend_tag: false, as: :radio_buttons,
     collection: [["To Sell", "Vendre"],
@@ -17,5 +17,5 @@
   <%= f.input :photo, input_html: { accept: ('image') } %>
   <%= f.input :photo_cache, as: :hidden %>
   <div class="hr bottom"></div>
-  <%= f.button :submit, value: button, class: "btn btn-primary"%>
+  <%= f.button :submit, value: button, class: "btn-primary"%>
 <% end %>

@@ -49,8 +49,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     authorize(@item)
-    @collection = current_user.collections[0]
-    @item.collection = @collection
+    @item.collection = current_user.default_collection
     if @item.save
       redirect_to item_path(@item)
     else
