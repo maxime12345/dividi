@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   searchkick
 
+  Searchkick.search_timeout = 3
+
   belongs_to :collection
   belongs_to :category
   has_one :user, through: :collection
@@ -12,7 +14,8 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :verbe, presence: true
 
-  monetize :price_cents
+  monetize :price_cents, disable_validation: true
+
   mount_uploader :photo, PhotoUploader
 
   def available?

@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_152701) do
     t.bigint "collection_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price_cents", default: 0, null: false
+    t.integer "price_cents", default: nil, null: false
     t.string "photo"
     t.string "description"
     t.bigint "category_id"
