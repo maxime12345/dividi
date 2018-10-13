@@ -30,10 +30,6 @@ module Dividi
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-<<<<<<< HEAD
     config.i18n.default_locale = :en
-=======
-    config.i18n.default_locale = :fr
->>>>>>> 73a705fa08939c3c5b9982109830ce384e249d72
   end
 end
