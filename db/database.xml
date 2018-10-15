@@ -97,7 +97,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="711" y="120" name="reminders">
+<table x="713" y="104" name="reminders">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -114,6 +114,9 @@
 <default>NULL</default></row>
 <row name="ghost_objet" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -146,6 +149,9 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="networks" row="id" />
 </row>
+<row name="status" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
