@@ -75,7 +75,7 @@ puts "Creating users and collections..."
   test_portrait_image = Item.create(  name: "Bureau en bois",
                                       verbe: "To Give",
                                       collection: user_first.collections.where(name: "All")[0],
-                                      remote_photo_url: "http://doublemoda.com/wp-content/uploads/2018/06/32-superbe-plan-le-bon-coin-bureau-le-bon-coin-meuble-bureau-hotelfrance-avec-bon-coin-of-le-bon-coin-bureau.jpg",
+                                      remote_photo_url: "https://c1.staticflickr.com/2/1968/43499841550_c97dfce021_b.jpg",
                                       category: Category.where(name: "Meubles")[0])
 
   test_little_image = Item.create(  name: "Petite boite metal",
