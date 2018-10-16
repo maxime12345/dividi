@@ -14,3 +14,4 @@ yarn-error.log
 .byebug_history
 .env*
 dividi-project.pro.csr
+public/uploads/tmp
