@@ -26,7 +26,9 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     authorize(@reminder)
     @reminder.item = @item
-    if @reminder.save
+    if @reminder.user.nil?
+      render :new
+    elsif @reminder.save
       redirect_to item_path(@item)
     else
       render :new
@@ -57,7 +59,9 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
     authorize(@reminder)
-    if @reminder.save
+    if @reminder.ghost_name == ""
+      redirect_to new_item_reminder_path(@item)
+    elsif @reminder.save
       redirect_to item_path(@item)
     else
       render :new_outside
