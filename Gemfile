@@ -29,6 +29,7 @@ gem 'searchkick', '~> 3.0'
 gem 'sendgrid-ruby'
 gem 'pundit'
 gem 'devise-i18n'
+gem 'rails-i18n'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
