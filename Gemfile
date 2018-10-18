@@ -48,6 +48,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.15.2'
+  gem "chromedriver-helper"
   gem 'selenium-webdriver'
   gem 'capybara-selenium', '~> 0.0.6'
 end
