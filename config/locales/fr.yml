@@ -1,0 +1,8 @@
+fr:
+  activerecord:
+    models:
+      item: objet
+    attributes:
+      item:
+        name: nom
+        category: catégorie
