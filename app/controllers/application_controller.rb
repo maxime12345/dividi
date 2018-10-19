@@ -27,10 +27,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar])
   end
 
-  def default_url_options
-    { host: ENV["HOST"] || "http://www.dividi-project.pro/" }
-  end
-
   def set_locale
     # Warning, the normal configuration is: I18n.locale = params.fetch(:locale, I18n.default_locale).to_sym
     # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en and that the Rails Server remains on locale =: fr
@@ -38,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
+    # { host: ENV["HOST"] || "http://www.dividi-project.pro/" }
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
