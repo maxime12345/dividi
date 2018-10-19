@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "Test Object #{n}" }
     verbe "To Lend"
     association :category
+    price 0
   end
   factory :item_to_sell_or_give, class: Item do
     sequence(:name) { |n| "Test Object #{n}" }
