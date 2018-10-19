@@ -19,7 +19,6 @@ gem 'faker'
 gem 'awesome_print'
 gem 'devise'
 gem 'money-rails'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'mini_magick'
@@ -30,6 +29,8 @@ gem 'sendgrid-ruby'
 gem 'pundit'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.3'
+gem 'devise-i18n'
+gem 'rails-i18n'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -50,6 +51,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.15.2'
+  gem "chromedriver-helper"
   gem 'selenium-webdriver'
   gem 'capybara-selenium', '~> 0.0.6'
 end

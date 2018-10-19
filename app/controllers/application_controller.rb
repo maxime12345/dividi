@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_locale
 
   include Pundit
 
@@ -29,6 +29,16 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { host: ENV["HOST"] || "http://www.dividi-project.pro/" }
+  end
+
+  def set_locale
+    # Warning, the normal configuration is: I18n.locale = params.fetch(:locale, I18n.default_locale).to_sym
+    # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en and that the Rails Server remains on locale =: fr
+    I18n.locale = params.fetch(:locale, :fr).to_sym
+  end
+
+  def default_url_options
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
   private
