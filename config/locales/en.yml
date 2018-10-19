@@ -6,3 +6,13 @@ en:
       item:
         name: name
         category: category
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Dividi - Confirmation instructions"
+      reset_password_instructions:
+        subject: "Dividi - Reset password instructions"
+      unlock_instructions:
+        subject: "Dividi - Unlock Instructions"
+      password_change:
+        subject: "Dividi - Password Changed"
