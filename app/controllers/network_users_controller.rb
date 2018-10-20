@@ -1,51 +1,48 @@
-class NetworkUsersController < ApplicationController
+# frozen_string_literal: true
 
+class NetworkUsersController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!
 
   def index
     skip_policy_scope
 
-    #List of validate friends class by networks
+    # List of validate friends class by networks
     @default_network_users = current_user.default_network_users
 
-    #List of validate friends to exclude from search
+    # List of validate friends to exclude from search
     @friends = current_user.friends
 
-    #list of request sended by me
+    # list of request sended by me
     @pending_network_users = current_user.pending_network_users
 
-    #requests I recieve from others
+    # requests I recieve from others
     @friend_requests = current_user.friend_requests
 
     @default_network = current_user.default_network
 
-    @users = User.all.select{ |user| current_user != user }
-    .select{ |user| @friends.include?(user) == false }
-    .select{ |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
-    .select{ |user| @pending_network_users.map(&:user).include?(user) == false }
+    @users = User.all.reject { |user| current_user == user }
+                 .select { |user| @friends.include?(user) == false }
+                 .select { |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
+                 .select { |user| @pending_network_users.map(&:user).include?(user) == false }
 
     if params[:query].present?
-      @users = User.search_by_email_and_username("#{params[:query]}")
-      .select{ |user| current_user != user }
-      .select{ |user| @friends.include?(user) == false }
-      .select{ |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
-      .select{ |user| @pending_network_users.map(&:user).include?(user) == false }
+      @users = User.search_by_email_and_username(params[:query].to_s)
+                   .reject { |user| current_user == user }
+                   .select { |user| @friends.include?(user) == false }
+                   .select { |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
+                   .select { |user| @pending_network_users.map(&:user).include?(user) == false }
     end
     @network_user = NetworkUser.new
-
   end
 
   def create
     @network_user = NetworkUser.new(params_network_user)
     @network_user.network = Network.find(params[:network_id])
-    @network_user.status = "pending"
+    @network_user.status = 'pending'
     authorize(@network_user)
-    if @network_user.save
-      redirect_to network_users_path
-    else
-      redirect_to network_users_path
-    end
+    @network_user.save
+    redirect_to network_users_path
   end
 
   def accept
@@ -65,7 +62,6 @@ class NetworkUsersController < ApplicationController
     redirect_to network_users_path
   end
 
-
   def destroy_all_links
     @network_user = NetworkUser.find(params[:id])
     authorize(@network_user)
@@ -76,8 +72,8 @@ class NetworkUsersController < ApplicationController
     @reverse_network_users_to_delete = @network_user.user.network_users.where(user: current_user)
 
     # delete all links between 2 people
-    @network_users_to_delete.each{ |item| item.destroy }
-    @reverse_network_users_to_delete.each{ |item| item.destroy }
+    @network_users_to_delete.each(&:destroy)
+    @reverse_network_users_to_delete.each(&:destroy)
     redirect_to network_users_path
   end
 

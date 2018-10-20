@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemindersController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!
@@ -10,7 +12,6 @@ class RemindersController < ApplicationController
     @validate_reminders = current_user.validate_reminders
     @waiting_reminders = current_user.waiting_reminders
     @reminder = Reminder.new
-
   end
 
   def new
@@ -22,7 +23,7 @@ class RemindersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @reminders_to_destroy = @item.reminders.where(user_id: params[:reminder][:user_id])
-    @reminders_to_destroy.each{ |reminder| reminder.destroy}
+    @reminders_to_destroy.each(&:destroy)
     @reminder = Reminder.new(reminder_params)
     authorize(@reminder)
     @reminder.item = @item
@@ -47,7 +48,6 @@ class RemindersController < ApplicationController
     end
   end
 
-
   def new_outside
     @item = Item.find(params[:item_id])
     @reminder = Reminder.new
@@ -59,7 +59,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.item = @item
     authorize(@reminder)
-    if @reminder.ghost_name == ""
+    if @reminder.ghost_name == ''
       redirect_to new_item_reminder_path(@item)
     elsif @reminder.save
       redirect_to item_path(@item)
@@ -78,16 +78,14 @@ class RemindersController < ApplicationController
     authorize(@reminder)
     @reminder.user = current_user
 
-    unless @reminder.ghost_item == "" || @reminder.ghost_name == ""
-      @reminder.save
-    end
+    @reminder.save unless @reminder.ghost_item == '' || @reminder.ghost_name == ''
     redirect_to reminders_path
   end
 
   def accept
     @reminder = Reminder.find(params[:id])
     authorize(@reminder)
-    if @reminder.status == "pending"
+    if @reminder.status == 'pending'
       @reminder.status = nil
       @reminder.save
     end
