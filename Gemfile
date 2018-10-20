@@ -32,6 +32,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'letter_opener'
   gem 'spring-commands-rspec'
+  gem 'rubocop', require: false
 end
 
 group :development, :test do
