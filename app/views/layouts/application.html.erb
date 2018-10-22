@@ -28,7 +28,7 @@
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Asset pipeline app/asset/stylesheets -->
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
@@ -37,7 +37,7 @@
 
     <%= yield %>
 
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application' %> <!-- Asset pipeline app/asset/javascript -->
     <%= javascript_pack_tag 'application' %>
     <script type="animation.js"></script>
     <script type="accordeon.js"></script>
