@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReminderPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -14,8 +16,8 @@ class ReminderPolicy < ApplicationPolicy
   end
 
   def destroy?
-    # première condition : le record est un rappel, deuxième condition: l'objet m'appartient (l'ordre est important)
-    (record.user == user && record.item.nil?) || ( record.item.collection.user == user )
+    # first condition: the record is a reminder, second condition: the object belongs to me (the order is important)
+    (record.user == user && record.item.nil?) || (record.item.collection.user == user)
   end
 
   def new_outside?
@@ -41,5 +43,4 @@ class ReminderPolicy < ApplicationPolicy
   def decline?
     destroy?
   end
-
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :category do
-    name "Autres"
+    name 'Autres'
   end
 end

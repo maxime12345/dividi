@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include PgSearch
 
@@ -15,29 +17,28 @@ class User < ApplicationRecord
   has_many :collections, dependent: :destroy
   has_many :items, through: :collections
 
-  has_many :reminders_others, -> {where(ghost_item: nil)}, class_name: 'Reminder'
-  has_many :ghost_reminders, -> {where(item_id: nil)}, class_name: 'Reminder'
+  has_many :reminders_others, -> { where(ghost_item: nil) }, class_name: 'Reminder'
+  has_many :ghost_reminders, -> { where(item_id: nil) }, class_name: 'Reminder'
 
-  has_many :validate_reminders, -> {where(status: nil)}, class_name: 'Reminder'
-  has_many :waiting_reminders, -> {where(status: "pending")}, class_name: 'Reminder'
+  has_many :validate_reminders, -> { where(status: nil) }, class_name: 'Reminder'
+  has_many :waiting_reminders, -> { where(status: 'pending') }, class_name: 'Reminder'
 
-  has_many :my_reminders, -> {where(status: nil)}, through: :items, source: :reminders
+  has_many :my_reminders, -> { where(status: nil) }, through: :items, source: :reminders
   # Reminders sur les objets qui m'appartiennent
-  has_many :my_pending_reminders,-> {where(status: "pending")}, through: :items, source: :reminders
+  has_many :my_pending_reminders, -> { where(status: 'pending') }, through: :items, source: :reminders
 
   has_many :network_users_others, class_name: 'NetworkUser', dependent: :destroy
 
   has_many :networks, dependent: :destroy
   has_many :network_users, through: :networks
 
+  # rdefault network, name is Tous
+  has_one :default_network, -> { where(name: 'Tous') }, class_name: 'Network'
+  has_one :default_collection, -> { where(name: 'All') }, class_name: 'Collection'
 
-  #rdefault network, name is Tous
-  has_one :default_network, -> {where(name: "Tous")}, class_name: 'Network'
-  has_one :default_collection, -> {where(name: "All")}, class_name: 'Collection'
-
-  has_many :pending_network_users, -> {where(status: "pending")}, through: :networks, source: :network_users
-  has_many :validate_network_users, -> {where(status: nil)}, through: :networks, source: :network_users
-  has_many :default_network_users, -> {where(status: nil)}, through: :default_network,  source: :network_users
+  has_many :pending_network_users, -> { where(status: 'pending') }, through: :networks, source: :network_users
+  has_many :validate_network_users, -> { where(status: nil) }, through: :networks, source: :network_users
+  has_many :default_network_users, -> { where(status: nil) }, through: :default_network, source: :network_users
 
   has_many :friends, through: :default_network_users, source: :user
 
@@ -49,19 +50,17 @@ class User < ApplicationRecord
 
   has_many :friends_items, through: :collections_friends, source: :items
 
-
-  has_many :friend_requests, -> {where(status: "pending")}, class_name: 'NetworkUser'
+  has_many :friend_requests, -> { where(status: 'pending') }, class_name: 'NetworkUser'
 
   pg_search_scope :search_by_email_and_username,
-    against: [ :email, :username, :email_for_search ],
-    using: { tsearch: { prefix: true } }
-
+                  against: %i[email username email_for_search],
+                  using: { tsearch: { prefix: true } }
 
   def label_method
     if username.nil?
       email
     else
-      return "#{username}   -   #{email}"
+      "#{username}   -   #{email}"
     end
   end
 
@@ -69,7 +68,7 @@ class User < ApplicationRecord
 
   # method avoid to use a bigger search gem, transform "bob.dylan@dividi.fr" in "bob dylan"
   def set_email_for_search
-    self.email_for_search = self.email.split('@')[0].split('.').join(' ')
+    self.email_for_search = email.split('@')[0].split('.').join(' ')
   end
 
   def token_creation
@@ -77,11 +76,11 @@ class User < ApplicationRecord
   end
 
   def default_share
-    if default_network.nil? && default_collection.nil?
-      default_collection = Collection.create!(user: self, name: "All")
-      default_network = Network.create!(user: self, name: "Tous")
-      Share.create!(collection: default_collection, network: default_network)
-    end
+    return if default_network || default_collection
+
+    default_collection = Collection.create!(user: self, name: 'All')
+    default_network = Network.create!(user: self, name: 'Tous')
+    Share.create!(collection: default_collection, network: default_network)
   end
 
   def modify_reminders
@@ -92,9 +91,9 @@ class User < ApplicationRecord
 
     # a modifier
     validate_reminders.each do |reminder|
-        reminder.ghost_name = email
-        reminder.user = nil
-        reminder.save
+      reminder.ghost_name = email
+      reminder.user = nil
+      reminder.save
     end
 
     my_reminders.each do |reminder|
