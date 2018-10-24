@@ -10,7 +10,7 @@ RSpec.feature "Items", type: :feature do
     fill_in "email", with: user.email
     fill_in "mot de passe", with: user.password
     find_button("Se connecter").click
-    find('.fa-plus-circle').click
+    find_link('Ajouter un objet').click
 
     expect {
 
