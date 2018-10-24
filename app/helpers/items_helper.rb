@@ -3,7 +3,7 @@ module ItemsHelper
     if item.photo.present?
       cl_image_tag item.photo, alt: "#{item.name}", class: "image-item"
     else
-      image_tag("fallback/default-picture.png", class: "fallback")
+      image_pack_tag("images/fallback/default-picture.png", class: "fallback")
     end
   end
 
@@ -11,7 +11,7 @@ module ItemsHelper
     if item.photo.present?
       item.photo
     else
-      File.open("#{Rails.root}/app/assets/images/fallback/default-picture.png")
+      File.open("#{Rails.root}/app/webpacker/images/fallback/default-picture.png")
     end
   end
 

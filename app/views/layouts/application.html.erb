@@ -24,12 +24,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/assets/application.css?body=1" media="screen" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
+    <%= favicon_link_tag asset_pack_path('images/favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %> <!-- Asset pipeline app/asset/stylesheets -->
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'stylesheets', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -37,7 +36,6 @@
 
     <%= yield %>
 
-    <%= javascript_include_tag 'application' %> <!-- Asset pipeline app/asset/javascript -->
     <%= javascript_pack_tag 'application' %>
     <script type="animation.js"></script>
     <script type="accordeon.js"></script>

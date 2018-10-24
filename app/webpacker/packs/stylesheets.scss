@@ -1,0 +1,18 @@
+// Graphical variables
+@import "../src/stylesheets/config/fonts";
+@import "../src/stylesheets/config/colors";
+@import "../src/stylesheets/config/bootstrap_variables";
+
+// External libraries
+@import '~bootstrap/scss/bootstrap';
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
+
+// Your CSS partials
+@import "../src/stylesheets/layouts/index";
+@import "../src/stylesheets/components/index";
+@import "../src/stylesheets/pages/index";
+@import "../src/stylesheets/reminders/index";
+@import "../src/stylesheets/items/index";
+@import "../src/stylesheets/network_users/index";
+@import "../src/stylesheets/collections/index";

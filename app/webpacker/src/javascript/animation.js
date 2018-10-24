@@ -17,7 +17,7 @@ if (change) {
 
   });
 
-  const foot = document.querySelector('.section3');
+  const foot = document.querySelector('.section2');
 
   window.addEventListener('scroll', () => {
 
