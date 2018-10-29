@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: %i[show edit update destroy]
   protect_from_forgery
   before_action :authenticate_user!
 
@@ -10,7 +12,7 @@ class ItemsController < ApplicationController
     @order = {}
     @query = '*'
     @params_categories = []
-    @params_sort =[]
+    @params_sort = []
 
     # Filter items by category if categories are present in params
     if params[:cat].present?
@@ -21,18 +23,15 @@ class ItemsController < ApplicationController
       @order = { name: params[:sort] }
       @params_sort = params[:sort]
     end
-    if params[:query].present?
-      @query = params[:query]
-    end
+    @query = params[:query] if params[:query].present?
 
     @scope_items = policy_scope(Item)
 
-    @items = Item.search(@query, { where: @where, order: @order, scope_results: ->(r) { r.where(id: @scope_items.pluck(:id)) }})
+    @items = Item.search(@query, where: @where, order: @order, scope_results: ->(r) { r.where(id: @scope_items.pluck(:id)) })
 
-
-    # On prend uniquement les catégories de @items
+    # We only take categories of @items
     # User.all.map(&:email) => return an array of user's email
-    @categories = Category.all.select{ |category| current_user.friends_items.map(&:category).include?(category) == true}
+    @categories = Category.all.select { |category| current_user.friends_items.map(&:category).include?(category) == true }
   end
 
   def show
@@ -83,5 +82,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :price, :photo, :collection_id, :category_id, :verbe, :description)
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -17,23 +19,18 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-
   def configure_permitted_parameters
-
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username avatar])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar])
-  end
-
-  def default_url_options
-    { host: ENV["HOST"] || "http://www.dividi-project.pro/" }
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username avatar])
   end
 
   def set_locale
     # Warning, the normal configuration is: I18n.locale = params.fetch(:locale, I18n.default_locale).to_sym
-    # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en and that the Rails Server remains on locale =: fr
+    # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en
+    # and that the Rails Server remains on locale =: fr
     I18n.locale = params.fetch(:locale, :fr).to_sym
   end
 
@@ -54,4 +51,3 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || items_path
   end
 end
-

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 # app/uploaders/photo_uploader.rb
 class PhotoUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
   # include CarrierWave::MiniMagick
 
   def public_id
-    folder = Rails.env.production? ? "dividi_production" : "dividi_development_#{ENV['USER']}"
+    folder = Rails.env.production? ? 'dividi_production' : "dividi_development_#{ENV['USER']}"
 
     if model.is_a?(Item)
       "dividi/#{folder}/#{model.class}/#{model.user.id}-#{model.name}"
@@ -13,9 +15,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
     end
   end
 
-  process :resize_to_limit => [600, 600]
+  process resize_to_limit: [600, 600]
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 end

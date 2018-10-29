@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RemindersController, type: :controller do
-  it "#index (Mes emprunts) responds successfully" do
+  it '#index (Mes emprunts) responds successfully' do
     user = FactoryGirl.create(:user)
     user.confirm
     sign_in user

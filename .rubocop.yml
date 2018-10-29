@@ -1,41 +1,48 @@
 AllCops:
   Exclude:
-    - 'bin/**/*'
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'node_modules/**/*'
-    - 'script/**/*'
-    - 'support/**/*'
-    - 'tmp/**/*'
-    - 'test/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*' #webpacker & rails 5.1
+    - 'config/initializers/*'
+    - 'db/schema.rb'
+    - 'test/test_helper.rb'
 
-ConditionalAssignment:
+Lint/UselessAssignment:
+  Exclude:
+  - 'db/seeds.rb'
+
+Metrics/AbcSize:
   Enabled: false
-StringLiterals:
+
+Metrics/BlockLength:
+  Exclude:
+  - 'config/environments/*'
+  - 'config/routes.rb'
+
+Metrics/CyclomaticComplexity:
   Enabled: false
-RedundantReturn:
+
+Metrics/LineLength:
+  Max: 120 #default is 80
+  Exclude:
+  - 'db/seeds.rb'
+  - 'app/controllers/items_controller.rb'
+  - 'app/helpers/items_helper.rb'
+
+Metrics/MethodLength:
+  Exclude:
+  - 'app/models/item.rb'
+  - 'app/models/user.rb'
+  - 'app/controllers/reminders_controller.rb'
+  - 'app/controllers/items_controller.rb'
+  - 'app/controllers/network_users_controller.rb'
+  - 'app/helpers/items_helper.rb'
+
+Metrics/ModuleLength:
+  Exclude:
+  - 'app/helpers/items_helper.rb'
+
+Metrics/PerceivedComplexity:
   Enabled: false
-Documentation:
-  Enabled: false
-WordArray:
-  Enabled: false
-AbcSize:
-  Enabled: false
-MutableConstant:
-  Enabled: false
-SignalException:
-  Enabled: false
-Casecmp:
-  Enabled: false
-CyclomaticComplexity:
-  Enabled: false
-MethodMissing:
-  Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-LineLength:
-  Max: 120
-Style/EmptyMethod:
-  Enabled: false
-Bundler/OrderedGems:
+
+Style/Documentation:
   Enabled: false

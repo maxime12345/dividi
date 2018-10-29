@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-        scope.where(id: user.friends_items.pluck(:id))
+      scope.where(id: user.friends_items.pluck(:id))
     end
   end
 

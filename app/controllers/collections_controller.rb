@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:edit, :update, :destroy]
+  before_action :set_collection, only: %i[edit update destroy]
   protect_from_forgery
   before_action :authenticate_user!
 
@@ -51,5 +53,4 @@ class CollectionsController < ApplicationController
   def set_collection
     @collection = Collection.find(params[:id])
   end
-
 end
