@@ -15,7 +15,7 @@ class ReminderPolicy < ApplicationPolicy
 
   def destroy?
     # première condition : le record est un rappel, deuxième condition: l'objet m'appartient (l'ordre est important)
-    (record.user == user && record.item.nil?) || ( record.item.collection.user == user )
+    (record.user == user && record.ghost_item.nil?) || ( record.item.collection.user == user )
   end
 
   def new_outside?
