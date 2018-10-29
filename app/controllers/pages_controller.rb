@@ -1,6 +1,7 @@
-class PagesController < ApplicationController
+# frozen_string_literal: true
 
-  skip_before_action :authenticate_user!, only: [:home, :user_page]
+class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[home user_page]
 
   def home
     @user = User.new

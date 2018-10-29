@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -17,14 +19,12 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-
   def configure_permitted_parameters
-
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username avatar])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username avatar])
   end
 
   def set_locale
@@ -34,7 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    # { host: ENV["HOST"] || "http://www.dividi-project.pro/" }
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
@@ -51,4 +50,3 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || stored_location_for(resource) || items_path
   end
 end
-

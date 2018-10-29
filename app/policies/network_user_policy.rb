@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NetworkUserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -16,7 +18,6 @@ class NetworkUserPolicy < ApplicationPolicy
   def destroy?
     accept?
   end
-
 
   def destroy_all_links?
     accept?
