@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     # Warning, the normal configuration is: I18n.locale = params.fetch(:locale, I18n.default_locale).to_sym
-    # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en and that the Rails Server remains on locale =: fr
+    # This choice is made so that the Rails Console remains in config.i18n.default_locale =: en
+    # and that the Rails Server remains on locale =: fr
     I18n.locale = params.fetch(:locale, :fr).to_sym
   end
 
