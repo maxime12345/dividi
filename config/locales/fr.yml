@@ -1,0 +1,18 @@
+fr:
+  activerecord:
+    models:
+      item: objet
+    attributes:
+      item:
+        name: nom
+        category: catégorie
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Dividi - Instructions de confirmation"
+      reset_password_instructions:
+        subject: "Dividi - Instructions pour changer le mot de passe"
+      unlock_instructions:
+        subject: "Dividi - Instructions pour déverrouiller le compte"
+      password_change:
+        subject: "Dividi - Votre mot de passe a été modifié avec succés."
