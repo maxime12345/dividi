@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'pry'
 
 RSpec.feature 'Reminders', type: :feature do
   before do
@@ -17,7 +18,7 @@ RSpec.feature 'Reminders', type: :feature do
     NetworkUser.create(user: @friend, network: @user.networks[0])
     NetworkUser.create(user: @user, network: @friend.networks[0])
 
-    visit item_path(item)
+    visit  item_path(item, locale: I18n.locale)
     click_link 'Déclarer'
   end
 
