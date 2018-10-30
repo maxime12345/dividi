@@ -1,10 +1,12 @@
 AllCops:
+  TargetRubyVersion: 2.4
   Exclude:
     - 'bin/*'
     - 'node_modules/**/*' #webpacker & rails 5.1
     - 'config/initializers/*'
     - 'db/schema.rb'
     - 'test/test_helper.rb'
+    - 'vendor/bundle/**/*'
 
 Lint/UselessAssignment:
   Exclude:
