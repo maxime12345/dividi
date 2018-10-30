@@ -38,8 +38,8 @@ class RemindersController < ApplicationController
 
   def destroy
     @reminder = Reminder.find(params[:id])
-    authorize(@reminder)
     @item = @reminder.item
+    authorize(@reminder)
     @reminder.destroy
     if !@reminder.ghost_item.nil?
       redirect_to reminders_path
