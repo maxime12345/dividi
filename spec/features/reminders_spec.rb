@@ -24,12 +24,14 @@ def create_items
   @item_friend = FactoryBot.create(:item_to_rent_or_lend, collection: @friend.collections[0], category: category)
 end
 
+def before
+  connect
+  add_friend
+  create_items
+end
+
 RSpec.feature 'Reminders', type: :feature do
-  before do
-    connect
-    add_friend
-    create_items
-  end
+  before { before }
 
   context 'As a owner' do
     before do
