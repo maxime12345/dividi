@@ -6,6 +6,7 @@ AllCops:
     - 'config/initializers/*'
     - 'db/schema.rb'
     - 'test/test_helper.rb'
+    - 'vendor/bundle/**/*'
 
 Lint/UselessAssignment:
   Exclude:
