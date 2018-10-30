@@ -9,7 +9,7 @@ RSpec.describe PagesController, type: :controller do
   end
 
   it '#user_page (ma page) responds successfully' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     get :user_page, params: { token: user.token }
     expect(response).to be_successful
   end

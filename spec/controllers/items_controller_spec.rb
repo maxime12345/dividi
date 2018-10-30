@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     @user.confirm
     sign_in @user
   end
@@ -15,7 +15,7 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   it '#create allows to create an item' do
-    item = FactoryGirl.attributes_for(:item_to_rent_or_lend, collection: @user.collections[0])
+    item = FactoryBot.attributes_for(:item_to_rent_or_lend, collection: @user.collections[0])
     get :create, params: { item: item }
     expect(response).to be_successful
   end

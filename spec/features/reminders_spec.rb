@@ -5,16 +5,16 @@ require 'pry'
 
 RSpec.feature 'Reminders', type: :feature do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
 
     visit root_path
 
     fill_in 'email', with: @user.email
     fill_in 'mot de passe', with: @user.password
     click_button 'Se connecter'
-    item = FactoryGirl.create(:item_to_rent_or_lend, collection: @user.collections[0])
+    item = FactoryBot.create(:item_to_rent_or_lend, collection: @user.collections[0])
 
-    @friend = FactoryGirl.create(:user)
+    @friend = FactoryBot.create(:user)
     NetworkUser.create(user: @friend, network: @user.networks[0])
     NetworkUser.create(user: @user, network: @friend.networks[0])
 

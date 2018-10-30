@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Items', type: :feature do
   scenario 'user add a new object', js: true do
-    user = FactoryGirl.create(:user)
-    FactoryGirl.create(:category)
+    user = FactoryBot.create(:user)
+    FactoryBot.create(:category)
 
     visit root_path
 
