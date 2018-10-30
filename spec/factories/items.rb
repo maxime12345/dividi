@@ -1,15 +1,22 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
-  factory :item_to_rent_or_lend, class: Item do
-    sequence(:name) { |n| "Test Object #{n}" }
-    verbe 'To Lend'
+  sequence(:name) { |n| "Test Object #{n}" }
+
+  factory :item do
+    name
     association :category
     price 0
-  end
-  factory :item_to_sell_or_give, class: Item do
-    sequence(:name) { |n| "Test Object #{n}" }
-    verbe 'To Give'
-    association :category
+
+    trait :to_rent_or_lend do
+      verbe { 'To Lend' }
+    end
+
+    trait :to_sell_or_give do
+      verbe { 'To Give' }
+    end
+
+    factory :item_to_rent_or_lend, traits: [:to_rent_or_lend]
+    factory :item_to_sell_or_give, traits: [:to_sell_or_give]
   end
 end

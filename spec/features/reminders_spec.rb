@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pry'
 
 def connect
   @user = FactoryGirl.create(:user)
@@ -13,22 +12,28 @@ def connect
   click_button "Se connecter"
 end
 
-def create_items_and_links
+def add_friend
   @friend = FactoryGirl.create(:user)
-  item = FactoryGirl.create(:item_to_rent_or_lend, collection: @user.collections[0])
-  item_friend = FactoryGirl.create(:item_to_rent_or_lend, collection: @friend.collections[0])
-
   NetworkUser.create(user: @friend, network: @user.networks[0])
   NetworkUser.create(user: @user, network: @friend.networks[0])
+end
+
+def create_items
+  @item = FactoryGirl.create(:item_to_rent_or_lend, collection: @user.collections[0])
+
+  item_two = FactoryGirl.create(:item_to_rent_or_lend, collection: @user.collections[0])
+  # item_friend = FactoryGirl.create(:item_to_rent_or_lend, collection: @friend.collections[0])
 end
 
 RSpec.feature "Reminders as owner", type: :feature do
   before do
     connect
 
-    create_items_and_links
+    add_friend
 
-    visit  item_path(item, locale: I18n.locale)
+    create_items
+
+    visit  item_path(@item, locale: I18n.locale)
     click_link 'Déclarer'
   end
 
@@ -46,7 +51,6 @@ RSpec.feature "Reminders as owner", type: :feature do
     expect(page).to have_content 'Ami en test !'
   end
 end
-
 
 RSpec.feature "Reminders as lender/borrower", type: :feature do
   before do
