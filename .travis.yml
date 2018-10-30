@@ -4,6 +4,7 @@ cache:
   yarn: true
 services:
   - redis-server
+  - elasticsearch
 sudo: required
 before_install:
 - sudo apt-get update
@@ -11,6 +12,7 @@ before_install:
 addons:
   postgresql: '9.6'
 before_script:
+  - sleep 10
   - psql -c 'create database dividi_test;' -U postgres
 script:
   - bundle exec rake db:schema:load
