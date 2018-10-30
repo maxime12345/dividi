@@ -24,46 +24,48 @@ def create_items
   @item_friend = FactoryBot.create(:item_to_rent_or_lend, collection: @friend.collections[0], category: category)
 end
 
-RSpec.feature 'Reminders', type: :feature do
+def before
+  connect
+  add_friend
+  create_items
+end
+
+RSpec.feature 'Reminders as a owner', type: :feature do
   before do
-    connect
-    add_friend
-    create_items
+    before
+    visit item_path(@item, locale: I18n.locale)
+    click_link 'Déclarer'
   end
 
-  context 'As a owner' do
-    before do
-      visit item_path(@item, locale: I18n.locale)
-      click_link 'Déclarer'
-    end
-
-    scenario 'I can declare an object to lend to a friend in the network' do
-      click_link 'En dehors de mon réseau'
-      select @friend.email, from: 'reminder_user_id'
-      click_button 'Prêter/Louer', match: :first
-      expect(page).to have_content @friend.email
-    end
-
-    scenario 'I can declare an object to lend to a friend NOT in the network' do
-      click_link 'En dehors de mon réseau'
-      fill_in 'Name', with: 'Ami en test !'
-      click_button 'btn-outside-item'
-      expect(page).to have_content 'Ami en test !'
-    end
+  scenario 'I can declare an object to lend to a friend in the network' do
+    click_link 'En dehors de mon réseau'
+    select @friend.email, from: 'reminder_user_id'
+    click_button 'Prêter/Louer', match: :first
+    expect(page).to have_content @friend.email
   end
 
-  context 'As a lender/borrower' do
-    before { visit item_path(@item_friend, locale: I18n.locale) }
+  scenario 'I can declare an object to lend to a friend NOT in the network' do
+    click_link 'En dehors de mon réseau'
+    fill_in 'Name', with: 'Ami en test !'
+    click_button 'btn-outside-item'
+    expect(page).to have_content 'Ami en test !'
+  end
+end
 
-    scenario 'I can send a request to a friend' do
-      click_link 'Envoyer une notification'
-      expect(page).to have_content 'Annuler ma notification'
-    end
+RSpec.feature 'Reminders as a lender/borrower', type: :feature do
+  before do
+    before
+    visit item_path(@item_friend, locale: I18n.locale)
+  end
 
-    scenario 'I can delete my request to my friend' do
-      click_link 'Envoyer une notification'
-      click_link 'Annuler ma notification'
-      expect(page).to have_content 'Envoyer une notification'
-    end
+  scenario 'I can send a request to a friend' do
+    click_link 'Envoyer une notification'
+    expect(page).to have_content 'Annuler ma notification'
+  end
+
+  scenario 'I can delete my request to my friend' do
+    click_link 'Envoyer une notification'
+    click_link 'Annuler ma notification'
+    expect(page).to have_content 'Envoyer une notification'
   end
 end
