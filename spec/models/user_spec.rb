@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
 
   before do
-    @user_test = User.create(email: 'test@dividi.fr', password: '123456', password_confirmation: '123456')
+    @user_test = FactoryBot.create(:user)
   end
 
   it 'own a token when created' do

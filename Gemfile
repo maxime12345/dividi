@@ -41,7 +41,7 @@ end
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'factory_bot_rails'
   gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
   gem 'pry-rails'

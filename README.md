@@ -1,4 +1,4 @@
-# Dividi
+# Dividi [![Build Status](https://travis-ci.org/dividi-dream-team/dividi.svg?branch=master)](https://travis-ci.org/dividi-dream-team/dividi)
 
 ## Installation
 

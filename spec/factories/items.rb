@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
-  sequence(:name) { |n| "Test Object #{n}" }
-
+FactoryBot.define do
   factory :item do
-    name
-    association :category
-    price 0
+    sequence(:name) { |n| "Test Object #{n}" }
+    price { 0 }
 
     trait :to_rent_or_lend do
       verbe { 'To Lend' }
