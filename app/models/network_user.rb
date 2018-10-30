@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NetworkUser < ApplicationRecord
   belongs_to :network
   belongs_to :user

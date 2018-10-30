@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
@@ -7,12 +9,12 @@ RSpec.describe ItemsController, type: :controller do
     sign_in @user
   end
 
-  it "#index (Tous les objets) responds successfully" do
+  it '#index (Tous les objets) responds successfully' do
     get :index
     expect(response).to be_successful
   end
 
-  it "#create allows to create an item" do
+  it '#create allows to create an item' do
     item = FactoryGirl.attributes_for(:item_to_rent_or_lend, collection: @user.collections[0])
     get :create, params: { item: item }
     expect(response).to be_successful

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -8,8 +10,7 @@ Bundler.require(*Rails.groups)
 
 module Dividi
   class Application < Rails::Application
-
-    #before installing rspec
+    # before installing rspec
     # config.generators do |generate|
     #       generate.assets false
     #       generate.helper false
@@ -20,16 +21,15 @@ module Dividi
 
     config.generators do |g|
       g.test_framework :rspec,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        request_specs: false
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       request_specs: false
     end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
   end
 end

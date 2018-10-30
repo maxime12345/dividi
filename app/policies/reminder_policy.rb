@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReminderPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
@@ -41,5 +43,4 @@ class ReminderPolicy < ApplicationPolicy
   def decline?
     destroy?
   end
-
 end
