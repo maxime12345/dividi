@@ -1,5 +1,10 @@
 fr:
   items:
+    index:
+      results:
+        zero: 'Aucun résultat'
+        one: '1 objet trouvé'
+        other: '%{count} objets trouvés'
     new:
       add_title: 'Ajouter un objet'
       add_button: 'Ajouter cet objet'
