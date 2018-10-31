@@ -1,0 +1,14 @@
+fr:
+  items:
+    new:
+      add_title: 'Ajouter un objet'
+      add_button: 'Ajouter cet objet'
+      label_name: 'Nom'
+      category: 'Catégorie'
+      select_category: 'Sélectionner une catégorie'
+      sell: 'Vendre'
+      give: 'Prêter'
+      lend: 'Donner'
+      rent: 'Louer'
+      price: 'Prix en €'
+      description: 'Description'
