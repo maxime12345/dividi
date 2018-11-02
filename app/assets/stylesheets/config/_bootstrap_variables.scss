@@ -19,7 +19,7 @@ $brand-warning: $orange;
 
 // Buttons & inputs' radius
 $border-radius-base: 2px;
-$border-radius-large: 2px;
+$border-radius-large: 5px;
 $border-radius-small: 2px;
 
 // Patch to make simple_form compatible with bootstrap 3
@@ -52,3 +52,4 @@ $border-radius-small: 2px;
 // Override other variables below!
 $base-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 $base-box-shadow-hover: 4px 4px 4px rgba(0, 0, 0, 0.15);
+$base-border: 1px solid $gray;

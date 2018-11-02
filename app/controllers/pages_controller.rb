@@ -14,6 +14,10 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+
+  end
+
+  def dashboard_admin
     @users = User.all
     @networks = Network.all
     @collections = Collection.all

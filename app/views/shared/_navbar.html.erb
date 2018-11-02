@@ -2,13 +2,13 @@
   <div class="container">
     <div class="navbar-container">
 
-      <%= link_to root_path, class: "navbar-brand" do %>
+      <%= link_to pages_dashboard_path, class: "navbar-brand" do %>
         <%= image_tag "logo/d-noir.png" %>
       <% end %>
 
-      <% if user_signed_in? %>
+      <div class="navbar-icons">
 
-        <div class="navbar-icons">
+        <% if user_signed_in? && !request.path.include?('pages/dashboard') %>
           <%= link_to items_path do %>
             <i class="fas fa-search"></i>
           <% end %>
@@ -36,9 +36,15 @@
               <% end %>
             </i>
           <% end %>
-        </div>
 
-      <% end %>
+        <% else %>
+
+          <%= link_to new_item_path do %>
+            <i class="fas fa-plus-circle"></i>
+          <% end %>
+
+        <% end %>
+      </div>
 
       <div class="navbar-avatar dropdown">
         <div class="dropdown-toggle" data-toggle="dropdown">
@@ -67,7 +73,7 @@
           <% if current_user.try(:admin?)%>
             <hr>
             <li>
-              <%= link_to "Dashboard", pages_dashboard_path %>
+              <%= link_to "Dashboard", pages_dashboard_admin_path %>
             </li>
           <% end %>
           <% end %>

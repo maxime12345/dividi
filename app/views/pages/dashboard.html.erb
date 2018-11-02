@@ -1,16 +1,49 @@
 <div class="container">
-
-  <h4>Dashboard Dividi</h4>
-
-  Utilisateurs : <%= @users.size %> <br>
-  Réseaux : <%= @networks.size %> <br>
-  Collections : <%= @collections.size %> <br>
-  Collections partagées : <%= @shares.size %> <br>
-
-  <hr>
-  Nombre de liens d'amitié (validés ou non) : <%= @network_users.size %>
-
-  <hr>
-  Nombre d'objets : <%= @items.size %> <br>
-  Nombre de prêts : <%= @reminders.size %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="icon">
+          <i class="fas fa-search"></i>
+        </div>
+        Rechercher un objet
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="dashboard-title">
+          <div class="icon">
+            <i class="fas fa-warehouse"></i>
+          </div>
+          Mes objets
+        </div>
+        <div class="dashboard-shortcuts">
+          <div class="shortcut">
+            Demandes en cours
+          </div>
+          <div class="shortcut">
+            Objets prêtés
+          </div>
+          <div class="shortcut">
+            Disponibles
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="icon">
+          <i class="fas fa-thumbtack"></i>
+        </div>
+        Mes pense-bêtes
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="icon">
+          <i class="fas fa-users"></i>
+        </div>
+        Mon réseau
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,29 @@
+.dashboard-card {
+  border: $base-border;
+  border-radius: $border-radius-large;
+  margin: 10px 0px;
+  padding: 5px;
+  &:hover {
+    box-shadow: $base-box-shadow;
+  }
+
+}
+.dashboard-title {
+  display: flex;
+}
+
+.dashboard-card .icon {
+    width: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.dashboard-card .shortcut {
+  padding: 5px;
+  border-radius: $border-radius-large;
+  &:hover {
+    background-color: $middle-gray;
+
+  }
+}
