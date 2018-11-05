@@ -1,47 +1,96 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12">
       <div class="dashboard-card">
-        <div class="icon">
-          <i class="fas fa-search"></i>
-        </div>
-        Rechercher un objet
+          <%= form_tag items_path, method: :get do %>
+            <i class="fas fa-search"></i>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Chercher",
+              class: "field"
+            %>
+          <% end %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
       <div class="dashboard-card">
         <div class="dashboard-title">
-          <div class="icon">
-            <i class="fas fa-warehouse"></i>
-          </div>
+          <div class="icon">  <i class="fas fa-warehouse"></i></div>
           Mes objets
         </div>
         <div class="dashboard-shortcuts">
-          <div class="shortcut">
-            Demandes en cours
-          </div>
-          <div class="shortcut">
-            Objets prêtés
-          </div>
-          <div class="shortcut">
-            Disponibles
-          </div>
+
+          <%= link_to collections_path do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.notifications_my_objets %>
+              </span>
+              Demandes en cours
+            </div>
+          <% end %>
+
+          <%= link_to collections_path do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.my_reminders.count %>
+              </span>
+              Objets prêtés
+            </div>
+          <% end %>
+
+          <%= link_to collections_path do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.number_available_items %>
+              </span>
+              Disponibles
+            </div>
+          <% end %>
+
+          <%= link_to new_item_path do %>
+            <div class="shortcut">
+              <i class="fas fa-plus-circle"></i>
+              Ajouter un objet
+            </div>
+          <% end %>
+
         </div>
       </div>
     </div>
+
     <div class="col-xs-12 col-sm-6">
       <div class="dashboard-card">
-        <div class="icon">
-          <i class="fas fa-thumbtack"></i>
+        <div class="dashboard-title">
+          <div class="icon"><i class="fas fa-thumbtack"></i></div>
+          Mes pense-bêtes
         </div>
-        Mes pense-bêtes
+
+        <div class="dashboard-shortcuts">
+
+          <%= link_to collections_path do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.notifications_my_objets %>
+              </span>
+              Objets empruntés
+            </div>
+          <% end %>
+
+          <%= link_to new_item_path do %>
+            <div class="shortcut">
+              <i class="fas fa-plus-circle"></i>
+              Ajouter un pense-bête
+            </div>
+          <% end %>
+
+        </div>
+
       </div>
     </div>
-    <div class="col-xs-12 col-sm-6">
+
+    <div class="col-xs-12">
       <div class="dashboard-card">
-        <div class="icon">
-          <i class="fas fa-users"></i>
-        </div>
+        <div class="icon"><i class="fas fa-users"></i></div>
         Mon réseau
       </div>
     </div>

@@ -1,5 +1,4 @@
 <div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
     <div class="navbar-container">
 
       <%= link_to pages_dashboard_path, class: "navbar-brand" do %>
@@ -20,29 +19,18 @@
           <%= link_to collections_path do %>
             <i class="fas fa-warehouse">
               <% unless current_user.my_pending_reminders.count == 0 %>
-                <span class="badge badge-pill badge-success pull-right"><%= current_user.my_pending_reminders.count %> </span>
+                <span class="badge-navbar badge-pill badge-success pull-right"><%= current_user.notifications_my_objets %> </span>
               <% end %>
             </i>
-          <% end %>
-
-          <%= link_to new_item_path do %>
-            <i class="fas fa-plus-circle"></i>
           <% end %>
 
           <%= link_to network_users_path do %>
             <i class="fas fa-users">
               <% unless current_user.friend_requests.size == 0 %>
-                <span class="badge badge-pill badge-success pull-right"> <%= current_user.friend_requests.size %> </span>
+                <span class="badge-navbar badge-pill badge-success pull-right"> <%= current_user.friend_requests.size %> </span>
               <% end %>
             </i>
           <% end %>
-
-        <% else %>
-
-          <%= link_to new_item_path do %>
-            <i class="fas fa-plus-circle"></i>
-          <% end %>
-
         <% end %>
       </div>
 
@@ -81,6 +69,5 @@
       </div>
 
     </div>
-  </div>
 </div>
 
