@@ -31,6 +31,23 @@ Before you get started, the following needs to be installed:
   brew services start postgresql
   ```
 
+* **Elasticsearch**:
+
+  Elasticsearch need Java:
+  ```bash
+  brew cask install homebrew/cask-versions/java8
+  ```
+
+  Install Elasticsearch:
+  ```bash
+  brew install elasticsearch
+  ```
+
+  Start Elasticsearch:
+  ```bash
+  brew services start elasticsearch
+  ```
+
 ### Setting up the development environment
   1.  Get the code. Clone this git repository :
   ```bash
@@ -57,6 +74,11 @@ Before you get started, the following needs to be installed:
   5. Update your local database schema to the newest version, run database migrations with :
   ```bash
   bundle exec rake db:migrate
+  ```
+
+  6. Add some users, items and networks to database (this command requires the possession of an API key for Cloudinary, please contact the project administrator to get it) :
+  ```bash
+  bundle exec rake db:seed
   ```
 ---
 
