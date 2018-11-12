@@ -9,12 +9,18 @@
       </div>
 
       <!-- Search bar -->
+      <div class="search-bar-navbar">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <%= form_tag items_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Chercher un objet dans mon réseau"
+        %>
+      <% end %>
+    </div>
+
       <div class="search col-xs-12 col-md-4 col-lg-3">
-        <% if @items.size == 0 %>
-          <p>Pas d'objet trouvé.</p>
-        <% else %>
-          <p> <%= @items.size %> objets trouvés</p>
-        <% end %>
+        <p><%=  t('.results', count: @items.size) %></p>
       </div>
     </div>
 
