@@ -7,8 +7,8 @@ console.log(params_tab  + 'li');
 if ( typeof params_tab === 'string' ) {
   const li = document.getElementById(params_tab + '-li');
   const tab = document.getElementById(params_tab);
-  const ul = document.querySelectorAll('ul.nav.nav-tabs > li')[0].classList ;
-  const div = document.querySelectorAll('div.tab-content > div')[0].classList ;
+  const ul = document.querySelector('ul.nav.nav-tabs > li.active').classList ;
+  const div = document.querySelectorAll('div.tab-content > div.active')[0].classList ;
 
   ul.remove('active');
   div.remove('in', 'active');
