@@ -13,9 +13,7 @@ class PagesController < ApplicationController
     @items = @user.items
   end
 
-  def dashboard
-
-  end
+  def dashboard; end
 
   def dashboard_admin
     @users = User.all

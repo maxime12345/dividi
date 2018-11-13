@@ -61,7 +61,7 @@ class User < ApplicationRecord
   end
 
   def number_available_items
-    items.select { |item| item.reminders.size == 0 }.count
+    items.select { |item| item.reminders.empty? }.count
   end
 
   def label_method
