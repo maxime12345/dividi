@@ -47,5 +47,9 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Enabled: false
 
+Style/DateTime:
+  Exclude:
+    - 'db/**/*'
+
 Style/Documentation:
   Enabled: false
