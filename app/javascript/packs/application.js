@@ -1,4 +1,4 @@
 import "bootstrap";
 import "./search";
-import "../components/form_item"
-import "./tabs"
+import "../components/form_item";
+import "./tabs";
