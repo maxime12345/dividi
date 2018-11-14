@@ -43,6 +43,7 @@ user_first = User.create(username: 'Thibault',
                          email: 'tv@dividi.fr',
                          password: '123456',
                          password_confirmation: '123456',
+                         admin: true,
                          avatar: File.open("#{Rails.root}/app/assets/images/images_seed/thibault.jpg"))
 
 tournevis = Item.create(name: 'Tournevis de précision',
