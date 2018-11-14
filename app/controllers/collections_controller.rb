@@ -2,6 +2,8 @@
 
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[edit update destroy]
+  before_action :set_active_tab, only: :index
+
   protect_from_forgery
   before_action :authenticate_user!
 
@@ -52,5 +54,9 @@ class CollectionsController < ApplicationController
 
   def set_collection
     @collection = Collection.find(params[:id])
+  end
+
+  def set_active_tab
+    @active_tab = params[:tab].in?(%w[available question not-available add]) ? params[:tab] : 'available'
   end
 end
