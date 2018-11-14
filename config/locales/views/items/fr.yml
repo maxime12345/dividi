@@ -15,5 +15,5 @@ fr:
       give: 'Donner'
       lend: 'Prêter'
       rent: 'Louer'
-      price: 'Prix en €'
+      price: 'Prix en € par jour'
       description: 'Description'

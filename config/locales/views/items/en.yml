@@ -15,5 +15,5 @@ en:
       give: 'Give'
       lend: 'Lend'
       rent: 'Rent'
-      price: 'Price in €'
+      price: 'Price in € per day'
       description: 'Description'
