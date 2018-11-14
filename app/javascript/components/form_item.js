@@ -29,5 +29,3 @@ function toggleHiddenClass() {
     item_price.classList.add('hidden')
   }
 }
-
-
