@@ -1,16 +1,150 @@
 <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="dashboard-card">
+          <%= form_tag items_path, method: :get do %>
+            <i class="fas fa-search"></i>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Chercher un objet",
+              class: "field"
+            %>
+          <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="dashboard-title">
+          <div class="icon">  <i class="fas fa-warehouse"></i></div>
+          Mes objets
+        </div>
+        <div class="dashboard-shortcuts">
 
-  <h4>Dashboard Dividi</h4>
+          <%= link_to collections_path(tab: 'available') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.number_available_items %>
+              </span>
+              Disponibles
+            </div>
+          <% end %>
 
-  Utilisateurs : <%= @users.size %> <br>
-  Réseaux : <%= @networks.size %> <br>
-  Collections : <%= @collections.size %> <br>
-  Collections partagées : <%= @shares.size %> <br>
+          <%= link_to collections_path(tab: 'question') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.notifications_my_objets %>
+              </span>
+              Demandes reçues
+            </div>
+          <% end %>
 
-  <hr>
-  Nombre de liens d'amitié (validés ou non) : <%= @network_users.size %>
+          <%= link_to collections_path(tab: 'not-available') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.my_reminders.count %>
+              </span>
+              Objets prêtés
+            </div>
+          <% end %>
 
-  <hr>
-  Nombre d'objets : <%= @items.size %> <br>
-  Nombre de prêts : <%= @reminders.size %>
+          <%= link_to collections_path(tab: 'ajouter') do %>
+            <div class="shortcut">
+              <i class="fas fa-plus-circle"></i>
+              Ajouter un objet
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="dashboard-card">
+        <div class="dashboard-title">
+          <div class="icon"><i class="fas fa-thumbtack"></i></div>
+          Mes emprunts
+        </div>
+
+        <div class="dashboard-shortcuts">
+
+          <%= link_to reminders_path(tab: 'emprunts') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.validate_reminders.count %>
+              </span>
+              Objets empruntés
+            </div>
+          <% end %>
+
+          <%= link_to reminders_path(tab: 'demandes') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.waiting_reminders.count %>
+              </span>
+              Demandes envoyées
+            </div>
+          <% end %>
+
+          <%= link_to reminders_path(tab: 'ajouter') do %>
+            <div class="shortcut">
+              <i class="fas fa-plus-circle"></i>
+              Ajouter un pense-bête
+            </div>
+          <% end %>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="dashboard-card">
+        <div class="dashboard-title">
+          <div class="icon"><i class="fas fa-users"></i></div>
+          Mon réseau
+        </div>
+
+        <div class="dashboard-shortcuts">
+
+          <%= link_to network_users_path(tab: 'amis') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.friends.count %>
+              </span>
+              Mes amis
+            </div>
+          <% end %>
+
+          <%= link_to network_users_path(tab: 'question') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.friend_requests.count %>
+              </span>
+              Demandes reçues
+            </div>
+          <% end %>
+
+          <%= link_to network_users_path(tab: 'question') do %>
+            <div class="shortcut">
+              <span class="badge">
+                <%= current_user.pending_network_users.count %>
+              </span>
+              Demandes envoyées
+            </div>
+          <% end %>
+
+          <%= form_tag network_users_path(tab: 'search'), method: :get do %>
+            <i class="fas fa-search"></i>
+            <%= text_field_tag :query,
+              params[:query],
+              placeholder: "Chercher un contact",
+              class: "field"
+            %>
+          <% end %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
