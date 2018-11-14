@@ -5,9 +5,9 @@
       <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" id="amis-li"><a href="#amis" aria-controls="not-available" role="tab" data-toggle="tab">Mes amis</a></li>
-          <li role="presentation" id="question-li"><a href="#question" aria-controls="not-available" role="tab" data-toggle="tab">Demandes en cours</a></li>
-          <li role="presentation" class="active" id="search-li"><a href="#search" aria-controls="available" role="tab" data-toggle="tab">Chercher un ami</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "amis" %>"><a href="#amis" aria-controls="amis" role="tab" data-toggle="tab">Mes amis</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "question" %>"><a href="#question" aria-controls="question" role="tab" data-toggle="tab">Demandes en cours</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "search" %>"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Chercher un ami</a></li>
 
         </ul>
 
