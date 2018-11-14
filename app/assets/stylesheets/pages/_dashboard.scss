@@ -1,0 +1,52 @@
+.dashboard-card {
+  border: $base-border;
+  border-radius: $border-radius-large;
+  margin: 10px 0px;
+  padding: 5px;
+  &:hover {
+    box-shadow: $base-box-shadow;
+  }
+
+}
+.dashboard-title {
+  display: flex;
+  font-size: 1.2em;
+}
+
+.dashboard-card .icon {
+  width: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dashboard-card .fa-plus-circle {
+
+  font-size: 1.3em;
+  color: $green;
+}
+
+.dashboard-card form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .field {
+    text-indent: 20px;
+    width: 100%;
+  }
+  .fa-search {
+    margin: 5px;
+    position: absolute;
+  }
+}
+
+
+.dashboard-card .shortcut {
+  padding: 5px;
+  border-radius: $border-radius-large;
+  &:hover {
+    background-color: $middle-gray;
+
+  }
+}
+

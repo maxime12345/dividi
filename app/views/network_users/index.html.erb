@@ -1,59 +1,74 @@
-<div class="col-xs-12 col-lg-3">
-  <div class="friends">
-    <!-- Request sent -->
-    <% if @pending_network_users.size != 0%>
-      <h4>Demandes envoyées</h4>
-      <% @pending_network_users.each do |network_user| %>
-          <%= render 'shared/card_network_request_sended', network_user: network_user %>
-      <% end %>
-    <% end %>
+<div class="container">
 
+  <!-- Liste de mes objets -->
+    <h5>Mon réseau</h5>
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" id="amis-li"><a href="#amis" aria-controls="not-available" role="tab" data-toggle="tab">Mes amis</a></li>
+          <li role="presentation" id="question-li"><a href="#question" aria-controls="not-available" role="tab" data-toggle="tab">Demandes en cours</a></li>
+          <li role="presentation" class="active" id="search-li"><a href="#search" aria-controls="available" role="tab" data-toggle="tab">Chercher un ami</a></li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane" id="amis">
     <!-- Current friends -->
-    <h4>Mes amis - <%= @default_network_users.count %></h4>
-    <% @default_network_users.each do |network_user| %>
-        <%= render 'shared/card_network', network_user: network_user %>
-    <% end %>
-
-  </div>
-</div>
-
-<div class="col-xs-12 col-lg-6">
-  <div class="zone row">
-    <div class="col-xs-12">
-    <%= render 'shared/search_bar', query: params[:query], placeholder: "Chercher un contact", path: network_users_path %>
-    </div>
-    <hr>
-
-    <div class="col-xs-12">
-      <div class="results row">
-
-        <% if @users.size == 0 %>
-          <div class="col-xs-12">
-            Aucune personne trouvée avec votre recherche.
-          </div>
-        <% else %>
-            <% @users.each do |user| %>
-              <div class="col-xs-6 col-lg-4">
-                <%= render 'shared/card_friend', user: user %>
-              </div>
+            <h4>Mes amis - <%= @default_network_users.count %></h4>
+            <% @default_network_users.each do |network_user| %>
+                <%= render 'shared/card_network', network_user: network_user %>
             <% end %>
-        <% end %>
+          </div>
 
+          <div role="tabpanel" class="tab-pane" id="question">
+                <!-- Request sent -->
+            <% if @pending_network_users.size != 0 %>
+              <h4>Demandes envoyées</h4>
+              <% @pending_network_users.each do |network_user| %>
+                  <%= render 'shared/card_network_request_sended', network_user: network_user %>
+              <% end %>
+            <% end %>
+
+              <div class="friends row">
+                  <!-- Friends request -->
+                  <h4>Demandes de mise en relation</h4>
+                    <% if @friend_requests.size == 0 %>
+                      Aucune demande pour le moment.
+                    <% end %>
+                  <% @friend_requests.each do |network_user| %>
+                      <%= render 'shared/card_network_friend_request', network_user: network_user %>
+                  <% end %>
+                </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane active" id="search">
+            <div class="zone row">
+                <div class="col-xs-12">
+                <%= render 'shared/search_bar', query: params[:query], placeholder: "Chercher un contact", path: network_users_path(tab: 'search') %>
+                </div>
+                <hr>
+
+                <div class="col-xs-12">
+                  <div class="results row">
+
+                    <% if @users.size == 0 %>
+                      <div class="col-xs-12">
+                        Aucune personne trouvée avec votre recherche.
+                      </div>
+                    <% else %>
+                        <% @users.each do |user| %>
+                          <div class="col-xs-6 col-lg-4">
+                            <%= render 'shared/card_friend', user: user %>
+                          </div>
+                        <% end %>
+                    <% end %>
+
+                  </div>
+                </div>
+              </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
 </div>
-
-<div class="col-xs-12 col-lg-3">
-  <div class="friends row">
-    <!-- Friends request -->
-    <h4>Demandes de mise en relation</h4>
-      <% if @friend_requests.size == 0%>
-        Aucune demande pour le moment.
-      <% end %>
-    <% @friend_requests.each do |network_user| %>
-        <%= render 'shared/card_network_friend_request', network_user: network_user %>
-    <% end %>
-  </div>
-</div>
-

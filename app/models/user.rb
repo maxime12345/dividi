@@ -56,6 +56,14 @@ class User < ApplicationRecord
                   against: %i[email username email_for_search],
                   using: { tsearch: { prefix: true } }
 
+  def notifications_my_objets
+    my_pending_reminders.select { |reminder| Item.find(reminder.item_id).available? }.count
+  end
+
+  def number_available_items
+    items.select { |item| item.reminders.empty? }.count
+  end
+
   def label_method
     if username.nil?
       email
