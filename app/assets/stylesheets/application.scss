@@ -2,6 +2,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/general_rules";
 
 // External libraries
 @import "bootstrap-sprockets";
@@ -17,7 +18,3 @@
 @import "items/index";
 @import "network_users/index";
 @import "collections/index";
-
-body {
-  margin-top: 70px;
-}
