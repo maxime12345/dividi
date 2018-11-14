@@ -40,8 +40,8 @@ Rails.application.routes.draw do
     resources :networks, only: %i[show update] do
       resources :network_users, only: :create
     end
-
     get 'pages/dashboard', to: 'pages#dashboard'
+    get 'pages/dashboard_admin', to: 'pages#dashboard_admin'
     get 'pages/:token', to: 'pages#user_page', as: :user_page
   end
 end

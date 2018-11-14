@@ -13,7 +13,9 @@ class PagesController < ApplicationController
     @items = @user.items
   end
 
-  def dashboard
+  def dashboard; end
+
+  def dashboard_admin
     @users = User.all
     @networks = Network.all
     @collections = Collection.all

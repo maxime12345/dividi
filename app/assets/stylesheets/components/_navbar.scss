@@ -2,23 +2,28 @@
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   background: white;
   transition: all 0.3s ease;
+  height: 70px;
   padding: 5px;
-}
-
-.container {
-  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .navbar-container {
+    max-width: 1100px;
+  }
 }
 
 .navbar-brand {
   padding: 0;
-  display: flex;
-  align-items: center;
   img {
     height: 50px;
   }
@@ -96,7 +101,7 @@
   border-top: 1px solid #E6E6E6;
 }
 
-.badge {
+.badge-navbar {
   background-color: #ee5f5b;
   font-size: 10px;
   position: absolute;

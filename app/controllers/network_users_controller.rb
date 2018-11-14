@@ -42,7 +42,7 @@ class NetworkUsersController < ApplicationController
     @network_user.status = 'pending'
     authorize(@network_user)
     @network_user.save
-    redirect_to network_users_path
+    redirect_to network_users_path(tab: 'search')
   end
 
   def accept
