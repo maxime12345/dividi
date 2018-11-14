@@ -5,15 +5,15 @@
       <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" id="amis-li"><a href="#amis" aria-controls="not-available" role="tab" data-toggle="tab">Mes amis</a></li>
-          <li role="presentation" id="question-li"><a href="#question" aria-controls="not-available" role="tab" data-toggle="tab">Demandes en cours</a></li>
-          <li role="presentation" class="active" id="search-li"><a href="#search" aria-controls="available" role="tab" data-toggle="tab">Chercher un ami</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "amis" %>"><a href="#amis" aria-controls="amis" role="tab" data-toggle="tab">Mes amis</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "question" %>"><a href="#question" aria-controls="question" role="tab" data-toggle="tab">Demandes en cours</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "search" %>"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Chercher un ami</a></li>
 
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane" id="amis">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "amis" %>" id="amis">
     <!-- Current friends -->
             <h4>Mes amis - <%= @default_network_users.count %></h4>
             <% @default_network_users.each do |network_user| %>
@@ -21,7 +21,7 @@
             <% end %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="question">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "question" %>" id="question">
                 <!-- Request sent -->
             <% if @pending_network_users.size != 0 %>
               <h4>Demandes envoyées</h4>
@@ -42,7 +42,7 @@
                 </div>
           </div>
 
-          <div role="tabpanel" class="tab-pane active" id="search">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "search" %>" id="search">
             <div class="zone row">
                 <div class="col-xs-12">
                 <%= render 'shared/search_bar', query: params[:query], placeholder: "Chercher un contact", path: network_users_path(tab: 'search') %>

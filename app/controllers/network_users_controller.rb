@@ -3,6 +3,7 @@
 class NetworkUsersController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!
+  before_action :set_active_tab, only: :index
 
   def index
     skip_policy_scope
@@ -81,5 +82,9 @@ class NetworkUsersController < ApplicationController
 
   def params_network_user
     params.require(:network_user).permit(:user_id, :network_id)
+  end
+
+  def set_active_tab
+    @active_tab = params[:tab].in?(%w[amis question search]) ? params[:tab] : 'search'
   end
 end
