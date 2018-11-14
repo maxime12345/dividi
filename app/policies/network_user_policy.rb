@@ -12,7 +12,7 @@ class NetworkUserPolicy < ApplicationPolicy
   end
 
   def accept?
-    record.user == user
+    record.user == user || record.network.user == user
   end
 
   def destroy?
