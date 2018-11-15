@@ -34,9 +34,12 @@
           <div class="category">
             <input id="category-<%= category.id %>" type="checkbox" name="cat[]"
             <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>">
-            <label for="category-<%= category.id %>"><%= category.name %></label>
+            <label for="category-<%= category.id %>" value="tes2"><%= category.name %></label>
           </div>
         <% end %>
+          <input type="checkbox" id="scales" name="scales"
+         checked>
+          <label for="scales">Scales</label>
 
         <!-- Attention à garder le status checked lorsqu'on submit la page cf line 36 -->
 
