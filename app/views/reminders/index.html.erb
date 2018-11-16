@@ -4,9 +4,9 @@
       <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active" id="emprunts-li"><a href="#emprunts" aria-controls="available" role="tab" data-toggle="tab">Empruntés</a></li>
-          <li role="presentation" id ="demandes-li"><a href="#demandes" aria-controls="not-available" role="tab" data-toggle="tab">Demandes envoyées</a></li>
-          <li role="presentation" id="ajouter-li"><a href="#ajouter" aria-controls="not-available" role="tab" data-toggle="tab"><i class="fas fa-plus-circle"></i></a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "emprunts" %>"><a href="#emprunts" aria-controls="emprunts" role="tab" data-toggle="tab">Empruntés</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "demandes" %>"><a href="#demandes" aria-controls="demandes" role="tab" data-toggle="tab">Demandes envoyées</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "add" %>"><a href="#add" aria-controls="add" role="tab" data-toggle="tab"><i class="fas fa-plus-circle"></i></a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="ajouter">
+          <div role="tabpanel" class="tab-pane" id="add">
             <div class="row">
 
               <h5>Ajouter un rappel</h5>
