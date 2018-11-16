@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
     # We only take categories of @items
     # User.all.map(&:email) => return an array of user's email
     @categories = Category.all.select { |category| current_user.friends_items.map(&:category).include?(category) == true }
+    @verbes = Item.verbes.map{ |verbe| verbe[1] }
   end
 
   def show

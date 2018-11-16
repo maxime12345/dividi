@@ -1,8 +1,10 @@
 const form = document.querySelector('#filter-form');
 
 if (form) {
-  console.log('jb');
-  form.addEventListener('change', function() {console.log('changed');});
-  form.addEventListener('change', function() { form.submit();
-  console.log('test'); });
+  const inputs = document.querySelectorAll("input[type='checkbox']");
+  inputs.forEach((div) => {
+    div.addEventListener('click', () => {
+      form.submit();
+    });
+  });
 };

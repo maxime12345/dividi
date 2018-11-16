@@ -31,11 +31,11 @@
         <!-- Categories -->
         <h3 class="filer-name">Catégories</h3>
         <% @categories.each do |category| %>
-          <div class="category">
+
             <input id="category-<%= category.id %>" type="checkbox" name="cat[]"
             <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>">
             <label for="category-<%= category.id %>" value="tes2"><%= category.name %></label>
-          </div>
+
         <% end %>
           <input type="checkbox" id="scales" name="scales"
          checked>
@@ -45,12 +45,12 @@
 
         <!-- Sort -->
         <h3 class="filer-name">Trier par</h3>
-        <div class="category">
+
           <input type="checkbox" name="sort" id="sort_order_asc"
             <%= @params_sort.include?("asc") ? 'checked' : '' %>
             value="asc">
           <label for="sort_order_asc">Nom</label>
-        </div>
+
         <!-- Submit button is replace by a click event listener -->
         <!--<input type="submit" value="filter">-->
       </div>
@@ -69,4 +69,12 @@
   </form>
 </div>
 
+<hr>
 
+<%= simple_fields_for :no_model_fields do |n| %>
+  <%= n.input :category, collection: @categories, input_html: { multiple: true } %>
+<% end %>
+
+<%= simple_fields_for :no_model_fields do |n| %>
+  <%= n.input :verbe, collection: @verbes, input_html: { multiple: true } %>
+<% end %>
