@@ -6,8 +6,7 @@
           <%= image_tag "logo/Logo-noir.png" %>
         </div>
         <div class="tagline">
-          Réveillez vos objets qui dorment ! <br>
-          Et partagez les avec vos proches...
+          <%= t('.tagline_html') %>
         </div>
         <% if current_user.nil? %>
           <%= render 'devise/sessions/newsession', user: @user  %>
@@ -17,30 +16,30 @@
   </div>
   <div class="home-description">
     <div class= "title-description">
-      Partager vos objets
+      <%= t('.share') %>
     </div>
     <div class="col-xs-12 col-sm-3 col-sm-offset-2">
       <div class="card-description">
-        <div class="subtitle-description"> Prêter </div>
-        Un livre qui dort dans votre bibliothèque, une perceuse inutilisée dans la cave, montrez-le à vos amis !
+        <div class="subtitle-description"><%= t('.lend') %></div>
+        <%= t('.lend-p') %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-3 col-sm-offset-2">
       <div class="card-description">
-        <div class="subtitle-description"> Donner </div>
-        Avant de jeter, peut-être que quelqu'un autour de vous est intéressé, qui sais ?
+        <div class="subtitle-description"><%= t('.give') %></div>
+        <%= t('.give-p') %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-3 col-sm-offset-2">
       <div class="card-description">
-        <div class="subtitle-description"> Vendre </div>
-        Avec une photo et quelques clics, proposez un objet à vos amis.
+        <div class="subtitle-description"><%= t('.sell') %></div>
+        <%= t('.sell-p') %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-3 col-sm-offset-2">
       <div class="card-description">
-        <div class="subtitle-description"> Louer </div>
-        Un produit qui s'use à l'usage : louez-le.
+        <div class="subtitle-description"><%= t('.rent') %></div>
+        <%= t('.rent-p') %>
       </div>
     </div>
   </div>

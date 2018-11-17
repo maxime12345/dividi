@@ -1,0 +1,13 @@
+en:
+  pages:
+    home:
+      tagline_html: "Wake up your sleeping objects ! <br> And share them with your loved ones..."
+      share: "Share your items"
+      lend: "Lend"
+      lend-p: "A book that sleeps in your library, an unused drill in the cellar, show it to your friends!"
+      give: "Give"
+      give-p: "Before throwing, maybe someone around you is interested, who knows?"
+      sell: "Sell"
+      sell-p: "With a photo and a few clicks, propose an object to your friends."
+      rent: "Rent"
+      rent-p: "A product that wears out of use : rent it."

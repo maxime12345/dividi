@@ -1,0 +1,13 @@
+fr:
+  pages:
+    home:
+      tagline_html: "Réveillez vos objets qui dorment ! <br> Et partagez les avec vos proches..."
+      share: "Partager vos objets"
+      lend: "Prêter"
+      lend-p: "Un livre qui dort dans votre bibliothèque, une perceuse inutilisée dans la cave, montrez-le à vos amis !"
+      give: "Donner"
+      give-p: "Avant de jeter, peut-être que quelqu'un autour de vous est intéressé, qui sait ?"
+      sell: "Vendre"
+      sell-p: "Avec une photo et quelques clics, proposez un objet à vos amis."
+      rent: "Louer"
+      rent-p: "Un produit qui s'use à l'usage : louez-le."
