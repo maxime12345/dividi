@@ -33,7 +33,7 @@ gem 'uglifier'
 gem 'webpacker'
 
 group :development do
-  gem 'letter_opener'
+  gem 'mailcatcher'
   gem 'rubocop', require: false
   gem 'spring-commands-rspec'
   gem 'web-console', '>= 3.3.0'

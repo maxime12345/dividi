@@ -5,15 +5,16 @@
       <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active" id="available-li"><a href="#available" aria-controls="available" role="tab" data-toggle="tab">Disponibles</a></li>
-          <li role="presentation" id="question-li"><a href="#question" aria-controls="not-available" role="tab" data-toggle="tab">Demandes reçues</a></li>
-          <li role="presentation" id="not-available-li"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Prêtés ou loués</a></li>
-          <li role="presentation" id="ajouter-li"><a href="#ajouter" aria-controls="not-available" role="tab" data-toggle="tab"><i class="fas fa-plus-circle"></i></a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "available" %>">
+            <a href="#available" aria-controls="available" role="tab" data-toggle="tab">Disponibles</a></li>
+          <li role="presentation" class="<%= "active" if @active_tab == "question" %>"><a href="#question" aria-controls="question" role="tab" data-toggle="tab">Demandes reçues</a></li>
+          <li role="presentation"  class="<%= "active" if @active_tab == "not-available" %>"><a href="#not-available" aria-controls="not-available" role="tab" data-toggle="tab">Prêtés ou loués</a></li>
+          <li role="presentation"  class="<%= "active" if @active_tab == "add" %>"><a href="#ajouter" aria-controls="add" role="tab" data-toggle="tab"><i class="fas fa-plus-circle"></i></a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="available">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "available" %>" id="available">
             <div class="container">
 
             <div class="row">
@@ -31,7 +32,7 @@
             </div>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="question">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "question" %>" id="question">
             <% @collections.each do |collection| %>
               <% collection.items.each do |item| %>
                 <% if item.validate_reminder.nil? && !item.pending_reminders.size.zero?%>
@@ -43,7 +44,7 @@
             <% end %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="not-available">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "not-available" %>" id="not-available">
             <% @collections.each do |collection| %>
               <% collection.items.each do |item| %>
                 <% unless item.validate_reminder.nil? %>
@@ -55,7 +56,7 @@
             <% end %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="ajouter">
+          <div role="tabpanel" class="tab-pane <%= "in active" if @active_tab == "add" %>" id="ajouter">
 
               <h5>Ajouter un objet</h5>
               <%= render 'items/form_item', item: @item, button: "Ajouter cet objet" %>
