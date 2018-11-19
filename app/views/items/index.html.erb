@@ -1,5 +1,34 @@
+<div class="container">
+  <div class="search-bar-navbar">
+    <%= form_tag items_path, method: :get do %>
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <%= text_field_tag :query,
+        params[:query],
+        placeholder: "Chercher un objet dans mon réseau"
+      %>
+      <%= simple_fields_for :no_model_fields, url: items_path do |n| %>
+        <br>Filtres
+        <%= n.input :category, collection: @categories, input_html: { multiple: true } %>
+        <%= n.input :verbe, collection: @verbes, input_html: { multiple: true } %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <hr>
+
+</div>
+
 <div class="wrapper">
   <form action="/items" method="get" id="filter-form">
+
+    <select id="test" multiple placeholder="<%= "Toutes catégories" unless @params_categories.present? %>" name="test">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
 
     <!-- Header -->
     <div class="head" style="display: flex">
@@ -9,14 +38,6 @@
       </div>
 
       <!-- Search bar -->
-      <div class="search-bar-navbar">
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <%= form_tag items_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
-          placeholder: "Chercher un objet dans mon réseau"
-        %>
-      <% end %>
     </div>
 
       <div class="search col-xs-12 col-md-4 col-lg-3">
@@ -37,9 +58,6 @@
             <label for="category-<%= category.id %>" value="tes2"><%= category.name %></label>
 
         <% end %>
-          <input type="checkbox" id="scales" name="scales"
-         checked>
-          <label for="scales">Scales</label>
 
         <!-- Attention à garder le status checked lorsqu'on submit la page cf line 36 -->
 
@@ -71,10 +89,3 @@
 
 <hr>
 
-<%= simple_fields_for :no_model_fields do |n| %>
-  <%= n.input :category, collection: @categories, input_html: { multiple: true } %>
-<% end %>
-
-<%= simple_fields_for :no_model_fields do |n| %>
-  <%= n.input :verbe, collection: @verbes, input_html: { multiple: true } %>
-<% end %>
