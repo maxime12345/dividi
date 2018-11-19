@@ -8,9 +8,6 @@
         <div class="tagline">
           <%= t('.tagline_html') %>
         </div>
-        <% if current_user.nil? %>
-          <%= render 'devise/sessions/newsession', user: @user  %>
-        <% end %>
       </div>
     </div>
   </div>
