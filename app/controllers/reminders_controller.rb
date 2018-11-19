@@ -3,6 +3,7 @@
 class RemindersController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!
+  before_action :set_active_tab, only: :index
 
   def index
     skip_policy_scope
@@ -103,5 +104,9 @@ class RemindersController < ApplicationController
 
   def reminder_params
     params.require(:reminder).permit(:user_id, :ghost_name, :ghost_item, :status)
+  end
+
+  def set_active_tab
+    @active_tab = params[:tab].in?(%w[emprunts demandes add]) ? params[:tab] : 'emprunts'
   end
 end

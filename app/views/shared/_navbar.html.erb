@@ -1,73 +1,74 @@
 <div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-container">
+  <%= render 'shared/flashes' %>
+  <div class="navbar-container">
 
-      <%= link_to pages_dashboard_path, class: "navbar-brand" do %>
-        <%= image_tag "logo/d-noir.png" %>
-      <% end %>
+    <%= link_to pages_dashboard_path, class: "navbar-brand" do %>
+      <%= image_tag "logo/d-noir.png" %>
+    <% end %>
 
-      <div class="navbar-icons">
+    <div class="navbar-icons">
 
-        <% if user_signed_in? && !request.path.include?('pages/dashboard') %>
-          <%= link_to items_path do %>
-            <i class="fas fa-search"></i>
-          <% end %>
-
-          <%= link_to reminders_path do %>
-            <i class="fas fa-thumbtack"></i>
-          <% end %>
-
-          <%= link_to collections_path do %>
-            <i class="fas fa-warehouse">
-              <% unless current_user.my_pending_reminders.count == 0 %>
-                <span class="badge-navbar badge-pill badge-success pull-right"><%= current_user.notifications_my_objets %> </span>
-              <% end %>
-            </i>
-          <% end %>
-
-          <%= link_to network_users_path do %>
-            <i class="fas fa-users">
-              <% unless current_user.friend_requests.size == 0 %>
-                <span class="badge-navbar badge-pill badge-success pull-right"> <%= current_user.friend_requests.size %> </span>
-              <% end %>
-            </i>
-          <% end %>
+      <% if user_signed_in? && !request.path.include?('pages/dashboard') %>
+        <%= link_to items_path do %>
+          <i class="fas fa-search"></i>
         <% end %>
-      </div>
 
-      <div class="navbar-avatar dropdown">
-        <div class="dropdown-toggle" data-toggle="dropdown">
-          <%= render 'shared/avatar', user: current_user, size: "standard" %>
-          <i class="fas fa-caret-down"></i>
-        </div>
-        <!-- Menu dropdown -->
-        <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to user_page_path(current_user.token) do %>
-                <i class="fas fa-address-card"></i> Ma page
-              <% end %>
-            </li>
-            <hr>
-            <li>
-              <%= link_to edit_user_registration_path do %>
-                <i class="fas fa-cog"></i> <%= t(".profile", default: "Paramètres") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt"></i> <%= t(".sign_out", default: "Se déconnecter") %>
-              <% end %>
-            </li>
-          <% if current_user.try(:admin?)%>
-            <hr>
-            <li>
-              <%= link_to "Dashboard", pages_dashboard_admin_path %>
-            </li>
-          <% end %>
-          <% end %>
-        </ul>
-      </div>
+        <%= link_to reminders_path do %>
+          <i class="fas fa-thumbtack"></i>
+        <% end %>
 
+        <%= link_to collections_path do %>
+          <i class="fas fa-warehouse">
+            <% unless current_user.my_pending_reminders.count == 0 %>
+              <span class="badge-navbar badge-pill badge-success pull-right"><%= current_user.notifications_my_objets %> </span>
+            <% end %>
+          </i>
+        <% end %>
+
+        <%= link_to network_users_path do %>
+          <i class="fas fa-users">
+            <% unless current_user.friend_requests.size == 0 %>
+              <span class="badge-navbar badge-pill badge-success pull-right"> <%= current_user.friend_requests.size %> </span>
+            <% end %>
+          </i>
+        <% end %>
+      <% end %>
     </div>
+
+    <div class="navbar-avatar dropdown">
+      <div class="dropdown-toggle" data-toggle="dropdown">
+        <%= render 'shared/avatar', user: current_user, size: "standard" %>
+        <i class="fas fa-caret-down"></i>
+      </div>
+      <!-- Menu dropdown -->
+      <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to user_page_path(current_user.token) do %>
+              <i class="fas fa-address-card"></i> Ma page
+            <% end %>
+          </li>
+          <hr>
+          <li>
+            <%= link_to edit_user_registration_path do %>
+              <i class="fas fa-cog"></i> <%= t(".profile", default: "Paramètres") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i> <%= t(".sign_out", default: "Se déconnecter") %>
+            <% end %>
+          </li>
+        <% if current_user.try(:admin?)%>
+          <hr>
+          <li>
+            <%= link_to "Dashboard", pages_dashboard_admin_path %>
+          </li>
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
 </div>
 

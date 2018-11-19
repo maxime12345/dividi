@@ -24,12 +24,13 @@
   <form action="/items" method="get" id="filter-form">
 
     <select id="test" multiple placeholder="<%= "Toutes catégories" unless @params_categories.present? %>" name="test">
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
+      <option value="volvo" selected="selected" >Volvo</option>
+      <option value="saab" selected >Saab</option>
       <option value="opel">Opel</option>
       <option value="audi">Audi</option>
     </select>
 
+    <%= select_tag "test", options_from_collection_for_select(@categories, "id", "name"), multiple: true %>
     <!-- Header -->
     <div class="head" style="display: flex">
       <!-- Reset filters -->
