@@ -1,2 +1,37 @@
 @import "show";
 @import "form_item";
+
+.items-search {
+  padding-top: 10px;
+  form {
+    position: relative;
+  }
+  #query {
+    text-indent: 15px;
+  }
+  .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+  }
+}
+
+.items-search .buttons {
+  display: flex;
+  justify-content: center;
+  * {
+    margin: 0px 10px;
+  }
+  a {
+    background-color: $middle-gray;
+  }
+}
+
+.items-search .results-items {
+  margin-top: 20px;
+  font-weight: bold;
+  hr {
+    margin-top: 3px;
+    margin-bottom: -8px;
+  }
+}

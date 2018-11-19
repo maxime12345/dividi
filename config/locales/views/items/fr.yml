@@ -3,8 +3,8 @@ fr:
     index:
       results:
         zero: 'Aucun résultat'
-        one: '1 objet trouvé'
-        other: '%{count} objets trouvés'
+        one: '1 objet'
+        other: '%{count} objets'
     new:
       add_title: 'Ajouter un objet'
       add_button: 'Ajouter cet objet'

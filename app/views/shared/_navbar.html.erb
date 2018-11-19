@@ -8,7 +8,7 @@
 
     <div class="navbar-icons">
 
-      <% if user_signed_in? && !request.path.include?('pages/dashboard') %>
+      <% if user_signed_in? %>
         <%= link_to items_path do %>
           <i class="fas fa-search"></i>
         <% end %>
