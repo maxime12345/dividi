@@ -14,9 +14,7 @@ class ItemsController < ApplicationController
     @params_verbes = []
 
     # Filter items by category if categories are present in params
-    if params[:query].present?
-      @query = params[:query]
-    end
+    @query = params[:query] if params[:query].present?
     if params[:category_search].present?
       @where[:category_id] = params[:category_search]
       @params_categories = params[:category_search]

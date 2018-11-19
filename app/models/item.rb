@@ -61,9 +61,9 @@ class Item < ApplicationRecord
   end
 
   def self.verbes
-    [["To Sell", I18n.t('items.new.sell')],
-    ["To Give", I18n.t('items.new.give')],
-    ["To Lend", I18n.t('items.new.lend')],
-    ["To Rent", I18n.t('items.new.rent')]]
+    [['To Sell', I18n.t('items.new.sell')],
+     ['To Give', I18n.t('items.new.give')],
+     ['To Lend', I18n.t('items.new.lend')],
+     ['To Rent', I18n.t('items.new.rent')]]
   end
 end
