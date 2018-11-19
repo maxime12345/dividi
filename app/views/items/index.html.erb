@@ -1,92 +1,49 @@
-<div class="container">
-  <div class="search-bar-navbar">
-    <%= form_tag items_path, method: :get do %>
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <%= text_field_tag :query,
-        params[:query],
-        placeholder: "Chercher un objet dans mon réseau"
-      %>
-      <%= simple_fields_for :no_model_fields, url: items_path do |n| %>
-        <br>Filtres
-        <%= n.input :category, collection: @categories, input_html: { multiple: true } %>
-        <%= n.input :verbe, collection: @verbes, input_html: { multiple: true } %>
+<div class="container items-search">
+  <%= form_tag items_path, method: :get, id: 'filter-form' do %>
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <%= text_field_tag :query,
+      params[:query],
+      placeholder: "Chercher un objet dans mon réseau", class: 'form-control'
+    %> <br>
+    <select id="category_search" multiple placeholder="<%= @params_categories.empty? ? "Toutes catégories" : "" %>" name="category_search[]">
+      <% @categories.each do |category| %>
+        <option value="<%= category.id %>" <%="selected=" if @params_categories.include?(category.id.to_s) %> >
+          <%= category.name %>
+        </option>
       <% end %>
+    </select>
+
+    <select id="verbe_search" multiple placeholder="<%= @params_verbes.empty? ? "Toutes actions" : "" %>" name="verbe_search[]">
+      <% @verbes.each do |verbe| %>
+        <option value="<%= verbe[0] %>" <%="selected" if @params_verbes.include?(verbe[0]) %> >
+          <%= verbe[1] %>
+        </option>
+      <% end %>
+    </select>
+
+    <div class="buttons">
+        <%= submit_tag "Rechercher", class: 'btn btn-primary' %>
+        <%= link_to "Remise à zéro", items_path, class: "btn" %>
+
+
+    </div>
+
+  <% end %>
+
+
+  <div class="results-items">
+    <%= t('.results', count: @items.size) %>
+    <hr>
+  </div>
+
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <%= render 'shared/card_item', item: item %>
+      </div>
     <% end %>
   </div>
 
-  <hr>
-
-  <hr>
+  <br>
 
 </div>
-
-<div class="wrapper">
-  <form action="/items" method="get" id="filter-form">
-
-    <select id="test" multiple placeholder="<%= "Toutes catégories" unless @params_categories.present? %>" name="test">
-      <option value="volvo" selected="selected" >Volvo</option>
-      <option value="saab" selected >Saab</option>
-      <option value="opel">Opel</option>
-      <option value="audi">Audi</option>
-    </select>
-
-    <%= select_tag "test", options_from_collection_for_select(@categories, "id", "name"), multiple: true %>
-    <!-- Header -->
-    <div class="head" style="display: flex">
-      <!-- Reset filters -->
-      <div class="side-bar">
-        <%= link_to "Supprimer tous les filtres", items_path, class: "btn btn-primary" %>
-      </div>
-
-      <!-- Search bar -->
-    </div>
-
-      <div class="search col-xs-12 col-md-4 col-lg-3">
-        <p><%=  t('.results', count: @items.size) %></p>
-      </div>
-    </div>
-
-    <!-- Body -->
-    <div class="body" style="display: flex">
-      <!-- Side bar -->
-      <div class="side-bar">
-        <!-- Categories -->
-        <h3 class="filer-name">Catégories</h3>
-        <% @categories.each do |category| %>
-
-            <input id="category-<%= category.id %>" type="checkbox" name="cat[]"
-            <%= @params_categories.include?(category.id.to_s) ? 'checked' : '' %> value="<%= category.id %>">
-            <label for="category-<%= category.id %>" value="tes2"><%= category.name %></label>
-
-        <% end %>
-
-        <!-- Attention à garder le status checked lorsqu'on submit la page cf line 36 -->
-
-        <!-- Sort -->
-        <h3 class="filer-name">Trier par</h3>
-
-          <input type="checkbox" name="sort" id="sort_order_asc"
-            <%= @params_sort.include?("asc") ? 'checked' : '' %>
-            value="asc">
-          <label for="sort_order_asc">Nom</label>
-
-        <!-- Submit button is replace by a click event listener -->
-        <!--<input type="submit" value="filter">-->
-      </div>
-
-      <!-- Cards -->
-      <div class="container container-items">
-        <div class="row">
-          <% @items.each do |item| %>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <%= render 'shared/card_item', item: item %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-
-<hr>
-

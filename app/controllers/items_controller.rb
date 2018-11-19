@@ -9,30 +9,30 @@ class ItemsController < ApplicationController
     @on_items_page = true
 
     @where = {}
-    @order = {}
     @query = '*'
     @params_categories = []
-    @params_sort = []
+    @params_verbes = []
 
     # Filter items by category if categories are present in params
-    if params[:cat].present?
-      @where = { category_id: params[:cat] }
-      @params_categories = params[:cat]
+    if params[:query].present?
+      @query = params[:query]
     end
-    if params[:sort].present?
-      @order = { name: params[:sort] }
-      @params_sort = params[:sort]
+    if params[:category_search].present?
+      @where[:category_id] = params[:category_search]
+      @params_categories = params[:category_search]
     end
-    @query = params[:query] if params[:query].present?
+    if params[:verbe_search].present?
+      @where[:verbe] = params[:verbe_search]
+      @params_verbes = params[:verbe_search]
+    end
 
     @scope_items = policy_scope(Item)
 
-    @items = Item.search(@query, where: @where, order: @order, scope_results: ->(r) { r.where(id: @scope_items.pluck(:id)) })
+    @items = Item.search(@query, where: @where, scope_results: ->(r) { r.where(id: @scope_items.pluck(:id)) })
 
     # We only take categories of @items
-    # User.all.map(&:email) => return an array of user's email
-    @categories = Category.all.select { |category| current_user.friends_items.map(&:category).include?(category) == true }
-    @verbes = Item.verbes.map { |verbe| verbe[1] }
+    @categories = Category.all
+    @verbes = Item.verbes
   end
 
   def show
