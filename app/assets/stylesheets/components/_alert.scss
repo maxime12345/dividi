@@ -6,10 +6,23 @@
   margin: 0;
   text-align: center;
   color: white;
+  transition-duration: 1s;
+
 }
 .alert-info {
   background: $green;
 }
 .alert-warning {
   background: $red;
+}
+
+.fade.in {
+  opacity: 0.9;
+  position: absolute;
+  top: 90px;
+}
+
+.alert-hidden {
+  opacity: 0 !important;
+  transition-duration: 1s;
 }
