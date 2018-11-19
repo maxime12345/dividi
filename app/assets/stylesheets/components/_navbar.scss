@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.navbar:after {
+  position: relative;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
