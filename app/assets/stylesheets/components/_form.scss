@@ -1,6 +1,6 @@
 .form-login {
   background: white;
-  padding: 10px 20px;
+  padding: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 3px;
@@ -18,4 +18,16 @@
     width: 100%;
     margin-bottom: 20px
   }
+}
+
+.form-control {
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid #D2D9DE;
+  background-color: transparent;
+}
+
+[type=email]:focus, [type=password]:focus {
+  border-color: $green;
+  box-shadow: 0 1px 0 $green;
 }

@@ -1,6 +1,6 @@
 <div class="container-home">
   <div class="row home-desktop-bg">
-    <div class="col-xs-12 col-sm-3 col-sm-offset-1">
+    <div class="col-xs-12 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1">
       <div class="banner">
         <div id='logo-home'>
           <%= image_tag "logo/Logo-noir.png" %>
@@ -8,13 +8,11 @@
         <div class="tagline">
           <%= t('.tagline_html') %>
         </div>
+        <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary btn-lg text-center" %>
       </div>
     </div>
   </div>
-  <div class="home-description">
-    <div class= "title-description">
-      <%= t('.share') %>
-    </div>
+  <div class="row home-description">
     <div class="col-xs-12 col-sm-3 col-sm-offset-2">
       <div class="card-description">
         <div class="subtitle-description"><%= t('.lend') %></div>
