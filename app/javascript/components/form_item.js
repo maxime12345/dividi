@@ -33,3 +33,4 @@ if (window.location.href.includes('collections')) {
     };
   };
 };
+

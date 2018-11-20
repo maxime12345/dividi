@@ -3,10 +3,7 @@
   <%= f.association :category, label: t('items.new.category') , prompt: t('items.new.select_category') %>
 
   <%= f.input :verbe, legend_tag: false, as: :radio_buttons,
-    collection: [["To Sell", t('items.new.sell')],
-                  ["To Give", t('items.new.give')],
-                  ["To Lend", t('items.new.lend')],
-                  ["To Rent", t('items.new.rent')]],
+    collection: Item.verbes,
     label_method: :second, value_method: :first %>
   <%= f.input :price, label: t('items.new.price') %> </li>
 
