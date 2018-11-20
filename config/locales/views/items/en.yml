@@ -3,8 +3,8 @@ en:
     index:
       results:
         zero: 'No object founded'
-        one: '1 objet founded'
-        other: '%{count} objects founded'
+        one: '1 object'
+        other: '%{count} objects'
     new:
       add_title: 'Add an object'
       add_button: 'Add this object'
