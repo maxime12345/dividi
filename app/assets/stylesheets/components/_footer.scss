@@ -1,0 +1,29 @@
+.footer {
+  height: 70px;
+  background-color: #26CBA7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $light-gray;
+  a {
+    color: $light-gray;
+    text-decoration: none;
+    &:hover {
+      color: $dark-gray;
+    }
+  }
+}
+
+.footer-copyright {
+  padding-left: 35px;
+}
+
+.footer-contact {
+  padding-right: 35px;
+}
+
+@media screen and (max-width: 450px) {
+  .footer-mail {
+    display: none;
+  }
+}
