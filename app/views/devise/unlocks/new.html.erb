@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2>Renvoyer les instructions pour débloquer mon compte.</h2>
+  <h2><%= t('.resend_unlock_instructions') %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
     <%= f.error_notification %>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Renvoyer les instructions", class: "btn-primary" %>
+      <%= f.button :submit, t('.resend_unlock_instructions'), class: "btn-primary" %>
     </div>
   <% end %>
 

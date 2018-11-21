@@ -16,3 +16,10 @@ fr:
         subject: "Dividi - Instructions pour déverrouiller le compte"
       password_change:
         subject: "Dividi - Votre mot de passe a été modifié avec succés."
+    registrations:
+      edit:
+        change-id: "Changer mon pseudo"
+        change-pw: "Changer mon mot de passe"
+    passwords:
+      new:
+        send_me_reset_password_instructions: "Réinitiliser mon mot de passe"

@@ -1,7 +1,7 @@
-<p>Bonjour <%= @resource.email %>!</p>
+<p><%= t('.greeting', recipient: @resource.email) %></p>
 
-<p>Votre compte a été bloqué dû à un nombre excessif de demande de connexion sans succès.</p>
+<p><%= t('.message') %></p>
 
-<p>Cliquez sur le lien ci-dessous pour le débloquer :</p>
+<p><%= t('.instruction') %></p>
 
-<p><%= link_to 'Débloquer le compte', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to t('.action'), unlock_url(@resource, unlock_token: @token) %></p>
