@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h2>Changer votre mot de passe</h2>
+  <h2><%= t('.change_your_password') %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Changer mon mot de passe", class: "btn-primary" %>
+      <%= f.button :submit, t('.change_my_password'), class: "btn-primary" %>
     </div>
   <% end %>
 

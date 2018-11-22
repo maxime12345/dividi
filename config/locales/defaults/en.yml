@@ -16,6 +16,9 @@ en:
         subject: "Dividi - Unlock Instructions"
       password_change:
         subject: "Dividi - Password Changed"
-
+    registrations:
+        edit:
+          change-id: "Change my username"
+          change-pw: "Change my password"
 
 

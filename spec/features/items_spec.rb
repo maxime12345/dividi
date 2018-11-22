@@ -7,11 +7,10 @@ RSpec.feature 'Items', type: :feature do
     user = FactoryBot.create(:user)
     FactoryBot.create(:category)
 
-    visit root_path
-
-    fill_in 'email', with: user.email
-    fill_in 'mot de passe', with: user.password
-    find_button('Se connecter').click
+    visit user_session_path
+    fill_in 'Courriel', with: user.email
+    fill_in 'Mot de passe', with: user.password
+    find_button('Connexion').click
     find('.shortcut', text: 'Ajouter un objet').click
 
     expect do

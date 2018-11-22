@@ -6,9 +6,8 @@
       <%= image_tag "logo/d-noir.png" %>
     <% end %>
 
-    <div class="navbar-icons">
-
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <div class="navbar-icons">
         <%= link_to items_path do %>
           <i class="fas fa-search"></i>
         <% end %>
@@ -32,43 +31,47 @@
             <% end %>
           </i>
         <% end %>
-      <% end %>
-    </div>
-
-    <div class="navbar-avatar dropdown">
-      <div class="dropdown-toggle" data-toggle="dropdown">
-        <%= render 'shared/avatar', user: current_user, size: "standard" %>
-        <i class="fas fa-caret-down"></i>
       </div>
-      <!-- Menu dropdown -->
-      <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to user_page_path(current_user.token) do %>
-              <i class="fas fa-address-card"></i> Ma page
-            <% end %>
-          </li>
-          <hr>
-          <li>
-            <%= link_to edit_user_registration_path do %>
-              <i class="fas fa-cog"></i> <%= t(".profile", default: "Paramètres") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fas fa-sign-out-alt"></i> <%= t(".sign_out", default: "Se déconnecter") %>
-            <% end %>
-          </li>
-        <% if current_user.try(:admin?)%>
-          <hr>
-          <li>
-            <%= link_to "Dashboard", pages_dashboard_admin_path %>
-          </li>
-        <% end %>
-        <% end %>
-      </ul>
-    </div>
+    <% end %>
 
+
+    <% if user_signed_in? %>
+      <div class="navbar-avatar dropdown">
+        <div class="dropdown-toggle" data-toggle="dropdown">
+          <%= render 'shared/avatar', user: current_user, size: "standard" %>
+          <i class="fas fa-caret-down"></i>
+        </div>
+        <!-- Menu dropdown -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to user_page_path(current_user.token) do %>
+                <i class="fas fa-address-card"></i> Ma page
+              <% end %>
+            </li>
+            <hr>
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fas fa-cog"></i> <%= t(".profile", default: "Paramètres") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt"></i> <%= t(".sign_out", default: "Se déconnecter") %>
+              <% end %>
+            </li>
+            <% if current_user.try(:admin?)%>
+              <hr>
+              <li>
+                <%= link_to "Dashboard", pages_dashboard_admin_path %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to  "Me connecter", user_session_path%></div>
+    <% end %>
   </div>
 </div>
 

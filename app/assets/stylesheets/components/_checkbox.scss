@@ -6,10 +6,11 @@ input[type=checkbox] + label {
   margin-left: 2px;
   padding-left: 8px;
 }
-input[type=checkbox]:checked + label {
-  background-color: #00D1B1;
-  color: white;
-}
+
+// input[type=checkbox]:checked + label {
+//   background-color: #00D1B1;
+//   color: white;
+// }
 
 
 .category-title {

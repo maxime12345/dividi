@@ -1,5 +1,4 @@
-<p>Bonjour <%= @email %>, bienvenue sur Dividi !</p>
+<p><%= t('.greeting', recipient: @email) %></p>
 
-<p>Merci de confirmer votre compte dans les 48h en cliquant sur le lien ci-dessous :</p>
-
-<p><%= link_to 'Confirmer mon compte', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= t('.instruction') %></p>
+<p><%= link_to t('.action'), confirmation_url(@resource, confirmation_token: @token) %></p>
