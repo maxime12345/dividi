@@ -22,8 +22,17 @@
   padding-right: 35px;
 }
 
-@media screen and (max-width: 450px) {
-  .footer-mail {
+.footer-lighter {
+  color: rgba(255,255,255,0.5);
+}
+
+@media screen and (max-width: 500px) {
+  .footer-hide-on-mobile {
     display: none;
   }
+
+  .copyright {
+    font-size: 18px;
+  }
+
 }
