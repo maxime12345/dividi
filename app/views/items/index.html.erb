@@ -1,10 +1,13 @@
 <div class="container items-search">
   <%= form_tag items_path, method: :get, id: 'filter-form' do %>
-    <i class="fa fa-search" aria-hidden="true"></i>
-    <%= text_field_tag :query,
+
+<!--     Module de recherche caché pour le moment -->
+    <!--     <i class="fa fa-search" aria-hidden="true"></i>
+    <%#= text_field_tag :query,
       params[:query],
       placeholder: "Chercher un objet dans mon réseau", class: 'form-control'
-    %> <br>
+    %> <br> -->
+
     <select id="category_search" multiple placeholder="<%= @params_categories.empty? ? "Toutes catégories" : "" %>" name="category_search[]">
       <% @categories.each do |category| %>
         <option value="<%= category.id %>" <%="selected=" if @params_categories.include?(category.id.to_s) %> >
@@ -13,20 +16,19 @@
       <% end %>
     </select>
 
-    <select id="verbe_search" multiple placeholder="<%= @params_verbes.empty? ? "Toutes actions" : "" %>" name="verbe_search[]">
-      <% @verbes.each do |verbe| %>
-        <option value="<%= verbe[0] %>" <%="selected" if @params_verbes.include?(verbe[0]) %> >
-          <%= verbe[1] %>
+<!-- Module de recherche caché pour le moment
+    <select id="verbe_search" multiple placeholder="<%#= @params_verbes.empty? ? "Toutes actions" : "" %>" name="verbe_search[]">
+      <%# @verbes.each do |verbe| %>
+        <option value="<%#= verbe[0] %>" <%#="selected" if @params_verbes.include?(verbe[0]) %> >
+          <%#= verbe[1] %>
         </option>
-      <% end %>
-    </select>
+      <%# end %>
+    </select> -->
 
-    <div class="buttons">
+<!--     <div class="buttons">
         <%= submit_tag "Rechercher", class: 'btn btn-primary' %>
         <%= link_to "Remise à zéro", items_path, class: "btn" %>
-
-
-    </div>
+    </div> -->
 
   <% end %>
 

@@ -1,6 +1,6 @@
 import Choices from "choices.js";
 
-if ( document.querySelector("#category_search") && document.querySelector("#verbe_search") ) {
+if ( document.querySelector("#category_search") ) {
   const choices_category = new Choices("#no_model_fields_category", {
     removeItems: true,
     removeItemButton: true,
