@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
     @query = '*'
     @params_categories = []
     @params_verbes = []
+    @params_states = ['Disponibles', 'Empruntés', 'Notification envoyée']
 
     # Filter items by category if categories are present in params
     @query = params[:query] if params[:query].present?

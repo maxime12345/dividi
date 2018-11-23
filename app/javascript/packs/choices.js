@@ -14,3 +14,10 @@ if (document.querySelector("#verbe_search")) {
     removeItemButton: true,
   });
 };
+
+if (document.querySelector("#state_search")) {
+  new Choices("#state_search", {
+    removeItems: true,
+    removeItemButton: true,
+  });
+};

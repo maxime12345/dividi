@@ -12,9 +12,9 @@
           <i class="fas fa-search"></i>
         <% end %>
 
-        <%= link_to reminders_path do %>
-          <i class="fas fa-thumbtack"></i>
-        <% end %>
+        <%#= link_to reminders_path do %>
+<!--           <i class="fas fa-thumbtack"></i> -->
+        <%# end %>
 
         <%= link_to collections_path do %>
           <i class="fas fa-warehouse">
@@ -24,13 +24,14 @@
           </i>
         <% end %>
 
-        <%= link_to network_users_path do %>
+        <%= link_to 'Add a friend', network_users_path, class: "btn btn-primary" %>
+<!--         #= link_to network_users_path do %>
           <i class="fas fa-users">
-            <% unless current_user.friend_requests.size == 0 %>
-              <span class="badge-navbar badge-pill badge-success pull-right"> <%= current_user.friend_requests.size %> </span>
-            <% end %>
+            # unless current_user.friend_requests.size == 0 %>
+              <span class="badge-navbar badge-pill badge-success pull-right"> #= current_user.friend_requests.size %> </span>
+            # end %>
           </i>
-        <% end %>
+        <%# end %> -->
       </div>
     <% end %>
 

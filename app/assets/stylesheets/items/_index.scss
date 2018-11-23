@@ -36,3 +36,12 @@
     margin-bottom: -8px;
   }
 }
+
+.items-search .entete {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  div:first-child {
+    flex-grow: 1;
+  }
+}
