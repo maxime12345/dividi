@@ -1,4 +1,14 @@
 <div class="container items-search">
+  <div class="entete">
+    <div>
+      <h3>
+        Les objets de mes amis
+
+      </h3>
+    </div>
+    <%= link_to 'Ajouter un pense-bête', root_path, class: 'btn btn-primary' %>
+  </div>
+
   <%= form_tag items_path, method: :get, id: 'filter-form' do %>
 
 <!--     Module de recherche caché pour le moment -->
@@ -26,9 +36,17 @@
     </select> -->
 
 <!--     <div class="buttons">
-        <%= submit_tag "Rechercher", class: 'btn btn-primary' %>
-        <%= link_to "Remise à zéro", items_path, class: "btn" %>
+        <%#= submit_tag "Rechercher", class: 'btn btn-primary' %>
+        <%#= link_to "Remise à zéro", items_path, class: "btn" %>
     </div> -->
+
+    <select id="state_search" multiple placeholder="A paramétrer" name="state_search[]">
+      <% @params_states.each do |state| %>
+        <option value="<%= state %>" >
+          <%= state %>
+        </option>
+      <% end %>
+    </select>
 
   <% end %>
 
