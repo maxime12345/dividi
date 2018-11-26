@@ -23,3 +23,5 @@ fr:
     passwords:
       new:
         send_me_reset_password_instructions: "Réinitiliser mon mot de passe"
+
+  sign_in: Me connecter
