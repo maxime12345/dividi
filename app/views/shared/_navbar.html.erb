@@ -24,7 +24,7 @@
           </i>
         <% end %>
 
-        <%= link_to 'Add a friend', network_users_path, class: "btn btn-primary" %>
+        <%= link_to 'Ajouter un ami', search_network_users_path, class: "btn btn-primary" %>
 <!--         #= link_to network_users_path do %>
           <i class="fas fa-users">
             # unless current_user.friend_requests.size == 0 %>
@@ -45,6 +45,11 @@
         <!-- Menu dropdown -->
         <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
           <% if user_signed_in? %>
+            <li>
+              <%= link_to network_users_path do %>
+                <i class="fas fa-address-card"></i> Mes amis
+              <% end %>
+            </li>
             <li>
               <%= link_to user_page_path(current_user.token) do %>
                 <i class="fas fa-address-card"></i> Ma page

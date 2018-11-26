@@ -1,0 +1,27 @@
+<% if current_user.friends.include? user %>
+  Amis
+  <%= link_to destroy_all_links_network_user_path(current_user.network_users.where(user: user)[0]),
+  method: :delete,
+  data: {confirm: "Etes-vous sur de vouloir supprimer cette relation ?"} do %>
+      <i class="far fa-trash-alt"></i>
+  <% end %>
+
+<% elsif current_user.friend_requests.map { |network_user_request| network_user_request.network.user }.include? user %>
+  "Demande reçue"
+    <%= link_to "Accept", accept_network_user_path(user.network_users.where(user: current_user)[0]), class: "notification-btn accept" %>
+
+    <%= link_to "Decline", network_user_path(user.network_users.where(user: current_user)[0]),
+      method: :delete, data: {confirm: "Etes-vous sûr d'ignorer cette demande de mise en relation ?" },class: "notification-btn decline" %>
+
+<% elsif current_user.pending_network_users.map(&:user).include? user %>
+  "Demande envoyée"
+  <%= link_to "Annuler la demande",
+              network_user_path(current_user.network_users.where(user: user)[0]),
+              method: :delete,
+              class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'Envoyer une demande',
+              network_network_users_path(current_user.default_network, user: user),
+              method: :post,
+              class: 'btn btn-primary' %>
+<% end %>

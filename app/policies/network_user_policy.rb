@@ -3,7 +3,7 @@
 class NetworkUserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(network: user.networks).where(status: nil)
     end
   end
 

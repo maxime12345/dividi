@@ -1,0 +1,30 @@
+<div class="container container-search-friends">
+  <%= form_tag search_network_users_path, method: :get, id: 'filter-form' do %>
+
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <%= text_field_tag :query,
+      params[:query],
+      placeholder: "Chercher un ami",
+      class: 'form-control' %>
+
+  <% end %>
+
+  <div class="row">
+
+    <div class="col-xs-6 col-lg-4">
+      <div class="card-friend">
+        <div class="envoi-mail">
+          Envoyer un mail standard <br>
+          <i class="far fa-envelope"></i>
+        </div>
+      </div>
+    </div>
+
+    <% @users.each do |user| %>
+      <div class="col-xs-6 col-lg-4">
+        <%= render 'shared/card_friend', user: user %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

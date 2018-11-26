@@ -3,47 +3,44 @@
 class NetworkUsersController < ApplicationController
   protect_from_forgery
   before_action :authenticate_user!
-  before_action :set_active_tab, only: :index
 
   def index
-    skip_policy_scope
+    # List of validate friends
+    @default_network_users = policy_scope(NetworkUser)
+    @friends = current_user.friends
+  end
 
-    # List of validate friends class by networks
-    @default_network_users = current_user.default_network_users
+  def search
+    skip_policy_scope
 
     # List of validate friends to exclude from search
     @friends = current_user.friends
 
-    # list of request sended by me
-    @pending_network_users = current_user.pending_network_users
-
-    # requests I recieve from others
-    @friend_requests = current_user.friend_requests
-
-    @default_network = current_user.default_network
-
-    @users = User.all.reject { |user| current_user == user }
-                 .select { |user| @friends.include?(user) == false }
-                 .select { |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
-                 .select { |user| @pending_network_users.map(&:user).include?(user) == false }
+    @params_request = ['Demande envoyée', 'Demande reçue']
 
     if params[:query].present?
       @users = User.search_by_email_and_username(params[:query].to_s)
                    .reject { |user| current_user == user }
                    .select { |user| @friends.include?(user) == false }
-                   .select { |user| @friend_requests.map(&:network).map(&:user).include?(user) == false }
-                   .select { |user| @pending_network_users.map(&:user).include?(user) == false }
+    else
+      @users = User.all.reject { |user| current_user == user }
+                   .select { |user| @friends.include?(user) == false }
     end
+
     @network_user = NetworkUser.new
+
+    @default_network = current_user.default_network
   end
 
   def create
+    params[:network_user] = {} # Allow to pass through permission
+    params[:network_user][:user_id] = params[:user]
+    params[:network_user][:network_id] = params[:network_id]
     @network_user = NetworkUser.new(params_network_user)
-    @network_user.network = Network.find(params[:network_id])
     @network_user.status = 'pending'
     authorize(@network_user)
     @network_user.save
-    redirect_to network_users_path(tab: 'search')
+    redirect_to search_network_users_path
   end
 
   def accept
@@ -53,14 +50,14 @@ class NetworkUsersController < ApplicationController
     @network_user.status = nil
     @network_user.save
     @reverse_network_user.save
-    redirect_to network_users_path
+    redirect_to search_network_users_path
   end
 
   def destroy
     @network_user = NetworkUser.find(params[:id])
     authorize(@network_user)
     @network_user.destroy
-    redirect_to network_users_path
+    redirect_to search_network_users_path
   end
 
   def destroy_all_links
@@ -82,9 +79,5 @@ class NetworkUsersController < ApplicationController
 
   def params_network_user
     params.require(:network_user).permit(:user_id, :network_id)
-  end
-
-  def set_active_tab
-    @active_tab = params[:tab].in?(%w[amis question search]) ? params[:tab] : 'search'
   end
 end

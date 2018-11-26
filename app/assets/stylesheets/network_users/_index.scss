@@ -8,16 +8,6 @@ a {
   }
 }
 
-.zone {
-  margin: 20px 5px;
-  padding: 10px;
-  border: 1px solid #E5E5E5;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  border-radius: 3px;
-  border: none;
-  box-shadow: none;
-}
-
 
 .friends {
   min-width: 355px;
@@ -29,3 +19,8 @@ a {
   overflow: scroll;
   height: calc( 100vh - 181px);
 }
+
+.envoi-mail {
+  border: 1px solid blue;
+}
+

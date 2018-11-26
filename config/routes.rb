@@ -35,6 +35,9 @@ Rails.application.routes.draw do
         get :accept
         delete :destroy_all_links
       end
+      collection do
+        get :search
+      end
     end
 
     resources :networks, only: %i[show update] do
