@@ -11,6 +11,9 @@ class PagesController < ApplicationController
     @user = User.where(token: params[:token])[0]
     @collections = @user.collections
     @items = @user.items
+    @url = url_for user_page_url(@user.token, locale: nil)
+    @validate_reminders_number = @user.validate_reminders.size
+    @friends_number = @user.friends.size
   end
 
   def dashboard; end

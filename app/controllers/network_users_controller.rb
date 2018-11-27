@@ -16,8 +16,6 @@ class NetworkUsersController < ApplicationController
     # List of validate friends to exclude from search
     @friends = current_user.friends
 
-    @params_request = ['Demande envoyée', 'Demande reçue']
-
     if params[:query].present?
       @users = User.search_by_email_and_username(params[:query].to_s)
                    .reject { |user| current_user == user }

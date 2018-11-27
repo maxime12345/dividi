@@ -1,12 +1,21 @@
 <% if size == "big" %>
 
   <div class="avatar avatar-big">
+    <% if user_signed_in? %>
+      <%= link_to edit_user_registration_path do %>
+        <div class="modify">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+      <% end %>
+    <% end %>
+
     <% if user.nil? || !user.avatar.present? %>
       <i class="fas fa-user avatar-icon"></i>
     <% else %>
       <%= cl_image_tag user.avatar, height: 150, width: 150, crop: :fill, class: "avatar-img"  %>
     <% end %>
   </div>
+
 
 <% else %>
 
@@ -19,3 +28,4 @@
   </div>
 
 <% end %>
+

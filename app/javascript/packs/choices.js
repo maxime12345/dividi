@@ -21,10 +21,3 @@ if (document.querySelector("#state_search")) {
     removeItemButton: true,
   });
 };
-
-if (document.querySelector("#request_search")) {
-  new Choices("#request_search", {
-    removeItems: true,
-    removeItemButton: true,
-  });
-};

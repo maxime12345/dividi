@@ -1,8 +1,14 @@
 <div class="container container-user-page">
 
+  <% if user_signed_in? %>
+    <div>
+      Mon profil
+    </div>
+  <% end %>
   <!-- Info sur l'utilisateur -->
   <div class="user">
     <%= render 'shared/avatar', user: @user, size: "big" %>
+
     <div class="infos">
       <% if @user.username.nil? %>
         <span class="titre"> <%= @user.email %></span>
@@ -11,26 +17,82 @@
         <%= @user.email %>
       <% end %>
       <br>
-      <br>
-      <%= @user.friends.count %> amis <br>
-      <%= @user.items.count %> objets <br>
-      <span class="date"> Sur Dividi depuis le <%= @user.created_at.strftime("%d/%m/%Y") %> </span>
+
+      <span class="date"> Inscrit depuis le <%= @user.created_at.strftime("%d/%m/%Y") %> </span>
     </div>
   </div>
 
-  <hr>
-  <!-- Liste des articles de l'utilisateur -->
-  <div class="collections">
-    <% @collections.each do |collection| %>
-      <% unless collection.items.size == 0  %>
-        <div class="row">
-          <% collection.items.each do |item| %>
-            <div class="col-xs-6 col-md-4 col-lg-3">
-              <%= render 'shared/card_item', item: item %>
+  <% if user_signed_in? %>
+    <div class="row kpi-container">
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to collections_path do %>
+          <div class="kpi">
+            <div class="number">
+              <%= @items.size %>
             </div>
-          <% end %>
-        </div>
+            <div class="texte">
+              <%= t('.objects', count: @items.size) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to items_path do %>
+          <div class="kpi">
+            <div class="number">
+              <%= @validate_reminders_number %>
+            </div>
+            <div class="texte">
+              <%= t('.borrowings', count: @validate_reminders_number) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to network_users_path do %>
+          <div class="kpi">
+            <div class="number">
+              <%= @friends_number %>
+            </div>
+            <div class="texte">
+              <%= t('.friends', count: @friends_number) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
+  <% unless user_signed_in? %>
+    <div class="inscription">
+      <div>
+        Vous aussi vous avez des objets à partager ?
+      </div>
+      <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary btn-lg text-center" %>
+    </div>
+
+    <div class="results-items">
+
+      <%= @user.items.count %> objets
+      <hr>
+    </div>
+    <!-- Liste des articles de l'utilisateur -->
+    <div class="collections">
+      <% @collections.each do |collection| %>
+        <% unless collection.items.size == 0  %>
+          <div class="row">
+            <% collection.items.each do |item| %>
+              <div class="col-xs-6 col-md-4 col-lg-3">
+                <%= render 'shared/card_item', item: item %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+

@@ -2,6 +2,11 @@
 
   <h4>Mes amis - <%= @friends.count %></h4>
 
+
+  <div class="col-xs-6 col-lg-4">
+    <%= render 'shared/card_send_mail' %>
+  </div>
+
   <% @friends.each do |friend| %>
     <div class="col-xs-6 col-lg-4">
       <%= render 'shared/card_friend', user: friend %>

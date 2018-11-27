@@ -33,4 +33,48 @@
     font-size: 0.7em;
     font-style: italic;
   }
+  .results-items {
+    margin-top: 20px;
+    font-weight: bold;
+    hr {
+      margin-top: 3px;
+      margin-bottom: -8px;
+    }
+  }
 }
+
+.container-user-page .inscription {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  div {
+    margin: auto 10px;
+  }
+}
+
+.container-user-page .kpi-container {
+  margin-top: 10px;
+}
+
+.container-user-page .kpi{
+  padding: 20px;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: $border-radius-large;
+  box-shadow: $base-box-shadow;
+  &:hover {
+    box-shadow: $base-box-shadow-hover;
+  }
+  .number {
+    font-size: 1.4em;
+    color: $green-blue;
+    font-weight: bolder;
+  }
+}
+
+

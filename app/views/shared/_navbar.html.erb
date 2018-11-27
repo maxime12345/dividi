@@ -47,12 +47,12 @@
           <% if user_signed_in? %>
             <li>
               <%= link_to network_users_path do %>
-                <i class="fas fa-address-card"></i> Mes amis
+                <i class="fas fa-users"></i> Mes amis
               <% end %>
             </li>
             <li>
               <%= link_to user_page_path(current_user.token) do %>
-                <i class="fas fa-address-card"></i> Ma page
+                <i class="fas fa-address-card"></i> Mon profil
               <% end %>
             </li>
             <hr>

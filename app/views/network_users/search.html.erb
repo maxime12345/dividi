@@ -12,12 +12,7 @@
   <div class="row">
 
     <div class="col-xs-6 col-lg-4">
-      <div class="card-friend">
-        <div class="envoi-mail">
-          Envoyer un mail standard <br>
-          <i class="far fa-envelope"></i>
-        </div>
-      </div>
+      <%= render 'shared/card_send_mail' %>
     </div>
 
     <% @users.each do |user| %>

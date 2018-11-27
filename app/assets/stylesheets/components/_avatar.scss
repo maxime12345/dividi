@@ -1,6 +1,7 @@
 .avatar {
   display: flex;
   justify-content: center;
+  position: relative;
 
   .avatar-img {
     border-radius: 50%;
@@ -40,4 +41,17 @@
   border-left: 1px solid #00D1B1;
   padding: 0px 0px 0px 5px;
   margin-left: 5px;
+}
+
+.avatar .modify {
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.8);
+  position: absolute;
+  top: 115px;
+  left: 115px;
+  i {
+    padding: 8px;
+    color: black;
+    font-size: 1.2em;
+  }
 }

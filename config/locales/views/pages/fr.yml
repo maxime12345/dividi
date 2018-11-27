@@ -11,3 +11,17 @@ fr:
       sell-p: "Avec une photo et quelques clics, proposez un objet à vos amis."
       rent: "Louer"
       rent-p: "Un produit qui s'use à l'usage : louez-le."
+    user_page:
+      objects:
+        zero: 'objet'
+        one: 'objet'
+        other: 'objets'
+      borrowings:
+        zero: 'emprunt'
+        one: 'emprunt'
+        other: 'emprunts'
+      friends:
+        zero: 'ami'
+        one: 'ami'
+        other: 'amis'
+

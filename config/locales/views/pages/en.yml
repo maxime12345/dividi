@@ -11,3 +11,16 @@ en:
       sell-p: "With a photo and a few clicks, propose an object to your friends."
       rent: "Rent"
       rent-p: "A product that wears out of use : rent it."
+    user_page:
+      objects:
+        zero: 'object'
+        one: 'object'
+        other: 'objects'
+      borrowings:
+        zero: 'borrowing'
+        one: 'borrowing'
+        other: 'borrowings'
+      friends:
+        zero: 'friend'
+        one: 'friend'
+        other: 'friends'
