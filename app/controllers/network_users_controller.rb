@@ -15,19 +15,14 @@ class NetworkUsersController < ApplicationController
 
     # List of validate friends to exclude from search
     @friends = current_user.friends
-
     if params[:query].present?
-      @users = User.search_by_email_and_username(params[:query].to_s)
-                   .reject { |user| current_user == user }
-                   .select { |user| @friends.include?(user) == false }
+      return @users = User.search_by_email_and_username(params[:query].to_s)
+                          .reject { |user| current_user == user }
+                          .select { |user| @friends.include?(user) == false }
     else
-      @users = User.all.reject { |user| current_user == user }
-                   .select { |user| @friends.include?(user) == false }
+      return @users = User.all.reject { |user| current_user == user }
+                          .select { |user| @friends.include?(user) == false }
     end
-
-    @network_user = NetworkUser.new
-
-    @default_network = current_user.default_network
   end
 
   def create
