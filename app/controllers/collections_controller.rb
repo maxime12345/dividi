@@ -12,6 +12,11 @@ class CollectionsController < ApplicationController
     @item = Item.new
     @collections = policy_scope(Collection)
     @my_pending_reminders = current_user.my_pending_reminders
+    @items = []
+    @collections.each do |collection|
+      collection.items.each { |item| @items << item }
+    end
+    @items = @items.select(&:waiting_answer?).concat(@items.reject(&:waiting_answer?))
   end
 
   def create

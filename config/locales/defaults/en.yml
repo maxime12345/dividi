@@ -20,5 +20,8 @@ en:
         edit:
           change-id: "Change my username"
           change-pw: "Change my password"
+<<<<<<< HEAD
 
   sign_in: Sign in
+=======
+>>>>>>> 61461d17f3479cdf36f36232c941537673e4ec91

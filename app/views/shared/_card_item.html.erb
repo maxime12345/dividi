@@ -1,67 +1,26 @@
-<div class="card-container">
-
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= url_image(item) %>');">
-    <% if item.id.nil? %>
-      <div class="card-category">
-        <i>Rappel</i>
-        <%= link_to reminder_path(ghost_reminder),
-        method: :delete,
-        data: {confirm: "Voulez-vous supprimer ce rappel ?" }  do %>
-            <i class="far fa-trash-alt"></i>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="card-category"><%= item.category.name %></div>
-      <%= link_to "", item_path(item), class: "card-link"  %>
-    <% end %>
-  </div>
-
-  <div class="card-footer">
-    <div class="card-name">
-      <%= item.name %>
+<%= link_to item_path(item)  do %>
+  <div class="card">
+    <div class="waiting-answer <%= 'hidden' if !item.waiting_answer? || current_user != item.user %>"><i class="fas fa-question"></i></div>
+    <div class="card-photo" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.2)), url('<%= url_image(item) %>');">
+        <div class="card-category"><%= item.category.name %></div>
     </div>
-
-    <div class="card-text">
-      <%= item.text("out") %>
-    </div>
-  </div>
-
-    <!-- Si propriétaire fantôme -->
-    <% if item.user.nil? %>
-        <% ghost_user = User.new(username: ghost_reminder.ghost_name, email: "(Hors réseau)") %>
-        <div class="owner"><%= render 'shared/avatar_name', user: ghost_user, size: "standard" %></div>
-    <% else %>
-
-        <% if item.user != current_user && item.collection.user.token != params[:token] %>
-          <div class="owner"><%= render 'shared/avatar_name', user: item.user, size: "standard" %></div>
-        <% end %>
-
-    <% end %>
-
-  <div class="card-status">
-    <div class="status">
-      <!-- helper -->
-      <i class="<%= hash_status(item)[:icon] %>" ></i> <%= hash_status(item)[:text] %>
-    </div>
-  </div>
-
-
-
-  <!-- Section affichée uniquement si propriétaire de l'objet et page autre que user page -->
-  <% unless item.user.nil? || item.validate_reminder.nil? %>
-    <% if item.collection.user == current_user && params[:token].nil? %>
-      <% if item.validate_reminder.ghost_name.nil? %>
-        <div class="renter">
-          <%= render 'shared/avatar_name', user: item.validate_reminder.user, size: "standard" %>
+    <div class="card-footer">
+      <% if item.validate_reminder %>
+        <div class="card-icon icon-validate-reminder">
+          <i class="fas fa-hands-helping"></i>
         </div>
-      <% else %>
-
-        <div class="renter">
-          <% ghost_user = User.new(username: item.validate_reminder.ghost_name, email: "(Hors réseau)") %>
-          <%= render 'shared/avatar_name', user: ghost_user, size: "standard" %>
+      <% elsif item.available? && !item.waiting_answer? %>
+        <div class="card-icon icon-available">
+          <i class="fas fa-thumbs-up"></i>
         </div>
-
+      <% elsif current_user != item.user && item.waiting_answer? %>
+        <div class="card-icon icon-waiting">
+          <i class="fas fa-question"></i>
+        </div>
       <% end %>
-    <% end %>
-  <% end %>
-</div>
+      <div class="card-item-name"><%= item.name %></div>
+      <div class="card-item-verb"><%= item.verbe %></div>
+      <div class="card-item-description"><%= item.object_description(current_user) %></div>
+    </div>
+  </div>
+<% end %>

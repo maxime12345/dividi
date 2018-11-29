@@ -28,6 +28,18 @@ class Item < ApplicationRecord
     !pending_reminders.empty?
   end
 
+  def waiting_answer?
+    available? && waiting_list?
+  end
+
+  def loaned?
+    validate_reminder && verbe == "To Lend"
+  end
+
+  def rented?
+    validate_reminder && verbe == "To Rent"
+  end
+
   def borrowable?
     verbe == 'To Lend' || verbe == 'To Rent'
   end
@@ -49,6 +61,42 @@ class Item < ApplicationRecord
       else
         verbe
       end
+    end
+  end
+
+  def my_object_description
+    if available? && !waiting_list?
+      'Disponible pour vos amis'
+    elsif available? && waiting_list?
+      'Vous avez une demande en attente de réponse'
+    elsif loaned?
+      "#{validate_reminder.user.username} vous l'a emprunté depuis le #{validate_reminder.created_at}"
+    elsif rented?
+      "#{validate_reminder.user.username} vous le loue depuis le #{validate_reminder.created_at}"
+    end
+  end
+
+  def friend_object_description(current_user)
+    if available? && !waiting_list?
+      'Disponible'
+    elsif available? && waiting_list?
+      'Votre demande est en attente de réponse'
+    elsif loaned? && validate_reminder.user.username == current_user.username
+      "emprunté à #{user.username} depuis le #{validate_reminder.created_at}"
+    elsif rented? && validate_reminder.user.username == current_user.username
+      "loué à #{user.username} depuis le #{validate_reminder.created_at}"
+    elsif loaned?
+      "Déjà prêté"
+    elsif rented?
+      "Déjà loué"
+    end
+  end
+
+  def object_description(current_user)
+    if user == current_user
+      my_object_description
+    else
+      friend_object_description(current_user)
     end
   end
 
